@@ -1,5 +1,11 @@
-<ul class="list-group">
-     <li class="list-group-item active">Active item</li>
-     <li class="list-group-item">Item</li>
-     <li class="list-group-item disabled">Disabled item</li>
-</ul>
+<div class="provafoot fs-1 w-50">
+    <ul>
+        <li>bella</li>
+        <li class="provahover">bella</li>
+        <li>bella</li>
+        <li>bella</li>
+        <li>bella</li>
+
+    </ul>
+
+</div>
