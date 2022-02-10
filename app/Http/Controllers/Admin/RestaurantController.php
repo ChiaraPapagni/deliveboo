@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use League\CommonMark\Normalizer\SlugNormalizer;
 
 class RestaurantController extends Controller
@@ -60,6 +61,8 @@ class RestaurantController extends Controller
                 'phone' => ['nullable', 'unique:restaurants', 'max:30'],
             ]
         );
+
+        $validated['slug'] = Str::slug($request->name);
 
         //TODO -> Storage things
 
@@ -126,6 +129,7 @@ class RestaurantController extends Controller
                 ]
             );
 
+            $validated['slug'] = Str::slug($request->name);
             //TODO -> Add Storage things
 
             $validated['user_id'] = Auth::id();
