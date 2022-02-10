@@ -20,17 +20,27 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    
+
+
     @yield('personalCss')
+
 
 </head>
 
 <body>
 
-    @include('partials.header')
 
-    @yield('content')
+    <div id="app">
 
-    @include('partials.footer')
+        @include('partials.header')
+
+        @yield('content')
+
+        @include('partials.footer')
+        
+    </div>
+    
 
 </body>
 
