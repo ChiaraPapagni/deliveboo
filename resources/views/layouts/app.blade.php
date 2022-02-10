@@ -18,14 +18,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
+
+    <div id="app">
+
+        @include('partials.header')
+
+        @yield('content')
+
+        @include('partials.footer')
+        
+    </div>
     
-    @include('partials.header')
-
-    @yield('content')
-
-    @include('partials.footer')
 
 </body>
 </html>
