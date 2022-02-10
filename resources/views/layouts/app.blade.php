@@ -20,23 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #fece2c
-        }
+    @yield('personalCss')
 
-        .provanav,
-        .provafoot {
-            border: 5px solid #3b3b3b;
-        }
-
-        .provahover:hover {
-            -webkit-box-shadow: 0px 0px 44px 3px rgba(202, 29, 31, 0.75);
-            box-shadow: 0px 0px 44px 3px rgba(202, 29, 31, 0.75);
-            transform: scale(1.2);
-        }
-
-    </style>
 </head>
 
 <body>
