@@ -5,7 +5,8 @@
      <h1>Ciao</h1>
      <h1>CIAO</h1>
 
-     <div height="200">
+     <div>
           CIAO
      </div>
+     
 @endsection
