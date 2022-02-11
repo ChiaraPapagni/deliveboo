@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Models\Category;
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Restaurant;
-use App\User;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Validation\Rule;
@@ -24,8 +24,11 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Auth::user()->restaurants()->orderByDesc('id');
-        // return view('admin.retaurants.index', compact('restaurants'));
+        $restaurants = Auth::user()
+            ->restaurants()
+            ->orderByDesc('id')
+            ->get();
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -37,7 +40,7 @@ class RestaurantController extends Controller
     {
         $categories = Category::all();
 
-        //return view('admin.restaurants.create', compact('categories'));
+        return view('admin.restaurants.create', compact('categories'));
     }
 
     /**
@@ -48,19 +51,15 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //ddd()$request->all());
-
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'unique:restaurants', 'max:200'],
-                'vat' => ['required', 'unique:restaurants', 'max:200'],
-                'address' => ['required', 'unique:restaurants', 'max:200'],
-                'restaurant_image' => ['nullable'],
-                'description' => ['nullable'],
-                'website' => ['nullable', 'unique:restaurants', 'max:200'],
-                'phone' => ['nullable', 'unique:restaurants', 'max:30'],
-            ]
-        );
+        $validated = $request->validate([
+            'name' => ['required', 'unique:restaurants', 'max:200'],
+            'vat' => ['required', 'unique:restaurants', 'max:200'],
+            'address' => ['required', 'unique:restaurants', 'max:200'],
+            'restaurant_image' => ['nullable'],
+            'description' => ['nullable'],
+            'website' => ['nullable', 'unique:restaurants', 'max:200'],
+            'phone' => ['nullable', 'unique:restaurants', 'max:30'],
+        ]);
 
         $validated['slug'] = Str::slug($request->name);
 
@@ -68,10 +67,16 @@ class RestaurantController extends Controller
 
         $validated['user_id'] = Auth::id();
 
-        $_restaurant = Restaurant::create($validated);
-        $_restaurant->categories()->attach($request->categories);
+        $restaurant = Restaurant::create($validated);
 
-        //return redirect()->route('admin.restaurants.index', $_restaurant);
+        if ($request->has('categories')) {
+            $request->validate([
+                'categories' => ['nullable', 'exists:categories,id'],
+            ]);
+            $restaurant->categories()->attach($request->categories);
+        }
+
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
@@ -82,8 +87,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        // return view('admin.retaurants.show', compact('restaurant'));
-
+        return view('admin.restaurants.show', compact('restaurant'));
     }
 
     /**
@@ -97,13 +101,13 @@ class RestaurantController extends Controller
         $categories = Category::all();
 
         if (Auth::id() === $restaurant->user_id) {
-            // return view('admin.retaurants.edit', compact('restaurant', 'categories'));
+            return view(
+                'admin.restaurants.edit',
+                compact('restaurant', 'categories')
+            );
         } else {
             abort(403);
         }
-
-        // return view('admin.retaurants.edit', compact('restaurant', 'categories'));
-
     }
 
     /**
@@ -116,30 +120,32 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         if (Auth::id() === $restaurant->user_id) {
-            $validated = $request->validate(
-                [
-                    'name' => ['required', 'unique:restaurants', 'max:200'],
-                    'vat' => ['required', 'unique:restaurants', 'max:200'],
-                    'address' => ['required', 'unique:restaurants', 'max:200'],
-                    'restaurant_image' => ['nullable'],
-                    'description' => ['nullable'],
-                    'website' => ['nullable', 'unique:restaurants', 'max:200'],
-                    'phone' => ['nullable', 'unique:restaurants', 'max:30'],
-                    'category_id' => ['nullable', 'exists:categories,id'],
-                ]
-            );
+            $validated = $request->validate([
+                'name' => ['required', 'max:200'],
+                'vat' => ['required', 'max:200'],
+                'address' => ['required', 'max:200'],
+                'restaurant_image' => ['nullable'],
+                'description' => ['nullable'],
+                'website' => ['nullable', 'max:200'],
+                'phone' => ['nullable', 'max:30'],
+            ]);
 
             $validated['slug'] = Str::slug($request->name);
+
             //TODO -> Add Storage things
 
-            $validated['user_id'] = Auth::id();
-
             $restaurant->update($validated);
-            $restaurant->categories()->sync($request->category);
 
-            //return redirect()->route('admin.restaurants.index');
-            //TODO -> Sort what to do with MSG
+            if ($request->has('categories')) {
+                $request->validate([
+                    'categories' => ['nullable', 'exists:categories,id'],
+                ]);
+                $restaurant->categories()->sync($request->categories);
+            }
 
+            return redirect()
+                ->route('admin.restaurants.index')
+                ->with('message', 'The restaurant has been correctly updated!');
         } else {
             abort(403);
         }
@@ -154,11 +160,10 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         if (Auth::id() === $restaurant->user_id) {
-
             $restaurant->delete();
-            //return redirect()->back(); 
-            //TODO -> Sort what to do with MSG
-
+            return redirect()
+                ->route('admin.restaurants.index')
+                ->with('message', 'The restaurant has been correctly removed!');
         } else {
             abort(403);
         }

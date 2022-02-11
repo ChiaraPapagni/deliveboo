@@ -12,6 +12,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Restaurant extends Model
 {
+    protected $fillable = [
+        'slug',
+        'name',
+        'vat',
+        'address',
+        'restaurant_image',
+        'description',
+        'website',
+        'phone',
+        'user_id',
+    ];
+
     //Relazione 1 to many
     //Un ristorante appartiene ad un solo utente (one)
     public function user()
