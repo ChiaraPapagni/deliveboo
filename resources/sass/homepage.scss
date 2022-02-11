@@ -28,9 +28,9 @@ First Section
 }
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 375px) {
   h1.text-capitalize.Title {
-    font-size: 3.5em;
-    padding: 1rem 0.5rem;
+    font-size: 1.65em !important;
+    padding: 1rem 0.5rem !important;
 }
 }
