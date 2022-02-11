@@ -127,5 +127,16 @@
 footer{
      background-color: $brand_color;
      width: 100%;
+     & .fab{
+          color: white;
+          &:hover{
+               color: $terziary_color;
+          }
+     }
+
+     & span:hover{
+          color: $terziary_color;
+          cursor: pointer;
+     }
 }
 /* Footer */
