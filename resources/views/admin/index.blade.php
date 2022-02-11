@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Bella per questa dashboard</h1>
+    <div class="container">
+        <p>You have registered successfully!</p>
+        <h4>Welcome to the Dashboard</h4>
+    </div>
 @endsection
