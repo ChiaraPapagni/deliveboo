@@ -69,7 +69,7 @@
     </div>
 
     {{-- Restaurant Container --}}
-    <div class="categoryContainer py-5">
+    <div class="restaurantContainer py-5">
         <div class="container">
 
             <h2 class="text-capitalize pb-5 pt-3 fs-1">choose your favourite restaurant!</h2>
@@ -80,19 +80,21 @@
                 @foreach ($restaurants as $restaurant)
                     <div class="col">
 
-                        {{-- Card --}}
-                        <div class="card">
+                        <a href=" {{ route('restaurant', $restaurant->slug) }} ">
+                            {{-- Card --}}
+                            <div class="card">
 
-                            {{-- Card Image --}}
-                            <div class="card-body w-100 text-center">
-                                <img width="90%" src="{{ $restaurant->restaurant_image }}" alt="">
-                            </div>
+                                {{-- Card Image --}}
+                                <div class="card-body w-100 text-center">
+                                    <img width="90%" src="{{ $restaurant->restaurant_image }}" alt="">
+                                </div>
 
-                            {{-- Cards Info --}}
-                            <div class="card-text w-100">
-                                <h3>{{ $restaurant->name }}</h3>
+                                {{-- Cards Info --}}
+                                <div class="card-text w-100">
+                                    <h3>{{ $restaurant->name }}</h3>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
 

@@ -17,6 +17,6 @@ class HomeController extends Controller
   {
     $categories = Category::all();
     $restaurants = Restaurant::all();
-    return view('welcome', compact('categories', 'restaurants'));
+    return view('guest.welcome', compact('categories', 'restaurants'));
   }
 }
