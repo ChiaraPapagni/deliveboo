@@ -13,7 +13,7 @@
 </p>
 
 <h4>Menu</h4>
-<a href="{{ route('admin.products.create') }}" role="button">
+<a href="{{ route('admin.product.create', ['restaurant'=>$restaurant->id]) }}" role="button">
     Aggiungi un piatto
 </a>
 <table>

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Restaurant;
+use App\User;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Validation\Rule;
@@ -21,7 +22,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        
         $products = Product::all();
         // return view('admin.products.index', compact('products'));
     }
@@ -31,9 +33,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($restaurant_id)    
     {
-        return view('admin.products.create');
+        
+        return view('admin.products.create', compact('restaurant_id'));
     }
 
     /**
@@ -42,8 +45,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
+
         $validated = $request->validate([
             'name' => ['required', 'unique:products', 'max:200'],
             'ingredients' => ['nullable'],
@@ -52,20 +56,30 @@ class ProductController extends Controller
             'visible' => ['boolean'],
             'restaurant_id' => 'exists:restaurants,id',
         ]);
-
+    
+        
         if ($request->file('product_image')) {
             $image_path = Storage::put(
                 'product_image',
                 $request->file('product_image')
             );
             $validated['product_image'] = $image_path;
+            
         }
 
-        $validated['restaurant_id'] = Auth::user()->id;
+        $product = Product::create($validated);
+        // foreach($restaurants as $restaurant){
 
-        $products = Product::create($validated);
+        //     //ddd(Auth::id());
+        //     //ddd($restaurant->user_id);
 
-        return redirect()->route('admin.restaurants.index', $products);
+        //     if(Auth::id() === $restaurant -> user_id && !(Auth::id() === null)){
+               
+        //         
+        //     }
+        // }
+        
+        return redirect()->route('admin.restaurants.index', $product);
     }
 
     /**

@@ -37,5 +37,6 @@ Route::namespace('Admin')
         Route::resource('/restaurants', RestaurantController::class);
 
         //Rotta per la gestione dei prodotto/piatti (CRUD)
-        Route::resource('/products', ProductController::class);
+        Route::resource('/products', ProductController::class)->except(['create']);
+        Route::get('/products/create/{restaurant}', 'ProductController@create')->name('product.create');
     });

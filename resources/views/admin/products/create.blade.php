@@ -1,8 +1,10 @@
 <h1>Create a new Product</h1>
 
-<form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
+<form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
     @csrf
 
+    <input type="hidden" name="restaurant_id" value={{ $restaurant_id }}>
+    
     {{-- Nome prodotto --}}
     <div class="mb-3">
         <label for="name" class="form-label">Nome Piatto</label>
