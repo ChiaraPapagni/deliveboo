@@ -20,7 +20,7 @@
     </label>
   </div>
 
-  <div class="container nav-links d-flex justify-content-between w-100">
+  <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
 
     <div>
       <a href="//github.io/jo_geek" target="_blank">Ristoranti</a>
@@ -29,10 +29,34 @@
    
 
     <div>
-      <a href="//github.io/jo_geek" target="_blank">Login</a>
-      <a href="http://stackoverflow.com/users/4084003/" target="_blank">Registrazione Ristoratore</a>
+      @guest
+          
+      
+      <a href="{{ route('login') }}" target="_blank"> {{ __('Login') }} </a>
+
+      @if (Route::has('register'))
+      <a href="{{ route('register') }}" target="_blank">{{ __('Register') }}</a>
+      @endif
+
+      @else 
+      <a class="" href="#">
+        {{ Auth::user()->name }}
+      </a>
+
+      <a class="" href="">
+        Dashboard
+      </a>
+
+      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">{{ __('Logout') }}
+      </a>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+      </form>
+
+      @endguest
     </div>
-    
     
   </div>
   
