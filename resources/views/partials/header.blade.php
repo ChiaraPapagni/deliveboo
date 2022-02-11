@@ -1,14 +1,7 @@
 <div class="nav">
     <input type="checkbox" id="nav-check">
 
-    {{-- <div class="nav-header">
-    <div class="nav-title">
-      JoGeek
-    </div>
-  </div> --}}
-
     <div class="logo">
-
     </div>
 
     <div class="nav-btn">
@@ -38,15 +31,15 @@
                 @endif
 
             @else
-                <a class="" href="#">
+                <span class="" href="#">
                     {{ Auth::user()->name }}
-                </a>
+                </span>
 
                 <a class="" href="{{ route('admin.dashboard') }}">
                     Dashboard
                 </a>
 
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 

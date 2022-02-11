@@ -11243,6 +11243,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/* header */
 .nav {
   position: fixed;
   top: 0;
@@ -11250,6 +11251,7 @@ textarea.form-control-lg {
   height: 50px;
   width: 100%;
   background-color: #fece2c;
+  z-index: 10000;
 }
 .nav > .nav-header {
   display: inline;
@@ -11286,6 +11288,10 @@ textarea.form-control-lg {
 }
 
 @media (max-width: 992px) {
+  .nav > .logo {
+    height: 75px;
+    width: 75px;
+  }
   .nav > .nav-btn {
     display: inline-block;
     position: absolute;
@@ -11332,4 +11338,14 @@ textarea.form-control-lg {
 .nav #nav-check:checked ~ .nav-btn > label {
     background-color: rgba(0, 0, 0, 0.3);
   }
+
 }
+/* header */
+/* Footer */
+footer {
+  background-color: #3b3b3b;
+  width: 100%;
+}
+
+/* Footer */
+
