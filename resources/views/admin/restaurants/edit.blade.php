@@ -15,6 +15,26 @@
         @enderror
     </div>
 
+    {{-- Immagine --}}
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-4">
+                <img src="{{ asset('storage/' . $restaurant->restaurant_image) }}" alt="{{ $restaurant->name }}" />
+            </div>
+            <div class="col">
+                <label for="restaurant_image" class="form-label">Modifica immagine</label>
+                <input type="file" name="restaurant_image" id="restaurant_image" aria-describedby="imageHelper"
+                    accept="images/*" class="form-control @error('restaurant_image') is_invalid @enderror" />
+                <small id="restaurant_imageHelper" class="text-muted">
+                    Add your restaurant image here. [Max 500kb]
+                </small>
+            </div>
+        </div>
+        @error('restaurant_image')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
     {{-- Partita iva --}}
     <div class="mb-3">
         <label for="vat" class="form-label">Partita IVA</label>

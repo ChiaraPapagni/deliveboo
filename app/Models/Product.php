@@ -10,6 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'name',
+        'ingredients',
+        'price',
+        'visible',
+        'product_image',
+        'restaurant_id',
+    ];
+
     //Relazione 1 to many
     //Un prodotto appartiene ad un solo ristorante (one)
     public function restaurant()

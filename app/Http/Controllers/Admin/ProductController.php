@@ -2,9 +2,6 @@
 
 //TODO - I need to make Auth validation for every user interactible function
 
-
-
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -27,7 +24,6 @@ class ProductController extends Controller
     {
         $products = Product::all();
         // return view('admin.products.index', compact('products'));
-
     }
 
     /**
@@ -37,8 +33,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //return view('admin.products.create');
-
+        return view('admin.products.create');
     }
 
     /**
@@ -49,22 +44,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //ddd()$request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'unique:products', 'max:200'],
+            'ingredients' => ['nullable'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'product_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
+            'visible' => ['boolean'],
+            'restaurant_id' => 'exists:restaurants,id',
+        ]);
 
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'unique:products', 'max:200'],
-                'ingredients' => ['nullable'],
-                'price' => ['required'],
-                'product_image' => ['nullable'],
-                'visible' => ['nullable'], //TODO Set Visible to Default value true
-            ]
-        );
-        //RESTAURANT_ID
-        $_product = Product::create($validated);
+        if ($request->file('product_image')) {
+            $image_path = Storage::put(
+                'product_image',
+                $request->file('product_image')
+            );
+            $validated['product_image'] = $image_path;
+        }
 
-        //return redirect()->route('admin.products.index', $_products);
+        $validated['restaurant_id'] = Auth::user()->id;
 
+        $products = Product::create($validated);
+
+        return redirect()->route('admin.restaurants.index', $products);
     }
 
     /**
@@ -76,7 +77,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         // return view('admin.products.show');
-
     }
 
     /**
@@ -87,7 +87,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-
         //ddd($product->restaurant()->name;
 
         /*
@@ -101,10 +100,8 @@ class ProductController extends Controller
         $product->restaurant()->name;
         */
 
-
         // THIS
         // return view('admin.products.edit');
-
     }
 
     /**
@@ -116,20 +113,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'unique:products', 'max:200'],
-                'ingredients' => ['nullable'],
-                'price' => ['required'],
-                'product_image' => ['nullable'],
-                'visible' => ['nullable'], //TODO Set Visible to Default value true
-            ]
-        );
+        $validated = $request->validate([
+            'name' => ['required', 'unique:products', 'max:200'],
+            'ingredients' => ['nullable'],
+            'price' => ['required'],
+            'product_image' => ['nullable'],
+            'visible' => ['nullable'], //TODO Set Visible to Default value true
+        ]);
 
         $product->update($validated);
 
         //return redirect()->route('admin.products.index');
-
     }
 
     /**
@@ -140,9 +134,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //TODO AUTH
-
         $product->delete();
-        //return redirect()->back(); 
+        return redirect()
+            ->back()
+            ->with('message', 'The dish has been correctly removed!');
     }
 }

@@ -55,7 +55,7 @@ class RestaurantController extends Controller
             'name' => ['required', 'unique:restaurants', 'max:200'],
             'vat' => ['required', 'unique:restaurants', 'max:200'],
             'address' => ['required', 'unique:restaurants', 'max:200'],
-            'restaurant_image' => ['nullable'],
+            'restaurant_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
             'description' => ['nullable'],
             'website' => ['nullable', 'unique:restaurants', 'max:200'],
             'phone' => ['nullable', 'unique:restaurants', 'max:30'],
@@ -63,7 +63,13 @@ class RestaurantController extends Controller
 
         $validated['slug'] = Str::slug($request->name);
 
-        //TODO -> Storage things
+        if ($request->file('restaurant_image')) {
+            $image_path = Storage::put(
+                'restaurant_image',
+                $request->file('restaurant_image')
+            );
+            $validated['restaurant_image'] = $image_path;
+        }
 
         $validated['user_id'] = Auth::id();
 
@@ -124,7 +130,7 @@ class RestaurantController extends Controller
                 'name' => ['required', 'max:200'],
                 'vat' => ['required', 'max:200'],
                 'address' => ['required', 'max:200'],
-                'restaurant_image' => ['nullable'],
+                'restaurant_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
                 'description' => ['nullable'],
                 'website' => ['nullable', 'max:200'],
                 'phone' => ['nullable', 'max:30'],
@@ -132,7 +138,16 @@ class RestaurantController extends Controller
 
             $validated['slug'] = Str::slug($request->name);
 
-            //TODO -> Add Storage things
+            if ($request->file('restaurant_image')) {
+                //Elimino l'immagine caricata precedentemente
+                Storage::delete($restaurant->restaurant_image);
+
+                $img_path = Storage::put(
+                    'restaurant_image',
+                    $request->file('restaurant_image')
+                );
+                $validated['restaurant_image'] = $img_path;
+            }
 
             $restaurant->update($validated);
 

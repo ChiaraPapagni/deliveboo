@@ -14,6 +14,17 @@
         @enderror
     </div>
 
+    {{-- Immagine --}}
+    <div class="mb-3">
+        <label for="restaurant_image" class="form-label">Immagine</label>
+        <input type="file" name="restaurant_image" id="restaurant_image" accept="image/*" placeholder="https://"
+            aria-describedby="restaurant_imageHelper"
+            class="form-control @error('restaurant_image') is-invalid @enderror" />
+        @error('restaurant_image')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
     {{-- Partita iva --}}
     <div class="mb-3">
         <label for="vat" class="form-label">Partita IVA</label>
@@ -40,7 +51,7 @@
     {{-- Sito web --}}
     <div class="mb-3">
         <label for="website" class="form-label">Sito web</label>
-        <input type="url" name="website" id="website" class="form-control @error('website') is-invalid @enderror"
+        <input type="text" name="website" id="website" class="form-control @error('website') is-invalid @enderror"
             placeholder="Your restaurant website here..." aria-describedby="websiteHelper"
             value="{{ old('website') }}">
 

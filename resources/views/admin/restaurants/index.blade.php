@@ -30,7 +30,11 @@
                     <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
                         Edit
                     </a>
-                    <a href="">Delete</a>
+                    <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach
