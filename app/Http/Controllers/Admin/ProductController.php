@@ -47,6 +47,7 @@ class ProductController extends Controller
      */
     public function store(Request $request, Product $product)
     {
+        $restaurants = Restaurant::all();
 
         $validated = $request->validate([
             'name' => ['required', 'unique:products', 'max:200'],
@@ -67,19 +68,18 @@ class ProductController extends Controller
             
         }
 
-        $product = Product::create($validated);
-        // foreach($restaurants as $restaurant){
+        foreach($restaurants as $restaurant){
+                
+            if(Auth::id() === $restaurant -> user_id && $validated['restaurant_id']  == $restaurant->id){
 
-        //     //ddd(Auth::id());
-        //     //ddd($restaurant->user_id);
+                $product = Product::create($validated);
+                return redirect()->route('admin.restaurants.index', $product)->with('message', 'Prodotto creato con successo');
+            }
+            
+        }
 
-        //     if(Auth::id() === $restaurant -> user_id && !(Auth::id() === null)){
-               
-        //         
-        //     }
-        // }
-        
-        return redirect()->route('admin.restaurants.index', $product);
+        abort(403);  
+       
     }
 
     /**
