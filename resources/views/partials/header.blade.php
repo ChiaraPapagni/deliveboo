@@ -42,7 +42,7 @@
                     {{ Auth::user()->name }}
                 </a>
 
-                <a class="" href="">
+                <a class="" href="{{ route('admin.dashboard') }}">
                     Dashboard
                 </a>
 
