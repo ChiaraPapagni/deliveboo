@@ -11338,7 +11338,6 @@ textarea.form-control-lg {
 .nav #nav-check:checked ~ .nav-btn > label {
     background-color: rgba(0, 0, 0, 0.3);
   }
-
 }
 /* header */
 /* Footer */
@@ -11346,6 +11345,15 @@ footer {
   background-color: #3b3b3b;
   width: 100%;
 }
+footer .fab {
+  color: white;
+}
+footer .fab:hover {
+  color: #ca1d1f;
+}
+footer span:hover {
+  color: #ca1d1f;
+  cursor: pointer;
+}
 
 /* Footer */
-
