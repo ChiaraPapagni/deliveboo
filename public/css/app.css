@@ -11254,12 +11254,6 @@ textarea.form-control-lg {
 .nav > .nav-header {
   display: inline;
 }
-.nav > .nav-header > .nav-title {
-  display: inline-block;
-  font-size: 22px;
-  color: #3b3b3b;
-  padding: 10px 10px 10px 10px;
-}
 .nav > .nav-btn {
   display: none;
 }
@@ -11268,20 +11262,30 @@ textarea.form-control-lg {
   float: right;
   font-size: 18px;
 }
-.nav > .nav-links > a {
+.nav > .nav-links > div > a {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
   color: #3b3b3b;
 }
-.nav > .nav-links > a > a:hover {
+.nav > .nav-links > div > a > a:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .nav > #nav-check {
   display: none;
 }
+.nav > .logo {
+  background-image: url("https://picsum.photos/200");
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: calc(50% - 50px);
+}
 
-@media (max-width: 600px) {
+@media (max-width: 992px) {
   .nav > .nav-btn {
     display: inline-block;
     position: absolute;
@@ -11302,7 +11306,7 @@ textarea.form-control-lg {
   }
   .nav > .nav-links {
     position: absolute;
-    display: block;
+    display: block !important;
     width: 100%;
     background-color: #333;
     height: 0px;
@@ -11311,7 +11315,7 @@ textarea.form-control-lg {
     top: 50px;
     left: 0px;
   }
-  .nav > .nav-links > a {
+  .nav > .nav-links > div > a {
     display: block;
     width: 100%;
     color: #eee;
@@ -11320,7 +11324,7 @@ textarea.form-control-lg {
     height: 0px;
   }
   .nav > #nav-check:checked ~ .nav-links {
-    height: calc(100vh - 500px);
+    height: calc(100vh - 425px);
     overflow-y: auto;
   }
 
