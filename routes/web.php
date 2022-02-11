@@ -34,8 +34,8 @@ Route::namespace('Admin')
         Route::get('/', 'HomeController@index')->name('dashboard');
 
         //Rotta per la gestione del ristorante (CRUD)
-        Route::resource('restaurants', RestaurantController::class);
+        Route::resource('/restaurants', RestaurantController::class);
 
         //Rotta per la gestione dei prodotto/piatti (CRUD)
-        Route::resource('products', ProductController::class);
+        Route::resource('/products', ProductController::class);
     });
