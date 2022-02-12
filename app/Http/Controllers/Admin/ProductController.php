@@ -75,8 +75,8 @@ class ProductController extends Controller
                     )
                     ->with('message', 'Prodotto creato con successo');
             }
-            abort(403);
         }
+        abort(403);
     }
 
     /**
