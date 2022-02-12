@@ -1,3 +1,5 @@
+{{-- WARNING! Temporary target="_blank" for testing! remember to remove it when building --}}
+
 @extends('layouts.admin')
 
 @section('content')
@@ -31,17 +33,20 @@
                         <td><a target="_blank" href="">{{ $restaurant->website }}</a></td>
                         <td>{{ $restaurant->phone }}</td>
                         <td>
-                            <a href="{{ route('admin.restaurants.show', $restaurant->id) }}">
-                                Show
-                            </a>
-                            <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
-                                Edit
-                            </a>
-                            <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
+                            <div class="btns d-flex">
+                                <a class="btn btn-primary " href="{{ route('admin.restaurants.show', $restaurant->id) }}">
+                                    Show
+                                </a>
+                                <a class="btn btn-warning ms-2 me-2"
+                                    href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
+                                    Edit
+                                </a>
+                                <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
