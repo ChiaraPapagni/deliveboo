@@ -4,8 +4,6 @@
 @extends('layouts.admin')
 
 
-
-
 @section('content')
     <div class="container mt-5">
 
@@ -22,7 +20,6 @@
                         <a href="#" target="_blank" class="btn btn-primary">{{ $restaurant->website }}</a>
                         <div class="mt-2">
                             {{ $restaurant->phone }}
-                            </d>
                         </div>
 
                         {{-- Category badges --}}
@@ -76,11 +73,41 @@
                                 <a class="btn btn-warning me-2" href="{{ route('admin.products.edit', $product->id) }}">
                                     Edit
                                 </a>
-                                <form action="{{ route('admin.products.destroy', $product->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
+
+                                {{-- Button trigger modal --}}
+                                <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
+                                    data-bs-target="#delete_product_{{ $product->id }}">
+                                    Delete
+                                </button>
+
+                                {{-- Modal --}}
+                                <div class="modal fade" id="delete_product_{{ $product->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="modal_{{ $product->id }}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete product: {{ $product->name }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to proceed?
+                                                This operation is irreversible!
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <form action="{{ route('admin.products.destroy', $product->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger text-white"
+                                                        data-bs-dismiss="modal">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>
