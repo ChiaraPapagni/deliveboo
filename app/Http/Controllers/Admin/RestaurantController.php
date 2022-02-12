@@ -24,6 +24,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+
+        // User -> Restaurant authentication
         $restaurants = Auth::user()
             ->restaurants()
             ->orderByDesc('id')
@@ -38,6 +40,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
+
         $categories = Category::all();
 
         return view('admin.restaurants.create', compact('categories'));
@@ -51,6 +54,7 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
+        // New Restaurant Validation
         $validated = $request->validate([
             'name' => ['required', 'unique:restaurants', 'max:200'],
             'vat' => ['required', 'unique:restaurants', 'max:200'],
@@ -61,8 +65,11 @@ class RestaurantController extends Controller
             'phone' => ['nullable', 'unique:restaurants', 'max:30'],
         ]);
 
+        // Create a Slug name for the new Restaurant
         $validated['slug'] = Str::slug($request->name);
 
+
+        // Restaurant Image(file) storaging
         if ($request->file('restaurant_image')) {
             $image_path = Storage::put(
                 'restaurant_image',
@@ -71,10 +78,13 @@ class RestaurantController extends Controller
             $validated['restaurant_image'] = $image_path;
         }
 
+        //New restaurant User authentication 
         $validated['user_id'] = Auth::id();
 
+        //Restaurant Creation
         $restaurant = Restaurant::create($validated);
 
+        //Category added to Restaurant
         if ($request->has('categories')) {
             $request->validate([
                 'categories' => ['nullable', 'exists:categories,id'],
@@ -106,6 +116,7 @@ class RestaurantController extends Controller
     {
         $categories = Category::all();
 
+        //Edit Restaurant User Authentication check
         if (Auth::id() === $restaurant->user_id) {
             return view(
                 'admin.restaurants.edit',
@@ -125,6 +136,8 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
+
+        //Update Restaurant User Authentication check
         if (Auth::id() === $restaurant->user_id) {
             $validated = $request->validate([
                 'name' => ['required', 'max:200'],
@@ -136,8 +149,10 @@ class RestaurantController extends Controller
                 'phone' => ['nullable', 'max:30'],
             ]);
 
+            //Update slug
             $validated['slug'] = Str::slug($request->name);
 
+            //Erase previous saved image before save a new one (even if it's the same)
             if ($request->file('restaurant_image')) {
                 //Elimino l'immagine caricata precedentemente
                 Storage::delete($restaurant->restaurant_image);
@@ -149,8 +164,10 @@ class RestaurantController extends Controller
                 $validated['restaurant_image'] = $img_path;
             }
 
+            //Restaurant update
             $restaurant->update($validated);
 
+            //Restaurant Category Update
             if ($request->has('categories')) {
                 $request->validate([
                     'categories' => ['nullable', 'exists:categories,id'],
@@ -174,6 +191,8 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+
+        //Restaurant Destroy User Authentication check
         if (Auth::id() === $restaurant->user_id) {
             $restaurant->delete();
             return redirect()
