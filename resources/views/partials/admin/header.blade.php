@@ -1,8 +1,11 @@
 <div class="nav">
     <input type="checkbox" id="nav-check">
 
-    <div class="logo">
+    {{-- <div class="nav-header">
+    <div class="nav-title">
+      JoGeek
     </div>
+  </div> --}}
 
     <div class="nav-btn">
         <label for="nav-check">
@@ -14,13 +17,13 @@
 
     <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
 
-        <div>
+        <div class="left-side-links">
             <a href="//github.io/jo_geek" target="_blank">Ristoranti</a>
             <a href="http://stackoverflow.com/users/4084003/" target="_blank">La cucina che vorrei</a>
         </div>
 
 
-        <div>
+        <div class="container-link" style="display: flex;">
             @guest
 
 
@@ -31,16 +34,16 @@
                 @endif
 
             @else
-                <span class="" href="#">
+                <a class="" href="#">
                     {{ Auth::user()->name }}
-                </span>
-
-                <a class="" href="{{ route('admin.dashboard') }}">
-                    Dashboard
                 </a>
 
-                <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                {{-- <a class="" href="{{ route('admin.dashboard') }}">
+                    Dashboard
+                </a> --}}
+
+                <a class="dropdown-item logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -51,6 +54,4 @@
         </div>
 
     </div>
-
-
 </div>

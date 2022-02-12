@@ -18,8 +18,8 @@ Route::get('/', 'HomeController@index')->name('homepage');
 
 // Rotta per lo show del singolo ristorante
 Route::get('/restaurants/{restaurant:slug}', 'RestaurantController@show')->name(
-    'restaurant'
-);
+  'restaurant');
+
 
 // Rotte per l'autenticazione dell'utente
 Auth::routes();
