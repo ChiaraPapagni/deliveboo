@@ -1,42 +1,53 @@
-<div>
-    <h1>Restaurants</h1>
-    <a href="{{ route('admin.restaurants.create') }}" role="button">
-        Create Restaurants
-    </a>
-</div>
+@extends('layouts.admin')
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Website</th>
-            <th>Phone Number</th>
-            <th>Actions</th>
+@section('content')
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($restaurants as $restaurant)
-            <tr>
-                <td>{{ $restaurant->id }}</td>
-                <td>{{ $restaurant->name }}</td>
-                <td>{{ $restaurant->website }}</td>
-                <td>{{ $restaurant->phone }}</td>
-                <td>
-                    <a href="{{ route('admin.restaurants.show', $restaurant->id) }}">
-                        Show
-                    </a>
-                    <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
-                        Edit
-                    </a>
-                    <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+    <div class="container mt-5">
+
+        {{-- Restaurant / Admin --}}
+        <div class="pt-5">
+            <h1 class="pt-2 text-center">Restaurants</h1>
+            <a class="btn btn-success mb-2" href="{{ route('admin.restaurants.create') }}" role="button">
+                Create Restaurants
+            </a>
+        </div>
+
+        {{-- Restaurant List --}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Website</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($restaurants as $restaurant)
+                    <tr>
+                        <td scope="row">{{ $restaurant->id }}</td>
+                        <td>{{ $restaurant->name }}</td>
+                        <td><a target="_blank" href="">{{ $restaurant->website }}</a></td>
+                        <td>{{ $restaurant->phone }}</td>
+                        <td>
+                            <a href="{{ route('admin.restaurants.show', $restaurant->id) }}">
+                                Show
+                            </a>
+                            <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
+                                Edit
+                            </a>
+                            <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+
+@endsection
