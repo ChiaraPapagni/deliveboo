@@ -14,7 +14,7 @@
                 <label for="name" class="form-label">Nome Ristorante</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Your restaurant name here..." aria-describedby="nameHelper"
-                    value="{{ $restaurant->name }}">
+                    value="{{ $restaurant->name }}" required min="3" max="255">
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -45,7 +45,7 @@
             {{-- Partita iva --}}
             <div class="mb-3">
                 <label for="vat" class="form-label">Partita IVA</label>
-                <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror"
+                <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" require
                     placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ $restaurant->vat }}">
 
                 @error('vat')
@@ -57,8 +57,8 @@
             <div class="mb-3">
                 <label for="address" class="form-label">Indirizzo</label>
                 <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror"
-                    placeholder="Your restaurant address here..." aria-describedby="addressHelper"
-                    value="{{ $restaurant->address }}">
+                    placeholder="Your restaurant address here..." aria-describedby="addressHelper" required min="3"
+                    max="255" value="{{ $restaurant->address }}">
 
                 @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -80,8 +80,8 @@
             {{-- Numero di telefono --}}
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di telefono</label>
-                <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror"
-                    placeholder="Your restaurant phone here..." aria-describedby="phoneHelper"
+                <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" min="8"
+                    max="20" placeholder="Your restaurant phone here..." aria-describedby="phoneHelper"
                     value="{{ $restaurant->phone }}">
 
                 @error('phone')

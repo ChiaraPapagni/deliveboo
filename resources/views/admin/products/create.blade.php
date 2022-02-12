@@ -13,7 +13,8 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Piatto</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your dish name here..." aria-describedby="nameHelper" value="{{ old('name') }}">
+                    placeholder="Your dish name here..." aria-describedby="nameHelper" value="{{ old('name') }}" required
+                    min="3" max="255">
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -34,7 +35,7 @@
             {{-- Prezzo --}}
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
-                <input type="number" min="0.00" max="10000.00" step="0.01" name="price" id="price"
+                <input type="number" min="0.00" max="10000.00" step="0.01" name="price" id="price" required
                     class="form-control @error('price') is-invalid @enderror" aria-describedby="priceHelper"
                     value="{{ old('price') }}">
 
@@ -55,8 +56,15 @@
 
             {{-- Visibile --}}
             <div class="mb-3">
-                <label for="visible" class="form-label">Non mostrare il piatto nel menu</label>
-                <input class="check" type="radio" name="visible" value="0">
+                <label for="visible" class="form-label">Mostra il piatto nel menu</label>
+                <select name="visible" id="visible">
+                    <option selected value="1">
+                        Si
+                    </option>
+                    <option value="0">
+                        No
+                    </option>
+                </select>
                 @error('visible')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
