@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center m-5">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
@@ -69,12 +69,16 @@
                                 </div>
                             </div>
 
-                            {{-- Immagine --}}
+                            {{-- Immagine Utente --}}
                             <div class="form-group row">
-                                <label for="account_image" class="form-label">Immagine</label>
-                                <input type="file" name="account_image" id="account_image" accept="image/*"
-                                    placeholder="https://" aria-describedby="account_imageHelper"
-                                    class="form-control @error('account_image') is-invalid @enderror" />
+                                <label for="account_image"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('User Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="file" name="account_image" id="account_image" accept="image/*"
+                                        placeholder="https://" aria-describedby="account_imageHelper"
+                                        class="form-control @error('account_image') is-invalid @enderror" />
+                                </div>
                                 @error('account_image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

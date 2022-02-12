@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <p>You have registered successfully!</p>
-        <h4>Welcome to the Dashboard</h4>
+        <img src="{{ asset('storage/' . $user->account_image) }}" alt="{{ $user->name }}">
+        <h4>Welcome to your Dashboard: {{ $user->name }}</h4>
     </div>
 @endsection
