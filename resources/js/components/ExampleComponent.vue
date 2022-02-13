@@ -20,8 +20,9 @@
             <div
               class="card"
               :id="'cat' + category.id"
-              :value="category.id"
-              @click="callApi(category.id)"
+              @click="filterCategories(category.id)"
+             
+              
             >
               <!--  Card Image  -->
               <div class="card-body w-100 text-center">
@@ -79,8 +80,8 @@
 
           <div
             class="col"
-            v-for="restaurant in restaurants"
-            :key="restaurant.id"
+            v-for="(restaurant, index) in FilterRestaurants"
+            :key="index"
           >
             <!-- <router-link :to="'/restaurant/' + restaurant.slug"></router-link> -->
 
@@ -150,13 +151,12 @@ export default {
 */
 
   methods: {
-    callApi(id) {
-      //console.log(id);
-      //console.log(this.FilterRestaurants)
-      this.FilterRestaurants = this.restaurants.filter(element => element.pivot.category_id === id)
-      console.log(this.FilterRestaurants)
-      
+    filterCategories(id) {
 
+      this.FilterRestaurants = this.restaurants.filter(element => element.pivot.category_id === id)
+      
+      console.log(this.FilterRestaurants)
+    
     },
   },
 };
