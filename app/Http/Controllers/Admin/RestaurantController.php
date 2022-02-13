@@ -24,7 +24,6 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-
         // User -> Restaurant authentication
         $restaurants = Auth::user()
             ->restaurants()
@@ -40,7 +39,6 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-
         $categories = Category::all();
 
         return view('admin.restaurants.create', compact('categories'));
@@ -68,7 +66,6 @@ class RestaurantController extends Controller
         // Create a Slug name for the new Restaurant
         $validated['slug'] = Str::slug($request->name);
 
-
         // Restaurant Image(file) storaging
         if ($request->file('restaurant_image')) {
             $image_path = Storage::put(
@@ -78,7 +75,7 @@ class RestaurantController extends Controller
             $validated['restaurant_image'] = $image_path;
         }
 
-        //New restaurant User authentication 
+        //New restaurant User authentication
         $validated['user_id'] = Auth::id();
 
         //Restaurant Creation
@@ -136,7 +133,6 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-
         //Update Restaurant User Authentication check
         if (Auth::id() === $restaurant->user_id) {
             $validated = $request->validate([
@@ -191,9 +187,9 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-
         //Restaurant Destroy User Authentication check
         if (Auth::id() === $restaurant->user_id) {
+            $restaurant->products()->delete();
             $restaurant->delete();
             return redirect()
                 ->route('admin.restaurants.index')
