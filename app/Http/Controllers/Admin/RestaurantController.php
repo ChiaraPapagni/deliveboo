@@ -82,14 +82,15 @@ class RestaurantController extends Controller
         $validated['user_id'] = Auth::id();
 
         //Restaurant Creation
-        $restaurant = Restaurant::create($validated);
+        
 
         //Category added to Restaurant
         if ($request->has('categories')) {
             $request->validate([
-                'categories' => ['nullable', 'exists:categories,id'],
+                'categories' => ['required','exists:categories,id'],
             ]);
-            $restaurant->categories()->attach($request->categories);
+            $restaurant = Restaurant::create($validated);
+            $restaurant->categories()->attach($request->categories); 
         }
 
         return redirect()->route('admin.restaurants.index');

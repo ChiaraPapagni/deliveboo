@@ -5114,9 +5114,150 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loading: false,
+      categories: Array,
+      restaurants: [],
+      meta: null,
+      links: null,
+      FilterRestaurants: []
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    axios.get("api/restaurants").then(function (response) {
+      _this.categories = response.data[0];
+      /* Ciclo nelle categorie. 
+      Nella singola categoria accedo alla proprietà restaurants ove sono presenti tutti i ristoranti associati a tale categoria.
+      Poi attraverso un altro ciclo prendo il singolo ristorante 
+      controllo che non sia già presenti nell'array this.restaurants
+      e lo pusho all'array dei ristoranti*/
+
+      _this.categories.forEach(function (restaurant) {
+        restaurant.restaurants.forEach(function (one_restaurant) {
+          //console.log(one_restaurant.id)
+          //console.log(this.restaurants.id)
+          _this.restaurants.push(one_restaurant);
+          /* if (!this.restaurants.some((e) => e.id === one_restaurant.id)) {
+            
+          }  */
+
+        });
+      });
+
+      _this.meta = response.data.meta;
+      _this.links = response.data.links;
+      _this.loading = true;
+    });
+    console.log("Component mounted.");
+    console.log(this.restaurants);
+  },
+
+  /* filtro
+    some
+    pusho
+  */
+  methods: {
+    callApi: function callApi(id) {
+      //console.log(id);
+      //console.log(this.FilterRestaurants)
+      this.FilterRestaurants = this.restaurants.filter(function (element) {
+        return element.pivot.category_id === id;
+      });
+      console.log(this.FilterRestaurants);
+    }
   }
 });
 
@@ -41366,26 +41507,138 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _vm.loading
+    ? _c("div", [
+        _c("div", { staticClass: "categoryContainer py-5" }, [
+          _c("div", { staticClass: "container" }, [
+            _c(
+              "h2",
+              { staticClass: "text-capitalize pb-5 pt-3 fs-1 text-end" },
+              [_vm._v("\n        choose your favourite categories!\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "\n          row row-cols-2 row-cols-md-4 row-cols-xl-5\n          gy-4\n          w-100\n          justify-content-center\n        ",
+              },
+              _vm._l(_vm.categories, function (category) {
+                return _c("div", { key: category.id, staticClass: "col" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card",
+                      attrs: { id: "cat" + category.id, value: category.id },
+                      on: {
+                        click: function ($event) {
+                          return _vm.callApi(category.id)
+                        },
+                      },
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "card-body w-100 text-center" },
+                        [
+                          _c("img", {
+                            attrs: {
+                              width: "90%",
+                              src: category.category_image,
+                              alt: "",
+                            },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-text w-100" }, [
+                        _c("h3", [_vm._v(_vm._s(category.name))]),
+                      ]),
+                    ]
+                  ),
+                ])
+              }),
+              0
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "restaurantContainer py-5" }, [
+          _c("div", { staticClass: "container" }, [
+            _c(
+              "h2",
+              { staticClass: "text-capitalize pb-5 pt-3 fs-1 text-end" },
+              [_vm._v("\n        choose your favourite restaurant!\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "\n          row row-cols-2 row-cols-md-4 row-cols-xl-5\n          gy-4\n          w-100\n          justify-content-center\n        ",
+              },
+              _vm._l(_vm.restaurants, function (restaurant) {
+                return _c("div", { key: restaurant.id, staticClass: "col" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body w-100 text-center" }, [
+                      _c("img", {
+                        attrs: {
+                          width: "90%",
+                          src: restaurant.restaurant_image,
+                          alt: "",
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-text w-100" }, [
+                      _c("h3", [_vm._v(_vm._s(restaurant.name))]),
+                    ]),
+                  ]),
+                ])
+              }),
+              0
+            ),
+          ]),
+        ]),
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
+    return _c("div", { staticClass: "searchbarContainer py-5" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "mb-3" }, [
+          _c(
+            "h3",
+            {
+              staticClass: "form-label text-capitalize",
+              attrs: { for: "restaurant" },
+            },
+            [
               _vm._v(
-                "\n                    I'm an example component.\n                "
+                "\n          ricerca i tuoi ristoranti preferiti!\n        "
               ),
-            ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "restaurant",
+              id: "restaurant",
+              placeholder: "Type restaurant's name",
+              "aria-describedby": "helpId",
+            },
+          }),
+          _vm._v(" "),
+          _c("small", { staticClass: "text-muted", attrs: { id: "helpId" } }, [
+            _vm._v("Scrivi il nome del ristorante dove vuoi ordinare"),
           ]),
         ]),
       ]),

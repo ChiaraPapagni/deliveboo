@@ -19,4 +19,6 @@ class HomeController extends Controller
     $restaurants = Restaurant::all();
     return view('guest.welcome', compact('categories', 'restaurants'));
   }
+
+
 }

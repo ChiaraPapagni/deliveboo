@@ -1,23 +1,163 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+  <div v-if="loading">
+    <!-- Category Container [cards]  -->
+    <div class="categoryContainer py-5">
+      <div class="container">
+        <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">
+          choose your favourite categories!
+        </h2>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
+        <div
+          class="
+            row row-cols-2 row-cols-md-4 row-cols-xl-5
+            gy-4
+            w-100
+            justify-content-center
+          "
+        >
+          <div class="col" v-for="category in categories" :key="category.id">
+            <!-- Card -->
+            <div
+              class="card"
+              :id="'cat' + category.id"
+              :value="category.id"
+              @click="callApi(category.id)"
+            >
+              <!--  Card Image  -->
+              <div class="card-body w-100 text-center">
+                <img width="90%" :src="category.category_image" alt="" />
+              </div>
+
+              <!-- Cards Info -->
+              <div class="card-text w-100">
+                <h3>{{ category.name }}</h3>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+
+    <!-- SearchBar Per i Ristoranti  -->
+    <div class="searchbarContainer py-5">
+      <div class="container">
+        <div class="mb-3">
+          <h3 for="restaurant" class="form-label text-capitalize">
+            ricerca i tuoi ristoranti preferiti!
+          </h3>
+          <input
+            type="text"
+            name="restaurant"
+            id="restaurant"
+            class="form-control"
+            placeholder="Type restaurant's name"
+            aria-describedby="helpId"
+          />
+          <small id="helpId" class="text-muted"
+            >Scrivi il nome del ristorante dove vuoi ordinare</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Restaurant Container -->
+    <div class="restaurantContainer py-5">
+      <div class="container">
+        <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">
+          choose your favourite restaurant!
+        </h2>
+
+        <div
+          class="
+            row row-cols-2 row-cols-md-4 row-cols-xl-5
+            gy-4
+            w-100
+            justify-content-center
+          "
+        >
+          <!--  Ciclo per stampare le cards -->
+
+          <div
+            class="col"
+            v-for="restaurant in restaurants"
+            :key="restaurant.id"
+          >
+            <!-- <router-link :to="'/restaurant/' + restaurant.slug"></router-link> -->
+
+            <!--  Card  -->
+            <div class="card">
+              <!--  Card Image  -->
+              <div class="card-body w-100 text-center">
+                <img width="90%" :src="restaurant.restaurant_image" alt="" />
+              </div>
+
+              <!--   Cards Info  -->
+              <div class="card-text w-100">
+                <h3>{{ restaurant.name }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+export default {
+  data() {
+    return {
+      loading: false,
+      categories: Array,
+      restaurants: [],
+      meta: null,
+      links: null,
+      FilterRestaurants: [],
+    };
+  },
+  mounted() {
+    axios.get("api/restaurants").then((response) => {
+      this.categories = response.data[0];
+
+      /* Ciclo nelle categorie. 
+      Nella singola categoria accedo alla proprietà restaurants ove sono presenti tutti i ristoranti associati a tale categoria.
+      Poi attraverso un altro ciclo prendo il singolo ristorante 
+      controllo che non sia già presenti nell'array this.restaurants
+      e lo pusho all'array dei ristoranti*/
+
+      this.categories.forEach((restaurant) => {
+        restaurant.restaurants.forEach((one_restaurant) => {
+          //console.log(one_restaurant.id)
+          //console.log(this.restaurants.id)
+          this.restaurants.push(one_restaurant);
+          /* if (!this.restaurants.some((e) => e.id === one_restaurant.id)) {
+            
+          }  */
+        });
+      });
+
+      this.meta = response.data.meta;
+      this.links = response.data.links;
+      this.loading = true;
+    });
+    console.log("Component mounted.");
+    console.log(this.restaurants);
+  },
+
+/* filtro
+  some
+  pusho
+*/
+
+  methods: {
+    callApi(id) {
+      //console.log(id);
+      //console.log(this.FilterRestaurants)
+      this.FilterRestaurants = this.restaurants.filter(element => element.pivot.category_id === id)
+      console.log(this.FilterRestaurants)
+      
+
+    },
+  },
+};
 </script>
