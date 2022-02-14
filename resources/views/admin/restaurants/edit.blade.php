@@ -46,7 +46,8 @@
             <div class="mb-3">
                 <label for="vat" class="form-label">Partita IVA</label>
                 <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" require
-                    placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ $restaurant->vat }}">
+                    placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ $restaurant->vat }}"
+                    min="11" max="11">
 
                 @error('vat')
                     <div class="alert alert-danger">{{ $message }}</div>

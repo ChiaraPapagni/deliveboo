@@ -11,8 +11,8 @@
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <div class="form-group row mb-3">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -26,9 +26,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row mb-3">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -42,9 +42,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -59,18 +59,24 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             {{-- Immagine Utente --}}
-                            <div class="form-group row">
+                            <div class="form-group row mb-3">
                                 <label for="account_image"
                                     class="col-md-4 col-form-label text-md-right">{{ __('User Image') }}</label>
 
@@ -82,6 +88,13 @@
                                 @error('account_image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+
+                            {{-- Campi obbligatori --}}
+                            <div class="form-group row mb-3">
+                                <div class="col-md-4 col-form-label text-md-right">
+                                    * {{ __('Required field') }}
+                                </div>
                             </div>
 
                             <div class="form-group row mb-0">

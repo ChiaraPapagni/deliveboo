@@ -54,13 +54,13 @@ class RestaurantController extends Controller
     {
         // New Restaurant Validation
         $validated = $request->validate([
-            'name' => ['required', 'unique:restaurants', 'max:200'],
-            'vat' => ['required', 'unique:restaurants', 'max:200'],
-            'address' => ['required', 'unique:restaurants', 'max:200'],
+            'name' => ['required', 'unique:restaurants', 'min:3', 'max:200'],
+            'vat' => ['required', 'unique:restaurants', 'min:11', 'max:11'],
+            'address' => ['required', 'unique:restaurants', 'min:3', 'max:200'],
             'restaurant_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
             'description' => ['nullable'],
             'website' => ['nullable', 'unique:restaurants', 'max:200'],
-            'phone' => ['nullable', 'unique:restaurants', 'max:30'],
+            'phone' => ['nullable', 'unique:restaurants', 'max:16'],
         ]);
 
         // Create a Slug name for the new Restaurant
@@ -136,13 +136,13 @@ class RestaurantController extends Controller
         //Update Restaurant User Authentication check
         if (Auth::id() === $restaurant->user_id) {
             $validated = $request->validate([
-                'name' => ['required', 'max:200'],
-                'vat' => ['required', 'max:200'],
-                'address' => ['required', 'max:200'],
+                'name' => ['required', 'min:3', 'max:200'],
+                'vat' => ['required', 'min:11', 'max:11'],
+                'address' => ['required', 'min:3', 'max:200'],
                 'restaurant_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
                 'description' => ['nullable'],
                 'website' => ['nullable', 'max:200'],
-                'phone' => ['nullable', 'max:30'],
+                'phone' => ['nullable', 'max:10'],
             ]);
 
             //Update slug
