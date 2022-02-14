@@ -10,7 +10,8 @@
         {{-- Restaurant Card --}}
         <div class="myCard pt-5 d-flex justify-content-center">
             <div class="card mt-5" style="width: 35rem;">
-                <img src=" {{ $restaurant->restaurant_image }}" class="card-img-top" alt="{{ $restaurant->name }}">
+                <img src=" {{ asset('storage/' . $restaurant->restaurant_image) }}" class="card-img-top"
+                    alt="{{ $restaurant->name }}">
                 <div class="card-body">
                     <h5 class="card-title">Restaurant: ID:{{ $restaurant->id }} -> {{ $restaurant->name }} </h5>
                     <p class="card-text">{{ $restaurant->description }}</p>
@@ -118,6 +119,77 @@
         <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurants.index') }}" role="button">
             Back
         </a>
+
+        {{-- NEW card products --}}
+        @foreach ($restaurant->products as $product)
+            <div class="card mb-5">
+
+                <div class="row">
+
+                    <div class="image col-4">
+                        <img class="w-100 p-1" style="object-fit:cover" height=" 150"
+                            src="{{ asset('storage/' . $product->product_image) }}">
+                    </div>
+
+
+                    <div class="col-6">
+                        <h5 class="card-title ">Product Name: {{ $product->name }}</h5>
+                        <p class="card-text ">Price: €{{ $product->price }}</p>
+                        <p class="card-text ">{{ $product->ingredients }}</p>
+                    </div>
+
+
+                    <div class="btns col-2 d-flex flex-column justify-content-around pe-4">
+
+                        <a class="btn btn-warning" href="{{ route('admin.products.edit', $product->id) }}">
+                            Edit
+                        </a>
+
+                        {{-- Button trigger modal --}}
+                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
+                            data-bs-target="#delete_product_{{ $product->id }}">
+                            Delete
+                        </button>
+
+                        {{-- Modal --}}
+                        <div class="modal fade" id="delete_product_{{ $product->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="modal_{{ $product->id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete product: {{ $product->name }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to proceed?
+                                        This operation is irreversible!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger text-white"
+                                                data-bs-dismiss="modal">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        @endforeach
+
 
 
         {{-- 🡣 This is Chiara's previous code, if she needs it 🡣 --}}
