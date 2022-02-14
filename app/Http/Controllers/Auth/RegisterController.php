@@ -60,7 +60,6 @@ class RegisterController extends Controller
                 'unique:users',
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'account_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
         ]);
     }
 
@@ -72,20 +71,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $request = app('request');
-        if ($request->file('account_image')) {
-            $image_path = Storage::put(
-                'account_image',
-                $request->file('account_image')
-            );
-            $data['account_image'] = $image_path;
-        }
-
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'account_image' => $data['account_image'],
         ]);
+
+        if (request()->hasFile('account_image')) {
+            $account_image = request()
+                ->file('account_image')
+                ->getClientOriginalName();
+            request()
+                ->file('account_image')
+                ->storeAs('account_image', $user->id . '/' . $account_image);
+            $user->update(['account_image' => $account_image]);
+        }
+
+        return $user;
     }
 }
