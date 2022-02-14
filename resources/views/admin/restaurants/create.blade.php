@@ -12,7 +12,7 @@
                 <label for="name" class="form-label">Nome Ristorante</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Your restaurant name here..." aria-describedby="nameHelper" value="{{ old('name') }}"
-                    required min="3" max="255">
+                    required minlength="3" maxlength="255">
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -34,7 +34,8 @@
             <div class="mb-3">
                 <label for="vat" class="form-label">Partita IVA</label>
                 <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" required
-                    placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ old('vat') }}">
+                    placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ old('vat') }}"
+                    minlength="11" maxlength="11">
 
                 @error('vat')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -46,7 +47,7 @@
                 <label for="address" class="form-label">Indirizzo</label>
                 <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror"
                     placeholder="Your restaurant address here..." aria-describedby="addressHelper"
-                    value="{{ old('address') }}" required min="3" max="255">
+                    value="{{ old('address') }}" required minlength="3" maxlength="255">
 
                 @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -68,8 +69,8 @@
             {{-- Telefono --}}
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di telefono</label>
-                <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" min="8"
-                    max="20" placeholder="Your restaurant phone here..." aria-describedby="phoneHelper"
+                <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror"
+                    minlength="8" maxlength="20" placeholder="Your restaurant phone here..." aria-describedby="phoneHelper"
                     value="{{ old('phone') }}">
 
                 @error('phone')

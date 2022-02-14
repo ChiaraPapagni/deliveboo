@@ -38,7 +38,7 @@ class ProductController extends Controller
 
         // New Product Validation
         $validated = $request->validate([
-            'name' => ['required', 'unique:products', 'max:200'],
+            'name' => ['required', 'unique:products', 'min:3', 'max:200'],
             'ingredients' => ['nullable'],
             'price' => ['required', 'numeric', 'min:0'],
             'product_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
@@ -102,7 +102,7 @@ class ProductController extends Controller
         foreach (Auth::user()->restaurants as $restaurant) {
             if ($product->restaurant_id == $restaurant->id) {
                 $validated = $request->validate([
-                    'name' => ['required', 'max:200'],
+                    'name' => ['required', 'min:3', 'max:200'],
                     'ingredients' => ['nullable'],
                     'price' => ['required', 'numeric', 'min:0'],
                     'product_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
