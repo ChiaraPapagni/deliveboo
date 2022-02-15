@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::namespace('API')->group(function () {
+    Route::get('restaurants', 'RestaurantController@index');
+    Route::get('categories', 'RestaurantController@categories');
+    Route::get('restaurants/filter', 'RestaurantController@filter');
+});
