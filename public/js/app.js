@@ -5098,7 +5098,18 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -5211,7 +5222,8 @@ __webpack_require__.r(__webpack_exports__);
       restaurants: [],
       meta: null,
       links: null,
-      FilterRestaurants: []
+      FilterRestaurants: [],
+      SceltaCategory: []
     };
   },
   mounted: function mounted() {
@@ -5246,16 +5258,20 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   /* filtro
-    some
-    pusho
+  some
+  pusho
   */
   methods: {
-    callApi: function callApi(id) {
-      //console.log(id);
-      //console.log(this.FilterRestaurants)
-      this.FilterRestaurants = this.restaurants.filter(function (element) {
+    filterCategories: function filterCategories(id) {
+      this.SceltaCategory = this.restaurants.filter(function (element) {
         return element.pivot.category_id === id;
       });
+      var ids = new Set(this.FilterRestaurants.map(function (Restaurant) {
+        return Restaurant.id;
+      }));
+      this.FilterRestaurants = [].concat(_toConsumableArray(this.FilterRestaurants), _toConsumableArray(this.SceltaCategory.filter(function (Restaurant) {
+        return !ids.has(Restaurant.id);
+      })));
       console.log(this.FilterRestaurants);
     }
   }
@@ -41529,10 +41545,10 @@ var render = function () {
                     "div",
                     {
                       staticClass: "card",
-                      attrs: { id: "cat" + category.id, value: category.id },
+                      attrs: { id: "cat" + category.id },
                       on: {
                         click: function ($event) {
-                          return _vm.callApi(category.id)
+                          return _vm.filterCategories(category.id)
                         },
                       },
                     },
@@ -41579,8 +41595,8 @@ var render = function () {
                 staticClass:
                   "\n          row row-cols-2 row-cols-md-4 row-cols-xl-5\n          gy-4\n          w-100\n          justify-content-center\n        ",
               },
-              _vm._l(_vm.restaurants, function (restaurant) {
-                return _c("div", { key: restaurant.id, staticClass: "col" }, [
+              _vm._l(_vm.FilterRestaurants, function (restaurant, index) {
+                return _c("div", { key: index, staticClass: "col" }, [
                   _c("div", { staticClass: "card" }, [
                     _c("div", { staticClass: "card-body w-100 text-center" }, [
                       _c("img", {

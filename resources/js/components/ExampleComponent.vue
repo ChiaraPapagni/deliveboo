@@ -21,8 +21,6 @@
               class="card"
               :id="'cat' + category.id"
               @click="filterCategories(category.id)"
-             
-              
             >
               <!--  Card Image  -->
               <div class="card-body w-100 text-center">
@@ -114,6 +112,7 @@ export default {
       meta: null,
       links: null,
       FilterRestaurants: [],
+      SceltaCategory: [],
     };
   },
   mounted() {
@@ -145,7 +144,7 @@ export default {
     console.log(this.restaurants);
   },
 
-/* filtro
+  /* filtro
   some
   pusho
 */
@@ -153,10 +152,19 @@ export default {
   methods: {
     filterCategories(id) {
 
-      this.FilterRestaurants = this.restaurants.filter(element => element.pivot.category_id === id)
-      
-      console.log(this.FilterRestaurants)
+      this.SceltaCategory = this.restaurants.filter(
+        (element) => element.pivot.category_id === id
+      );
+
+      var ids = new Set(this.FilterRestaurants.map((Restaurant) => Restaurant.id));
+      this.FilterRestaurants = [
+        ...this.FilterRestaurants,
+        ...this.SceltaCategory.filter((Restaurant) => !ids.has(Restaurant.id)),
+      ];
+
     
+
+      console.log(this.FilterRestaurants);
     },
   },
 };
