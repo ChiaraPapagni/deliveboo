@@ -9,7 +9,7 @@
 
             {{-- Nome ristorante --}}
             <div class="mb-3">
-                <label for="name" class="form-label">Nome Ristorante*</label>
+                <label for="name" class="form-label">Nome Ristorante</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Your restaurant name here..." aria-describedby="nameHelper" value="{{ old('name') }}"
                     required minlength="3" maxlength="255">
@@ -32,7 +32,7 @@
 
             {{-- Partita iva --}}
             <div class="mb-3">
-                <label for="vat" class="form-label">Partita IVA*</label>
+                <label for="vat" class="form-label">Partita IVA</label>
                 <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" required
                     placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ old('vat') }}"
                     minlength="11" maxlength="11">
@@ -44,7 +44,7 @@
 
             {{-- Indirizzo --}}
             <div class="mb-3">
-                <label for="address" class="form-label">Indirizzo*</label>
+                <label for="address" class="form-label">Indirizzo</label>
                 <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror"
                     placeholder="Your restaurant address here..." aria-describedby="addressHelper"
                     value="{{ old('address') }}" required minlength="3" maxlength="255">
@@ -80,7 +80,7 @@
 
             {{-- Categorie --}}
             <div class="mb-3">
-                <label for="categories" class="form-label">Seleziona categoria*</label>
+                <label for="categories" class="form-label">Seleziona categoria</label>
                 @foreach ($categories as $category)
                     <input name="categories[]" type="checkbox" value="{{ $category->id }}"
                         {{ in_array($category->id, old('category', [])) ? 'checked=checked' : '' }}>
