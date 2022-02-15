@@ -11,7 +11,7 @@
 
             {{-- Nome prodotto --}}
             <div class="mb-3">
-                <label for="name" class="form-label">Nome Piatto</label>
+                <label for="name" class="form-label">Nome Piatto*</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Your dish name here..." aria-describedby="nameHelper" value="{{ old('name') }}" required
                     min="3" max="255">
@@ -34,7 +34,7 @@
 
             {{-- Prezzo --}}
             <div class="mb-3">
-                <label for="price" class="form-label">Prezzo</label>
+                <label for="price" class="form-label">Prezzo*</label>
                 <input type="number" min="0.00" max="10000.00" step="0.01" name="price" id="price" required
                     class="form-control @error('price') is-invalid @enderror" aria-describedby="priceHelper"
                     value="{{ old('price') }}">
