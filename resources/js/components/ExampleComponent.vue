@@ -113,6 +113,8 @@ export default {
       links: null,
       FilterRestaurants: [],
       SceltaCategory: [],
+      counter: [],
+      SceltaBoolean: false,
     };
   },
   mounted() {
@@ -130,9 +132,7 @@ export default {
           //console.log(one_restaurant.id)
           //console.log(this.restaurants.id)
           this.restaurants.push(one_restaurant);
-          /* if (!this.restaurants.some((e) => e.id === one_restaurant.id)) {
-            
-          }  */
+          
         });
       });
 
@@ -151,20 +151,65 @@ export default {
 
   methods: {
     filterCategories(id) {
+      if (!this.counter.includes(id)) {
+        this.counter.push(id);
 
-      this.SceltaCategory = this.restaurants.filter(
-        (element) => element.pivot.category_id === id
-      );
+        this.SceltaCategory = this.restaurants.filter(
+          (element) => element.pivot.category_id === id
+        );
 
-      var ids = new Set(this.FilterRestaurants.map((Restaurant) => Restaurant.id));
-      this.FilterRestaurants = [
-        ...this.FilterRestaurants,
-        ...this.SceltaCategory.filter((Restaurant) => !ids.has(Restaurant.id)),
-      ];
 
-    
+         var ids = new Set(
+          this.FilterRestaurants.map((Restaurant) => Restaurant.id)
+        );
 
-      console.log(this.FilterRestaurants);
+         this.FilterRestaurants = [
+          ...this.FilterRestaurants,
+          ...this.SceltaCategory.filter(
+            (Restaurant) => !ids.has(Restaurant.id)
+          ),
+        ];   
+
+        /*  this.FilterRestaurants = this.FilterRestaurants.concat(
+          this.SceltaCategory
+        );  */
+
+        /* this.FilterRestaurants = this.FilterRestaurants.filter((ar) =>
+          this.SceltaCategory.find(
+            (rm) =>
+              rm.id === ar.id && ar.pivot.category_id === rm.pivot.category_id
+          )
+        ); */
+
+        // contaneto Scelta e Filter = ho array con oggetti simili(restaurt_id uguale ma category differente)
+        // se filto i ristoranti che non hanno la categoria che voglio?!
+
+        //console.log(this.counter)
+      } else {
+        this.counter = this.counter.filter((element) => element != id);
+
+        // rimuovi quelli con category_id = id
+        // filter(category_id===id )
+        // pop
+
+        this.SceltaCategory = this.restaurants.filter(
+          (element) => element.pivot.category_id === id
+        );
+
+        this.FilterRestaurants = this.FilterRestaurants.filter(
+          (ar) =>
+            !this.SceltaCategory.find(
+              (rm) =>
+                rm.id === ar.id && ar.pivot.category_id === rm.pivot.category_id
+            )
+        );
+
+        //console.log(this.FilterRestaurants);
+
+        //console.log(this.counter)
+      }
+
+      //console.log(this.FilterRestaurants);
     },
   },
 };
