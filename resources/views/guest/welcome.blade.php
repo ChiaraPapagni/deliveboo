@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     {{-- Jubmo container [video e herotext] --}}
     <div class="jumboContainer ">
         <video class="jumboVideo" autoplay loop muted>
@@ -22,86 +21,5 @@
         </div>
     </div>
 
-    {{-- Category Container [cards] --}}
-    <div class="categoryContainer py-5">
-        <div class="container">
-
-            <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">choose your favourite categories!</h2>
-
-            <div class="row row-cols-2 {{-- row-cols-sm-2 --}} row-cols-md-4 row-cols-xl-5 gy-4 w-100 justify-content-center">
-                {{-- Ciclo per stampare le cards --}}
-                @foreach ($categories as $category)
-                    <div class="col">
-
-                        {{-- Card --}}
-                        <div class="card">
-
-                            {{-- Card Image --}}
-                            <div class="card-body w-100 text-center">
-                                <img width="90%" src="{{ $category->category_image }}" alt="">
-                            </div>
-
-                            {{-- Cards Info --}}
-                            <div class="card-text w-100">
-                                <h3>{{ $category->name }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div>
-
-    {{-- SearchBar Per i Ristoranti --}}
-    <div class="searchbarContainer py-5">
-        <div class="container">
-
-            <div class="mb-3">
-                <h3 for="restaurant" class="form-label text-capitalize">ricerca i tuoi ristoranti preferiti!</h3>
-                <input type="text" name="restaurant" id="restaurant" class="form-control"
-                    placeholder="Type restaurant's name" aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Scrivi il nome del ristorante dove vuoi ordinare</small>
-            </div>
-        </div>
-    </div>
-
-    {{-- Restaurant Container --}}
-    <div class="restaurantContainer py-5">
-        <div class="container">
-
-            <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">choose your favourite restaurant!</h2>
-
-            <div
-                class="row row-cols-2 {{-- row-cols-sm-2 --}} row-cols-md-4 row-cols-xl-5 gy-4 w-100 justify-content-center">
-                {{-- Ciclo per stampare le cards --}}
-                @foreach ($restaurants as $restaurant)
-                    <div class="col">
-
-                        <a href=" {{ route('restaurant', $restaurant->slug) }} ">
-                            {{-- Card --}}
-                            <div class="card">
-
-                                {{-- Card Image --}}
-                                <div class="card-body w-100 text-center">
-                                    <img width="90%" src="{{ $restaurant->restaurant_image }}" alt="">
-                                </div>
-
-                                {{-- Cards Info --}}
-                                <div class="card-text w-100">
-                                    <h3>{{ $restaurant->name }}</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div>
-
+    <restaurants></restaurants>
 @endsection
