@@ -1,11 +1,20 @@
 {{-- Questa è la nav con ristorante --}}
 @if (Auth::user()->has_restaurant)
     <div class="nav">
+        <input type="checkbox" name="" id="nav-check">
 
         <a href="{{ route('homepage') }}">ho il ristorante</a>
 
 
         <div class="logo">
+        </div>
+
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
         </div>
 
         <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
@@ -27,9 +36,8 @@
                     </a>
 
 
-                    <a class="dropdown-item logout" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -38,6 +46,7 @@
 
                 @endguest
             </div>
+
 
         </div>
     </div>
@@ -72,7 +81,7 @@
 
                     <a class="" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                          document.getElementById('logout-form').submit();">{{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
