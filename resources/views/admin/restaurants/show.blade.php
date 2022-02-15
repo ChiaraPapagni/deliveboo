@@ -42,7 +42,7 @@
 
 
         {{-- Menu and create new product --}}
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center mb-4 mt-4">
             <h4 class="me-3">Menu</h4>
             <a class="btn btn-success" href="{{ route('admin.product.create', ['restaurant' => $restaurant->id]) }}"
                 role="button">
@@ -50,75 +50,6 @@
             </a>
         </div>
 
-        <table class="table mt-3">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Ingredients</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($restaurant->products as $product)
-                    <tr>
-                        <td>{{ $product->id }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->ingredients }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>
-                            <div class="btns d-flex">
-
-                                <a class="btn btn-warning me-2" href="{{ route('admin.products.edit', $product->id) }}">
-                                    Edit
-                                </a>
-
-                                {{-- Button trigger modal --}}
-                                <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
-                                    data-bs-target="#delete_product_{{ $product->id }}">
-                                    Delete
-                                </button>
-
-                                {{-- Modal --}}
-                                <div class="modal fade" id="delete_product_{{ $product->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="modal_{{ $product->id }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Delete product: {{ $product->name }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to proceed?
-                                                This operation is irreversible!
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('admin.products.destroy', $product->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger text-white"
-                                                        data-bs-dismiss="modal">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurants.index') }}" role="button">
-            Back
-        </a>
 
         {{-- NEW card products --}}
         @foreach ($restaurant->products as $product)
@@ -190,24 +121,27 @@
             </div>
         @endforeach
 
+        <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurants.index') }}" role="button">
+            Back
+        </a>
 
 
         {{-- 🡣 This is Chiara's previous code, if she needs it 🡣 --}}
 
         {{-- <h1 class="pt-5">Restaurant: {{ $restaurant->name }}</h1>
-
+        
         <h2>ID: {{ $restaurant->id }}</h2>
         <h3>{{ $restaurant->name }}</h3>
         <h5>{{ $restaurant->website }} - {{ $restaurant->phone }}</h5>
         <p>{{ $restaurant->description }}</p>
         <p>
             @forelse($restaurant->categories as $category)
-                {{ $category->name }}
+            {{ $category->name }}
             @empty
-                <span>Nessuna Categoria</span>
+            <span>Nessuna Categoria</span>
             @endforelse
         </p>
-
+        
         <h4>Menu</h4>
         <a href="{{ route('admin.product.create', ['restaurant' => $restaurant->id]) }}" role="button">
             Aggiungi un piatto
@@ -220,7 +154,7 @@
                     <th>Ingredients</th>
                     <th>Price</th>
                     <th>Actions</th>
-
+                    
                 </tr>
             </thead>
             <tbody>

@@ -78,8 +78,6 @@ class RestaurantController extends Controller
     //New restaurant User authentication
     $validated['user_id'] = Auth::id();
 
-
-
     //Category added to Restaurant
     if ($request->has('categories')) {
       $request->validate([
@@ -123,6 +121,7 @@ class RestaurantController extends Controller
     } else {
       abort(403);
     }
+
   }
 
   /**
@@ -177,6 +176,7 @@ class RestaurantController extends Controller
         ->with('message', 'The restaurant has been correctly updated!');
     } else {
       abort(403);
+
     }
   }
 
