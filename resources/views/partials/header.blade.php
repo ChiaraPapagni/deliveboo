@@ -1,22 +1,16 @@
-<div class="nav">
+{{-- Questa è la nav per l'utente con ristoranti --}}
+
+<div class="nav Has block">
     <input type="checkbox" id="nav-check">
 
     <div class="logo">
     </div>
 
-    <div class="nav-btn">
-        <label for="nav-check">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-    </div>
-
     <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
 
         <div>
-            <a href="//github.io/jo_geek" target="_blank">Ristoranti</a>
-            <a href="http://stackoverflow.com/users/4084003/" target="_blank">La cucina che vorrei</a>
+            <a href="//github.io/jo_geek" target="_blank">pagina (link inutili)</a>
+            <a href="http://stackoverflow.com/users/4084003/" target="_blank"> utente (link inutili)</a>
         </div>
 
 
@@ -39,8 +33,9 @@
                     Dashboard
                 </a>
 
-                <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                <a class="" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -51,6 +46,5 @@
         </div>
 
     </div>
-
 
 </div>

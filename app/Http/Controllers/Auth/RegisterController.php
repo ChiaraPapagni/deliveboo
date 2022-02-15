@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Register Controller
     |--------------------------------------------------------------------------
@@ -23,70 +23,70 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+  use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+  /**
+   * Where to redirect users after registration.
+   *
+   * @var string
+   */
+  protected $redirectTo = '/admin/register/create';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('guest');
+  }
+
+  /**
+   * Get a validator for an incoming registration request.
+   *
+   * @param  array  $data
+   * @return \Illuminate\Contracts\Validation\Validator
+   */
+  protected function validator(array $data)
+  {
+    return Validator::make($data, [
+      'name' => ['required', 'string', 'max:255'],
+      'email' => [
+        'required',
+        'string',
+        'email',
+        'max:255',
+        'unique:users',
+      ],
+      'password' => ['required', 'string', 'min:8', 'confirmed'],
+    ]);
+  }
+
+  /**
+   * Create a new user instance after a valid registration.
+   *
+   * @param  array  $data
+   * @return \App\User
+   */
+  protected function create(array $data)
+  {
+    $user = User::create([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'password' => Hash::make($data['password']),
+    ]);
+
+    if (request()->hasFile('account_image')) {
+      $account_image = request()
+        ->file('account_image')
+        ->getClientOriginalName();
+      request()
+        ->file('account_image')
+        ->storeAs('account_image', $user->id . '/' . $account_image);
+      $user->update(['account_image' => $account_image]);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                'unique:users',
-            ],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-        if (request()->hasFile('account_image')) {
-            $account_image = request()
-                ->file('account_image')
-                ->getClientOriginalName();
-            request()
-                ->file('account_image')
-                ->storeAs('account_image', $user->id . '/' . $account_image);
-            $user->update(['account_image' => $account_image]);
-        }
-
-        return $user;
-    }
+    return $user;
+  }
 }

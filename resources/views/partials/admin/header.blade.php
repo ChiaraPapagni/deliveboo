@@ -1,57 +1,88 @@
-<div class="nav">
-    <input type="checkbox" id="nav-check">
+{{-- Questa è la nav con ristorante --}}
+@if (Auth::user()->has_restaurant)
+    <div class="nav">
 
-    {{-- <div class="nav-header">
-    <div class="nav-title">
-      JoGeek
-    </div>
-  </div> --}}
+        <a href="{{ route('homepage') }}">ho il ristorante</a>
 
-    <div class="nav-btn">
-        <label for="nav-check">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-    </div>
 
-    <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
-
-        <div class="left-side-links">
-            <a href="//github.io/jo_geek" target="_blank">Ristoranti</a>
-            <a href="http://stackoverflow.com/users/4084003/" target="_blank">La cucina che vorrei</a>
+        <div class="logo">
         </div>
 
-
-        <div class="container-link" style="display: flex;">
-            @guest
+        <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
 
 
-                <a href="{{ route('login') }}"> {{ __('Login') }} </a>
+            <div class="container-link" style="display: flex;">
+                @guest
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                @endif
 
-            @else
-                <a class="" href="#">
-                    {{ Auth::user()->name }}
-                </a>
+                    <a href="{{ route('login') }}"> {{ __('Login') }} </a>
 
-                {{-- <a class="" href="{{ route('admin.dashboard') }}">
-                    Dashboard
-                </a> --}}
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @endif
 
-                <a class="dropdown-item logout" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}
-                </a>
+                @else
+                    <a class="" href="#">
+                        {{ Auth::user()->name }}
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
 
-            @endguest
+                    <a class="dropdown-item logout" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                @endguest
+            </div>
+
+        </div>
+    </div>
+
+@else
+
+    {{-- Questa è la nav per l'utente senza ristoranti --}}
+
+    <div class="nav HasNot block">
+
+        <a href="">non ho un ristorante</a>
+
+
+        <div class="logo">
+        </div>
+
+        <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
+            <div>
+                @guest
+
+
+                    <a href="{{ route('login') }}"> {{ __('Login') }} </a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @endif
+
+                @else
+                    <span class="" href="#">
+                        {{ Auth::user()->name }}
+                    </span>
+
+                    <a class="" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                @endguest
+            </div>
+
         </div>
 
     </div>
-</div>
+@endif

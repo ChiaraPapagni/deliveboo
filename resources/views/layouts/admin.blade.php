@@ -37,28 +37,23 @@
 
         @include('partials.admin.header')
 
-
-        <div class="dashboard">
-            <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 mt-5">
-                <a class="navbar-brand col-sm-3 col-md-2 ms-3" href="{{ route('homepage') }}">Homepage</a>
-                {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
-                <ul class="navbar-nav px-3">
-                    <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                </ul>
-            </nav>
-
+        <div class="dashboard mt-5">
             <div class="container-fluid">
                 <div class="row">
                     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                         <div class="sidebar-sticky pt-3">
                             <ul class="navbar ul-sidebar flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.restaurants.index') }}">
-                                        <i class="fa fa-shopping-bag fa-lg fa-fw" aria-hidden="true"></i>
-                                        Restaurants
-                                    </a>
+                                    @if (Auth::user()->has_restaurant)
+                                        <a class="nav-link" href="{{ route('admin.restaurants.index') }}">
+
+                                            <i class="fa fa-shopping-bag fa-lg fa-fw" aria-hidden="true"></i>
+                                            Restaurants
+                                        </a>
+                                    @else
+                                        <a href="{{ route('admin.register.create') }}">Crea il ristorante
+                                            Cogli-one</a>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
