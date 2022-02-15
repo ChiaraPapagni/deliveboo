@@ -15,24 +15,43 @@
             justify-content-center
           "
         >
-          <div class="col" v-for="category in categories" :key="category.id">
-            <!-- Card -->
+          <!-- 
+            
+           
+            
             <div
               class="card"
               :id="'cat' + category.id"
               @click="filterCategories(category.id)"
+            
             >
-              <!--  Card Image  -->
+              
               <div class="card-body w-100 text-center">
                 <img width="90%" :src="category.category_image" alt="" />
               </div>
 
-              <!-- Cards Info -->
+              
               <div class="card-text w-100">
                 <h3>{{ category.name }}</h3>
               </div>
             </div>
-          </div>
+          </div> -->
+
+        <div class="m-2" v-for="(category, i) in categories" :key="i">
+          <input
+            type="checkbox"
+            class="categories"
+            :id="category.id"
+            :value="category.id"
+            v-model="checkedCategory"
+            @change="getRestaurants(checkedCategory)"
+          />
+          <label :for="category.id" class="btn btn-sm border">{{
+            category.name
+          }}</label>
+        </div>
+
+        
         </div>
       </div>
     </div>
@@ -112,6 +131,7 @@ export default {
       FilterRestaurants: [],
       SceltaCategory: [],
       counter: [],
+      checkedCategory: [],
     };
   },
   mounted() {
@@ -171,7 +191,9 @@ export default {
           this.SceltaCategory
         ); 
 
-        /*  this.FilterRestaurants = this.FilterRestaurants.filter((ar) =>
+
+
+       /*   this.FilterRestaurants = this.FilterRestaurants.filter((ar) =>
           this.SceltaCategory.find(
             (rm) =>
               rm.id === ar.id && ar.pivot.category_id === rm.pivot.category_id
@@ -211,3 +233,13 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+input.categories {
+  display: none;
+}
+
+input.categories:checked + label {
+  background-color: brown;
+  color: #fff;
+}
+</style>

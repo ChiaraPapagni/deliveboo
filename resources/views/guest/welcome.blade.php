@@ -23,6 +23,7 @@
         </div>
     </div>
     <example-component></example-component>
+    <example-component-copy></example-component-copy>
    
 
 @endsection
