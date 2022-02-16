@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5 pt-5">
-        <h1>Update a Product</h1>
+        <h1>Aggiorna Prodotto</h1>
 
         <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -10,7 +10,7 @@
 
             {{-- Nome prodotto --}}
             <div class="mb-3">
-                <label for="name" class="form-label">Nome Piatto</label>
+                <label for="name" class="form-label">Nome Piatto*</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Your dish name here..." aria-describedby="nameHelper" value="{{ $product->name }}"
                     required min="3" max="255">
@@ -31,7 +31,7 @@
                         <input type="file" name="product_image" id="product_image" aria-describedby="imageHelper"
                             accept="images/*" class="form-control @error('product_image') is_invalid @enderror" />
                         <small id="product_imageHelper" class="text-muted">
-                            Add your product image here. [Max 500kb]
+                            Aggiungi una immagine al prodotto. [Max 500kb]
                         </small>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
 
             {{-- Prezzo --}}
             <div class="mb-3">
-                <label for="price" class="form-label">Prezzo</label>
+                <label for="price" class="form-label">Prezzo*</label>
                 <input type="number" min="0.00" max="10000.00" step="0.01" name="price" id="price" required
                     class="form-control @error('price') is-invalid @enderror" aria-describedby="priceHelper"
                     value="{{ $product->price }}">
@@ -78,7 +78,14 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-dark">Save</button>
+            {{-- Campi Obbligatori --}}
+            <div class="form-group row mb-2">
+                <div class="col-md-4 col-form-label text-md-right">
+                    * {{ __('Campi Obbligatori') }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark mb-3">Salva</button>
         </form>
     </div>
 @endsection

@@ -29,7 +29,7 @@
                             <a href="{{ $restaurant->website }}" target="_blank"
                                 class="btn btn-primary">{{ $restaurant->website }}</a>
                         @else
-                            <span>No website</span>
+                            <span>Nessun sito web</span>
                         @endif
 
                         <div class="mt-2">
@@ -54,9 +54,9 @@
         </div>
 
         {{-- Menu and create new product --}}
-        <div class="d-flex align-items-center mb-4 mt-4">
+        <div class="d-flex align-items-center mb-4 mt-4 justify-content-between">
             <h4 class="me-3">Menu</h4>
-            <a class="btn btn-success" href="{{ route('admin.product.create', ['restaurant' => $restaurant->id]) }}"
+            <a class="btn btn-success " href="{{ route('admin.product.create', ['restaurant' => $restaurant->id]) }}"
                 role="button">
                 Aggiungi un piatto
             </a>
@@ -80,10 +80,10 @@
 
 
                     <div class="col-6">
-                        <h5 class="card-title ">Product Name: {{ $product->name }}</h5>
-                        <p class="card-text ">Price: €{{ $product->price }}</p>
+                        <h5 class="card-title ">Nome del prodotto: {{ $product->name }}</h5>
+                        <p class="card-text ">Pezzo: €{{ $product->price }}</p>
                         <p class="card-text ">{{ $product->ingredients }}</p>
-                        <p class="card-text ">Visibility: {{ $product->visible === 1 ? 'Yes' : 'No' }}
+                        <p class="card-text ">Visibilità: {{ $product->visible === 1 ? 'Yes' : 'No' }}
                         </p>
                     </div>
 
@@ -91,13 +91,13 @@
                     <div class="btns col-2 d-flex flex-column justify-content-around pe-4">
 
                         <a class="btn btn-warning" href="{{ route('admin.products.edit', $product->id) }}">
-                            Edit
+                            Modifica
                         </a>
 
                         {{-- Button trigger modal --}}
                         <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
                             data-bs-target="#delete_product_{{ $product->id }}">
-                            Delete
+                            Elimina
                         </button>
 
                         {{-- Modal --}}
@@ -106,22 +106,22 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Delete product: {{ $product->name }}</h5>
+                                        <h5 class="modal-title">Elimina prodotto: {{ $product->name }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to proceed?
-                                        This operation is irreversible!
+                                        Sei sicuro di procedere?<br>
+                                        Stai eliminando il prodotto per sempre!
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">CHIUDI</button>
                                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger text-white"
-                                                data-bs-dismiss="modal">Delete</button>
+                                                data-bs-dismiss="modal">ELIMINA</button>
                                         </form>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
         @endforeach
 
         <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurants.index') }}" role="button">
-            Back
+            Torna indietro
         </a>
     </div>
 @endsection

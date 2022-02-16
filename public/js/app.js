@@ -5197,6 +5197,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -42188,7 +42192,7 @@ var render = function () {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "categoryContainer py-5" }, [
       _c("h2", { staticClass: "text-capitalize pb-5 pt-3 fs-1 text-end" }, [
-        _vm._v("\n      Choose your favourite categories!\n    "),
+        _vm._v("\n      Scegli la categoria preferita\n    "),
       ]),
       _vm._v(" "),
       _c(
@@ -42269,7 +42273,9 @@ var render = function () {
                 _c("img", {
                   attrs: {
                     width: "90%",
-                    src: "/storage/" + restaurant.restaurant_image,
+                    src: restaurant.restaurant_image
+                      ? "/storage/" + restaurant.restaurant_image
+                      : "https://demofree.sirv.com/nope-not-here.jpg",
                     alt: restaurant.name,
                   },
                 }),
@@ -54773,9 +54779,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\princ\Desktop\deliveboo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\princ\Desktop\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\princ\Desktop\deliveboo\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
 
 
 /***/ })

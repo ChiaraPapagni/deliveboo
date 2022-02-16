@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5 pt-5">
-        <h1>Update Restaurant: {{ $restaurant->name }}</h1>
+        <h1 class="pb-3">Aggiorna informazioni ristorante:</h1>
 
         <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="post"
             enctype="multipart/form-data">
@@ -11,29 +11,28 @@
 
             {{-- Nome ristorante --}}
             <div class="mb-3">
-                <label for="name" class="form-label">Nome Ristorante</label>
-                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your restaurant name here..." aria-describedby="nameHelper"
-                    value="{{ $restaurant->name }}" required min="3" max="255">
-
-                @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <h2>{{ $restaurant->name }}</h2>
             </div>
 
             {{-- Immagine --}}
             <div class="mb-3">
                 <div class="row">
                     <div class="col-4">
-                        <img src="{{ asset('storage/' . $restaurant->restaurant_image) }}"
-                            alt="{{ $restaurant->name }}" />
+                        @if ($restaurant->restaurant_image)
+                            <img src="{{ asset('storage/' . $restaurant->restaurant_image) }}"
+                                alt="{{ $restaurant->name }}" />
+                        @else
+                            <img src="{{ asset('storage/placeholder/placeholder_restaurant.jpg') }}"
+                                alt="placeholder_restaurant" class="card-img-top">
+                        @endif
+
                     </div>
                     <div class="col">
                         <label for="restaurant_image" class="form-label">Modifica immagine</label>
                         <input type="file" name="restaurant_image" id="restaurant_image" aria-describedby="imageHelper"
                             accept="images/*" class="form-control @error('restaurant_image') is_invalid @enderror" />
                         <small id="restaurant_imageHelper" class="text-muted">
-                            Add your restaurant image here. [Max 500kb]
+                            Aggiungi la foto del tuo ristorante. [Max 500kb]
                         </small>
                     </div>
                 </div>
@@ -44,7 +43,7 @@
 
             {{-- Partita iva --}}
             <div class="mb-3">
-                <label for="vat" class="form-label">Partita IVA</label>
+                <label for="vat" class="form-label">Partita IVA*</label>
                 <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" require
                     placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ $restaurant->vat }}"
                     min="11" max="11">
@@ -56,7 +55,7 @@
 
             {{-- Indirizzo --}}
             <div class="mb-3">
-                <label for="address" class="form-label">Indirizzo</label>
+                <label for="address" class="form-label">Indirizzo*</label>
                 <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror"
                     placeholder="Your restaurant address here..." aria-describedby="addressHelper" required min="3"
                     max="255" value="{{ $restaurant->address }}">
@@ -135,7 +134,14 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-dark">Save</button>
+            {{-- Campi Obbligatori --}}
+            <div class="form-group row mb-2">
+                <div class="col-md-4 col-form-label text-md-right">
+                    * {{ __('Campi Obbligatori') }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn mb-3 btn-dark">Save</button>
         </form>
     </div>
 @endsection

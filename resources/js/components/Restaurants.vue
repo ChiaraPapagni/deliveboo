@@ -2,7 +2,7 @@
   <div class="container">
     <div class="categoryContainer py-5">
       <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">
-        Choose your favourite categories!
+        Scegli la categoria preferita
       </h2>
 
       <div class="d-flex flex-wrap align-items-center justify-content-center">

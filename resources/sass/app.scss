@@ -8,9 +8,9 @@
 
 /* header */
 .nav {
-     position: fixed; 
-     top: 0; 
-     width: 100%; 
+     position: fixed;
+     top: 0;
+     width: 100%;
      height: 50px;
      width: 100%;
      background-color: $secondary_color;
@@ -45,26 +45,28 @@
      }
 
      & > .logo {
-          background-image: url('https://picsum.photos/200') ;
+          background-size: 125%;
+          background-repeat: no-repeat;
+          background-color: #3b3b3b;
+          background-position: center;
+          background-image: url("../img/logo_deliveboo_xs.png");
           height: 100px;
           width: 100px;
           border-radius: 50%;
           position: absolute;
           z-index: 1;
-          top:20%;
-          left: calc(50% - 50px)
+          top: 20%;
+          left: calc(50% - 50px);
      }
-     
 }
 
 @media (max-width: 992px) {
-
-     .nav { 
+     .nav {
           & > .logo {
                height: 75px;
                width: 75px;
           }
-          
+
           & > .nav-btn {
                display: inline-block;
                position: absolute;
@@ -97,7 +99,7 @@
                top: 50px;
                left: 0px;
 
-               & > div >  a {
+               & > div > a {
                     display: block;
                     width: 100%;
                     color: #eee;
@@ -117,24 +119,23 @@
      .nav > .nav-btn > label:hover,
      .nav #nav-check:checked ~ .nav-btn > label {
           background-color: rgba(0, 0, 0, 0.3);
-     }         
+     }
 }
 /* header */
 
-
 /* Footer */
 
-footer{
+footer {
      background-color: $brand_color;
      width: 100%;
-     & .fab{
+     & .fab {
           color: white;
-          &:hover{
+          &:hover {
                color: $terziary_color;
           }
      }
 
-     & span:hover{
+     & span:hover {
           color: $terziary_color;
           cursor: pointer;
      }
