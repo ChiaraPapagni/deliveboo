@@ -54,13 +54,14 @@
     height: 60vh;
 }
 
-.img {
+.pics {
     width: 600px;
     height: auto;
+    object-fit: contain;
 
 }
 
-.img-pasto {
+.img {
     max-width: 100%;
 }
 
@@ -103,4 +104,21 @@
 
 .col-pics {
     width: 50px;
+}
+
+/* effects */
+
+.hover01 figure img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+
+}
+
+.hover01 figure:hover img {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.9;
+
 }
