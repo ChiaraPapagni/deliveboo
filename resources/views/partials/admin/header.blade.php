@@ -3,8 +3,6 @@
     <div class="nav">
         <input type="checkbox" name="" id="nav-check">
 
-        <a href="{{ route('homepage') }}">ho il ristorante</a>
-
 
         <div class="logo">
         </div>
@@ -23,7 +21,6 @@
             <div class="container-link" style="display: flex;">
                 @guest
 
-
                     <a href="{{ route('login') }}"> {{ __('Login') }} </a>
 
                     @if (Route::has('register'))
@@ -35,9 +32,11 @@
                         {{ Auth::user()->name }}
                     </a>
 
+                    <a href="{{ route('homepage') }}">Dashboard</a>
 
-                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                    <a class="" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                                  document.getElementById('logout-form').submit();">{{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -57,7 +56,7 @@
 
     <div class="nav HasNot block">
 
-        <a href="">non ho un ristorante</a>
+        {{-- <a href="">non ho un ristorante</a> --}}
 
 
         <div class="logo">
@@ -81,7 +80,7 @@
 
                     <a class="" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                                                          document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

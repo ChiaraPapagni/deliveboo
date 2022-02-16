@@ -51,8 +51,8 @@
                                             Restaurants
                                         </a>
                                     @else
-                                        <a href="{{ route('admin.register.create') }}">Crea il ristorante
-                                            Cogli-one</a>
+                                        <a href="{{ route('admin.register.create') }}">Crea il primo ristorante
+                                        </a>
                                     @endif
                                 </li>
                             </ul>

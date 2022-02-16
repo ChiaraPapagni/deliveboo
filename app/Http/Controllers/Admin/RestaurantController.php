@@ -81,7 +81,7 @@ class RestaurantController extends Controller
     //Category added to Restaurant
     if ($request->has('categories')) {
       $request->validate([
-        'categories' => ['required', 'unique:categories,id', 'exists:categories,id'],
+        'categories' => ['required', 'exists:categories,id'],
       ]);
       //Restaurant Creation
       $restaurant = Restaurant::create($validated);
@@ -121,7 +121,6 @@ class RestaurantController extends Controller
     } else {
       abort(403);
     }
-
   }
 
   /**
@@ -176,7 +175,6 @@ class RestaurantController extends Controller
         ->with('message', 'The restaurant has been correctly updated!');
     } else {
       abort(403);
-
     }
   }
 

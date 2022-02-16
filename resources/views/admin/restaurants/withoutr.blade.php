@@ -79,14 +79,13 @@
 
             {{-- Categorie --}}
             <div class="mb-3">
-                <label for="categories" class="form-label">Seleziona categoria</label>
-                @foreach ($categories as $category)
-                    <input name="categories[]" type="checkbox" value="{{ $category->id }}"
-                        {{ in_array($category->id, old('category', [])) ? 'checked=checked' : '' }}>
-                    <label>
-                        {{ $category->name }}
-                    </label>
-                @endforeach
+                <label for="categories" class="form-label">Seleziona categoria*</label>
+                <select class="form-control @error('categories') is_invalid @enderror" name="categories[]" id="categories"
+                    required multiple>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             {{-- Descrizione --}}
