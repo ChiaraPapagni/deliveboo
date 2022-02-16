@@ -13,10 +13,12 @@ class ProductSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
+
+        for ($i = 0; $i < 30; $i++) {
             $product = new Product();
             $product->name = $faker->sentence();
             $product->ingredients = $faker->paragraph();
+            $product->restaurant_id = $faker->numberBetween(1, 10);
             $product->price = $faker->randomFloat(2, 1, 100);
             $product->visible = $faker->boolean(75);
             $product->product_image = $faker->imageUrl(200, 200);
