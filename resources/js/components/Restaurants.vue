@@ -50,7 +50,11 @@
             <div class="card-body w-100 text-center">
               <img
                 width="90%"
-                :src="'/storage/' + restaurant.restaurant_image"
+                :src="
+                  restaurant.restaurant_image
+                    ? '/storage/' + restaurant.restaurant_image
+                    : 'https://demofree.sirv.com/nope-not-here.jpg'
+                "
                 :alt="restaurant.name"
               />
             </div>
