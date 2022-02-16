@@ -70,6 +70,13 @@
                 @enderror
             </div>
 
+            {{-- Campi Obbligatori --}}
+            <div class="form-group row mb-2">
+                <div class="col-md-4 col-form-label text-md-right">
+                    * {{ __('Campi Obbligatori') }}
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-dark">Save</button>
         </form>
     </div>

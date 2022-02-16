@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5 pt-5">
-        <h1>Create a new Restaurant</h1>
+        <h1 class="pb-3">Creazione del ristorante</h1>
 
         <form action="{{ route('admin.restaurants.store') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -11,7 +11,7 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Ristorante*</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your restaurant name here..." aria-describedby="nameHelper" value="{{ old('name') }}"
+                    placeholder="Il nome del tuo ristorante ..." aria-describedby="nameHelper" value="{{ old('name') }}"
                     required minlength="3" maxlength="255">
 
                 @error('name')
@@ -34,7 +34,7 @@
             <div class="mb-3">
                 <label for="vat" class="form-label">Partita IVA*</label>
                 <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" required
-                    placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ old('vat') }}"
+                    placeholder="Partita IVA ristorante ..." aria-describedby="vatHelper" value="{{ old('vat') }}"
                     minlength="11" maxlength="11">
 
                 @error('vat')
@@ -46,7 +46,7 @@
             <div class="mb-3">
                 <label for="address" class="form-label">Indirizzo*</label>
                 <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror"
-                    placeholder="Your restaurant address here..." aria-describedby="addressHelper"
+                    placeholder="Indirizzo del ristorante..." aria-describedby="addressHelper"
                     value="{{ old('address') }}" required minlength="3" maxlength="255">
 
                 @error('address')
@@ -58,7 +58,7 @@
             <div class="mb-3">
                 <label for="website" class="form-label">Sito web</label>
                 <input type="text" name="website" id="website" class="form-control @error('website') is-invalid @enderror"
-                    placeholder="Your restaurant website here..." aria-describedby="websiteHelper"
+                    placeholder="Sito web del ristorante..." aria-describedby="websiteHelper"
                     value="{{ old('website') }}">
 
                 @error('website')
@@ -70,7 +70,7 @@
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di telefono</label>
                 <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror"
-                    minlength="8" maxlength="20" placeholder="Your restaurant phone here..." aria-describedby="phoneHelper"
+                    minlength="8" maxlength="20" placeholder="Telefono del ristorante ..." aria-describedby="phoneHelper"
                     value="{{ old('phone') }}">
 
                 @error('phone')
@@ -89,27 +89,25 @@
                 </select>
             </div>
 
-
-            {{-- OLD CATEGORY FOR DEBUG PURPOSES --}}
-            {{-- @foreach ($categories as $category)
-                    <input name="categories[]" type="checkbox" value="{{ $category->id }}"
-                        {{ in_array($category->id, old('category', [])) ? 'checked=checked' : '' }}>
-                    <label>
-                        {{ $category->name }}
-                    </label>
-                @endforeach --}}
-
             {{-- Descrizione --}}
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
+                <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description"
-                    id="description" rows="5">{{ old('description') }}</textarea>
+                    placeholder="Inserisci la descrizione del ristorante" id="description"
+                    rows="5">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-dark">Save</button>
+            {{-- Campi Obbligatori --}}
+            <div class="form-group row mb-2">
+                <div class="col-md-4 col-form-label text-md-right">
+                    * {{ __('Campi Obbligatori') }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark mb-4">Salva</button>
         </form>
     </div>
 @endsection

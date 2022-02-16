@@ -2,7 +2,7 @@
   <div class="container">
     <div class="categoryContainer py-5">
       <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">
-        Choose your favourite categories!
+        Scegli la categoria preferita
       </h2>
 
       <div class="d-flex flex-wrap align-items-center justify-content-center">
@@ -53,18 +53,23 @@
         "
       >
         <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
-          <a :href="'/restaurants/' + restaurant.slug">
-            <div class="card">
-              <div class="card-body w-100 text-center">
-                <img
-                  width="90%"
-                  :src="'/storage/' + restaurant.restaurant_image"
-                  :alt="restaurant.name"
-                />
-              </div>
-              <div class="card-text w-100">
-                <h3>{{ restaurant.name }}</h3>
-              </div>
+
+         <a :href="'/restaurants/' + restaurant.slug">
+          <div class="card">
+            <div class="card-body w-100 text-center">
+              <img
+                width="90%"
+                :src="
+                  restaurant.restaurant_image
+                    ? '/storage/' + restaurant.restaurant_image
+                    : 'https://demofree.sirv.com/nope-not-here.jpg'
+                "
+                :alt="restaurant.name"
+              />
+            </div>
+            <div class="card-text w-100">
+              <h3>{{ restaurant.name }}</h3>
+
             </div>
           </a>
         </div>

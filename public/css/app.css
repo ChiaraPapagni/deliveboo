@@ -11277,7 +11277,11 @@ textarea.form-control-lg {
   display: none;
 }
 .nav > .logo {
-  background-image: url("https://picsum.photos/200");
+  background-size: 125%;
+  background-repeat: no-repeat;
+  background-color: #3b3b3b;
+  background-position: center;
+  background-image: url("../img/logo_deliveboo_xs.png");
   height: 100px;
   width: 100px;
   border-radius: 50%;

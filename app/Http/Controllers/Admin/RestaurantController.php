@@ -9,7 +9,7 @@ use App\Models\Restaurant;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -135,7 +135,6 @@ class RestaurantController extends Controller
     //Update Restaurant User Authentication check
     if (Auth::id() === $restaurant->user_id) {
       $validated = $request->validate([
-        'name' => ['required', 'max:200'],
         'vat' => ['required', 'max:200'],
         'address' => ['required', 'max:200'],
         'restaurant_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
