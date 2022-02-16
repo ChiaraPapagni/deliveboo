@@ -15,6 +15,13 @@
             v-model="checkedCat"
             @change="getRestaurants()"
           />
+
+          <!-- TEST CATEGORY IMAGES -->
+          <!-- <img
+            :src="'../img/categories_images/' + category.category_image"
+            alt="{{category.name}}"
+          /> -->
+
           <label :for="category.id" class="btn btn-sm border">{{
             category.name
           }}</label>
