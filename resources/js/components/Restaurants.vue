@@ -46,18 +46,20 @@
         "
       >
         <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
-          <div class="card">
-            <div class="card-body w-100 text-center">
-              <img
-                width="90%"
-                :src="'/storage/' + restaurant.restaurant_image"
-                :alt="restaurant.name"
-              />
+          <a :href="'/restaurants/' + restaurant.slug">
+            <div class="card">
+              <div class="card-body w-100 text-center">
+                <img
+                  width="90%"
+                  :src="'/storage/' + restaurant.restaurant_image"
+                  :alt="restaurant.name"
+                />
+              </div>
+              <div class="card-text w-100">
+                <h3>{{ restaurant.name }}</h3>
+              </div>
             </div>
-            <div class="card-text w-100">
-              <h3>{{ restaurant.name }}</h3>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
