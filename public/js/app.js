@@ -5250,8 +5250,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.counter.includes(id)) {
         this.counter.push(id);
-        this.SceltaCategory = this.restaurants.filter(function (element) {
+        this.SceltaCategory = [], this.SceltaCategory = this.restaurants.filter(function (element) {
           return element.pivot.category_id === id;
+        });
+        this.SceltaCategory.forEach(function (element) {
+          return element.visible = true;
         });
         /* var ids = new Set(
          this.FilterRestaurants.map((Restaurant) => Restaurant.id)
@@ -42488,21 +42491,39 @@ var render = function () {
               },
               _vm._l(_vm.FilterRestaurants, function (restaurant, index) {
                 return _c("div", { key: index, staticClass: "col" }, [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "card-body w-100 text-center" }, [
-                      _c("img", {
-                        attrs: {
-                          width: "90%",
-                          src: restaurant.restaurant_image,
-                          alt: "",
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: restaurant.visible,
+                          expression: "restaurant.visible",
                         },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-text w-100" }, [
-                      _c("h3", [_vm._v(_vm._s(restaurant.name))]),
-                    ]),
-                  ]),
+                      ],
+                      attrs: { c: "", lass: "card" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "card-body w-100 text-center" },
+                        [
+                          _c("img", {
+                            attrs: {
+                              width: "90%",
+                              src: restaurant.restaurant_image,
+                              alt: "",
+                            },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-text w-100" }, [
+                        _c("h3", [_vm._v(_vm._s(restaurant.name))]),
+                      ]),
+                    ]
+                  ),
                 ])
               }),
               0

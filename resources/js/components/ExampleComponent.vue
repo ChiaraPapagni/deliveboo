@@ -84,7 +84,7 @@
             <!-- <router-link :to="'/restaurant/' + restaurant.slug"></router-link> -->
 
             <!--  Card  -->
-            <div class="card">
+            <div v-show="restaurant.visible" c  lass="card">
               <!--  Card Image  -->
               <div class="card-body w-100 text-center">
                 <img width="90%" :src="restaurant.restaurant_image" alt="" />
@@ -151,10 +151,19 @@ export default {
       if (!this.counter.includes(id)) {
         this.counter.push(id);
 
+        this.SceltaCategory = [],
+
         this.SceltaCategory = this.restaurants.filter(
           (element) => element.pivot.category_id === id
         );
 
+        
+
+        this.SceltaCategory.forEach(element =>
+          element.visible = true
+        )
+
+        
 
          /* var ids = new Set(
           this.FilterRestaurants.map((Restaurant) => Restaurant.id)
@@ -170,6 +179,11 @@ export default {
           this.FilterRestaurants = this.FilterRestaurants.concat(
           this.SceltaCategory
         ); 
+
+        this.FilterRestaurants.find(element => 
+          element.restaurant.id ===
+          )
+        
 
         /*  this.FilterRestaurants = this.FilterRestaurants.filter((ar) =>
           this.SceltaCategory.find(
