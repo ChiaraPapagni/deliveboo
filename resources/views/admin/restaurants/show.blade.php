@@ -67,6 +67,8 @@
                         <h5 class="card-title ">Product Name: {{ $product->name }}</h5>
                         <p class="card-text ">Price: €{{ $product->price }}</p>
                         <p class="card-text ">{{ $product->ingredients }}</p>
+                        <p class="card-text ">Visibility: {{ $product->visible === 1 ? 'Yes' : 'No' }}
+                        </p>
                     </div>
 
 

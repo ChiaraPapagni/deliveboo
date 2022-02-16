@@ -92,6 +92,24 @@
 
             {{-- Categorie --}}
             <div class="mb-3">
+                <label for="categories" class="form-label">Seleziona categoria*</label>
+                <select class="form-control @error('categories') is_invalid @enderror" name="categories[]" id="categories"
+                    required multiple>
+                    @foreach ($categories as $category)
+                        {{-- <option value="{{ $category->id }}">{{ $category->name }}</option> --}}
+                        <option value="{{ $category->id }}"
+                            {{ $restaurant->categories->contains($category->id) ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                    @error('categories')
+                        <div class="alert alert-dange">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </select>
+            </div>
+            {{-- <div class="mb-3">
                 <label for="categories" class="form-label">Seleziona categoria</label>
                 @foreach ($categories as $category)
                     <input name="categories[]" type="checkbox" value="{{ $category->id }}"
@@ -105,7 +123,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
 
             {{-- Descrizione --}}
             <div class="mb-3">
