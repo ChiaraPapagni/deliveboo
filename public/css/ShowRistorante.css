@@ -32,8 +32,8 @@
 
 .col-lg-6 {
     flex: 0 0 50%;
-    max-width: 55%;
-    border: solid white 5px;
+    max-width: 50%;
+    border: solid white 6px;
 
 }
 
@@ -55,10 +55,52 @@
 }
 
 .img {
-    max-width: 100%;
+    width: 600px;
     height: auto;
+
+}
+
+.img-pasto {
+    max-width: 100%;
 }
 
 .testo {
     text-align: center;
+}
+
+.top-pics {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.text {
+    align-items: center;
+    font-size: 23px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.line {
+    height: 5px;
+    width: 140px;
+    background-color: #fece2c;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.paragraph {
+    text-align: center;
+
+}
+
+.testimonials-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.col-pics {
+    width: 50px;
 }
