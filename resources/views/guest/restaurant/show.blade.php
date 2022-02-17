@@ -67,8 +67,8 @@
             voluptas.</p>
     </div>
 
-    @foreach ($restaurant->products as $product)
-        {{-- griglia ingredienti/ prodotti --}}
+    {{-- griglia ingredienti/ prodotti --}}
+    {{-- @foreach ($restaurant->products as $product)
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-3 hover01">
@@ -77,12 +77,7 @@
                     <p>{{ $product->price }} $</p>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                 </div>
-                <div class="col-lg-3 hover01">
-                    <figure><img src="http://127.0.0.1:8000/img-prova/panino1.png" alt="" class="img"></figure>
-                    <h3>{{ $product->name }}</h3>
-                    <p>{{ $product->price }} $</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                </div>
+               
                 <div class="col-lg-3 hover01">
                     <figure><img src="http://127.0.0.1:8000/img-prova/panino1.png" alt="" class="img"></figure>
                     <h3>{{ $product->name }}</h3>
@@ -97,7 +92,21 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
+
+    <div class="container mt-5">
+
+        <div class="row">
+            @foreach ($restaurant->products as $product)
+                {{-- Componente per il singolo prodotto --}}
+                <product-component @add-cart="AddNewCart" :product="{{ $product }}">
+                </product-component>
+            @endforeach
+        </div>
+    </div>
+
+    {{-- carrello --}}
+    <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart"></cart-component>
 
     <div class="jumbo-consegne mt-5">
         <img src="http://127.0.0.1:8000/img-prova/jumbo-cinese.jpg" alt="" class="img-jumbo-consegne">

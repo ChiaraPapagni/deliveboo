@@ -19,9 +19,9 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('restaurants', require('./components/Restaurants.vue').default);
-
+Vue.component('cart-component', require('./components/CartComponent.vue').default);
+Vue.component('product-component', require('./components/ProductsComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30,4 +30,43 @@ Vue.component('restaurants', require('./components/Restaurants.vue').default);
 
 const app = new Vue({
     el: '#app',
+
+    data: {
+        cart: [],
+        total: 0,
+        quantità: 0
+    },
+
+    methods: {
+        /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
+        AddNewCart(product) {
+            if (!this.cart.some(e => e.id === product.id)) {
+                product.qty = 1
+                this.cart.push(product)
+            }
+        },
+
+        totalCart() {
+            this.total = 0;
+            for (let i = 0; i < this.cart.length; i++) {
+                this.total += this.cart[i].price * this.cart[i].qty;
+
+            }
+            return this.total
+        },
+
+        refreshQty(qty) {
+            this.quantità += qty
+        },
+    },
+
+    watch: {
+        cart: function () {
+            this.totalCart()
+        },
+
+        quantità: function () {
+            this.totalCart()
+        }
+    },
 });
