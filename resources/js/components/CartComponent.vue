@@ -1,9 +1,15 @@
 <template>
-  <div class="row">
+  <!-- Stampo il singolo prodotto del carello-->
+  <div>
     <div class="card" v-for="(product, i) in cart" :key="i">
       <h1>{{ product.name }}</h1>
+
+      <button type="button" @click="removeProduct(product, cart)">
+        ELIMINA
+      </button>
+      <!-- funzione per selezionare la quantità -->
       <div class="QtyBtn">
-        <button @click="remove_qty(product)" id="lessQty">-</button>
+        <button @click="remove_qty(product, cart)" id="lessQty">-</button>
         <span id="coutnerQty">{{ product.qty }}</span>
         <button @click="add_qty(product)" id="moreQty">+</button>
       </div>
@@ -22,17 +28,22 @@ export default {
   mounted() {},
 
   methods: {
-    remove_qty(product) {
-      console.log(product);
-      if (product.qty <= 1) {
-        product.qty = 1;
-      } else {
-        product.qty--;
+    removeProduct(product, cart) {
+      var index = cart.findIndex(function (element) {
+        return element.id === product.id;
+      });
+      if (index !== -1) cart.splice(index, 1);
+    },
+    /* less qty product */
+    remove_qty(product, cart) {
+      product.qty--;
+      if (product.qty <= 0) {
+        this.removeProduct(product, cart);
       }
     },
 
+    /* more qty product */
     add_qty(product) {
-      console.log(product);
       product.qty++;
     },
   },

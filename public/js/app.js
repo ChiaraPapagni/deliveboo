@@ -5112,6 +5112,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     cart: {},
@@ -5119,17 +5125,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {},
   methods: {
-    remove_qty: function remove_qty(product) {
-      console.log(product);
+    removeProduct: function removeProduct(product, cart) {
+      var index = cart.findIndex(function (element) {
+        return element.id === product.id;
+      });
+      if (index !== -1) cart.splice(index, 1);
+    },
 
-      if (product.qty <= 1) {
-        product.qty = 1;
-      } else {
-        product.qty--;
+    /* less qty product */
+    remove_qty: function remove_qty(product, cart) {
+      product.qty--;
+
+      if (product.qty <= 0) {
+        this.removeProduct(product, cart);
       }
     },
+
+    /* more qty product */
     add_qty: function add_qty(product) {
-      console.log(product);
       product.qty++;
     }
   }
@@ -5195,16 +5208,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {}
   },
-  mounted: function mounted() {//console.log("Component mounted.");
-    //console.log(this.product);
-    //console.log(this.singleProduct);
-  },
+  mounted: function mounted() {},
   methods: {
+    /* passo il prodotto al carello */
     add_product: function add_product() {
       this.$emit("add-cart", this.product);
     }
@@ -42244,11 +42254,23 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "row" },
     [
       _vm._l(_vm.cart, function (product, i) {
         return _c("div", { key: i, staticClass: "card" }, [
           _c("h1", [_vm._v(_vm._s(product.name))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              attrs: { type: "button" },
+              on: {
+                click: function ($event) {
+                  return _vm.removeProduct(product, _vm.cart)
+                },
+              },
+            },
+            [_vm._v("\n      ELIMINA\n    ")]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "QtyBtn" }, [
             _c(
@@ -42257,7 +42279,7 @@ var render = function () {
                 attrs: { id: "lessQty" },
                 on: {
                   click: function ($event) {
-                    return _vm.remove_qty(product)
+                    return _vm.remove_qty(product, _vm.cart)
                   },
                 },
               },
@@ -42358,30 +42380,28 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-3 hover01",
-        on: {
-          click: function ($event) {
-            return _vm.add_product()
-          },
+  return _c(
+    "div",
+    {
+      staticClass: "col hover01",
+      on: {
+        click: function ($event) {
+          return _vm.add_product()
         },
       },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("h3", [_vm._v(_vm._s(_vm.product.name))]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.product.price) + " $")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Lorem ipsum dolor sit, amet consectetur adipisicing elit."),
-        ]),
-      ]
-    ),
-  ])
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("h3", [_vm._v(_vm._s(_vm.product.name))]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.product.price) + " $")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("Lorem ipsum dolor sit, amet consectetur adipisicing elit."),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
@@ -54782,6 +54802,7 @@ var app = new Vue({
     total: 0
   },
   methods: {
+    /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
     AddNewCart: function AddNewCart(product) {
       if (!this.cart.some(function (e) {
         return e.id === product.id;
@@ -54793,13 +54814,14 @@ var app = new Vue({
     }
   },
   computed: {
+    /* Prende il prezzo e quantità dei singoli prodotti e li somma ottenendeno il totale */
     TotalCart: function TotalCart() {
-      if (this.cart.length > 0) {
-        console.log(this.cart);
-        this.total += this.cart[this.cart.length - 1].price * this.cart[this.cart.length - 1].qty;
+      this.total = 0;
+
+      for (var i = 0; i < this.cart.length; i++) {
+        this.total += this.cart[i].price * this.cart[i].qty;
       }
 
-      console.log(this.total);
       return this.total;
     }
   }

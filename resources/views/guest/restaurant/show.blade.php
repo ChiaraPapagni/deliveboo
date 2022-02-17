@@ -98,11 +98,14 @@
 
         <div class="row">
             @foreach ($restaurant->products as $product)
-                <product-component @add-cart="AddNewCart" :product="{{ $product }}"></product-component>
+                {{-- Componente per il singolo prodotto --}}
+                <product-component @add-cart="AddNewCart" :product="{{ $product }}">
+                </product-component>
             @endforeach
         </div>
     </div>
 
+    {{-- carrello --}}
     <cart-component :total="total" :cart="cart"></cart-component>
 
     <div class="jumbo-consegne mt-5">

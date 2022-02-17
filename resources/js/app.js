@@ -38,6 +38,7 @@ const app = new Vue({
     },
 
     methods: {
+        /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
         AddNewCart(product) {
 
             if (!this.cart.some(e => e.id === product.id)) {
@@ -50,16 +51,16 @@ const app = new Vue({
     },
 
     computed: {
+        /* Prende il prezzo e quantità dei singoli prodotti e li somma ottenendeno il totale */
         TotalCart() {
 
-            if (this.cart.length > 0) {
-                console.log(this.cart)
-                this.total += this.cart[this.cart.length - 1].price * this.cart[this.cart.length - 1].qty
+            this.total = 0;
+
+            for (let i = 0; i < this.cart.length; i++) {
+                this.total += this.cart[i].price * this.cart[i].qty;
+
             }
 
-
-
-            console.log(this.total)
             return this.total
         },
     },
