@@ -50,38 +50,32 @@ const app = new Vue({
             }
         },
 
+        totalCart() {
+
+            this.total = 0;
+
+            for (let i = 0; i < this.cart.length; i++) {
+                this.total += this.cart[i].price * this.cart[i].qty;
+
+            }
+
+            return this.total
+        },
+
         refreshQty(qty) {
             this.quantità += qty
-        }
-
-
+        },
     },
 
     watch: {
-        /* Prende il prezzo e quantità dei singoli prodotti e li somma ottenendeno il totale */
+
         cart: function () {
-
-            this.total = 0;
-
-            for (let i = 0; i < this.cart.length; i++) {
-                this.total += this.cart[i].price * this.cart[i].qty;
-
-            }
-
-            return this.total
+            this.totalCart()
         },
 
         quantità: function () {
-
-            this.total = 0;
-
-            for (let i = 0; i < this.cart.length; i++) {
-                this.total += this.cart[i].price * this.cart[i].qty;
-
-            }
-
-            return this.total
-        },
+            this.totalCart()
+        }
 
     },
 });
