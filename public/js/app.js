@@ -54794,8 +54794,9 @@ var app = new Vue({
   },
   computed: {
     TotalCart: function TotalCart() {
-      for (var index = 0; index < this.cart.length; index++) {
-        this.total += this.cart[index].price * this.cart[index].qty;
+      if (this.cart.length > 0) {
+        console.log(this.cart);
+        this.total += this.cart[this.cart.length - 1].price * this.cart[this.cart.length - 1].qty;
       }
 
       console.log(this.total);
