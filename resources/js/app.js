@@ -21,7 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('restaurants', require('./components/Restaurants.vue').default);
-
+Vue.component('cart-component', require('./components/CartComponent.vue').default);
+Vue.component('product-component', require('./components/ProductsComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30,4 +31,20 @@ Vue.component('restaurants', require('./components/Restaurants.vue').default);
 
 const app = new Vue({
     el: '#app',
+
+    data: {
+        cart: [],
+    },
+
+    methods: {
+        AddNewCart(product) {
+
+            if (!this.cart.some(e => e.id === product.id)) {
+                product.qty = 1
+                this.cart.push(product)
+                console.log("entro")
+
+            }
+        }
+    },
 });
