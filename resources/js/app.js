@@ -34,6 +34,7 @@ const app = new Vue({
 
     data: {
         cart: [],
+        total: 0,
     },
 
     methods: {
@@ -46,5 +47,17 @@ const app = new Vue({
 
             }
         }
+    },
+
+    computed: {
+        TotalCart() {
+            for (let index = 0; index < this.cart.length; index++) {
+
+                this.total += this.cart[index].price * this.cart[index].qty
+
+            }
+            console.log(this.total)
+            return this.total
+        },
     },
 });

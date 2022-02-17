@@ -5112,14 +5112,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    cart: {}
+    cart: {},
+    total: Number
   },
-  mounted: function mounted() {//console.log("Component mounted.");
-    //console.log(this.cart);
-  },
+  mounted: function mounted() {},
   methods: {
     remove_qty: function remove_qty(product) {
       console.log(product);
@@ -42285,7 +42283,8 @@ var render = function () {
           ]),
         ])
       }),
-      _vm._v("\n\n  " + _vm._s(_vm.cart) + "\n"),
+      _vm._v(" "),
+      _c("span", { staticClass: "p-5" }, [_vm._v(_vm._s(_vm.total))]),
     ],
     2
   )
@@ -54779,7 +54778,8 @@ Vue.component('product-component', __webpack_require__(/*! ./components/Products
 var app = new Vue({
   el: '#app',
   data: {
-    cart: []
+    cart: [],
+    total: 0
   },
   methods: {
     AddNewCart: function AddNewCart(product) {
@@ -54790,6 +54790,16 @@ var app = new Vue({
         this.cart.push(product);
         console.log("entro");
       }
+    }
+  },
+  computed: {
+    TotalCart: function TotalCart() {
+      for (var index = 0; index < this.cart.length; index++) {
+        this.total += this.cart[index].price * this.cart[index].qty;
+      }
+
+      console.log(this.total);
+      return this.total;
     }
   }
 });
