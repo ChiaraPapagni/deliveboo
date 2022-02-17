@@ -35,6 +35,7 @@ const app = new Vue({
     data: {
         cart: [],
         total: 0,
+        quantità: 0
     },
 
     methods: {
@@ -47,12 +48,18 @@ const app = new Vue({
                 console.log("entro")
 
             }
+        },
+
+        refreshQty(qty) {
+            this.quantità += qty
         }
+
+
     },
 
-    computed: {
+    watch: {
         /* Prende il prezzo e quantità dei singoli prodotti e li somma ottenendeno il totale */
-        TotalCart() {
+        cart: function () {
 
             this.total = 0;
 
@@ -63,5 +70,18 @@ const app = new Vue({
 
             return this.total
         },
+
+        quantità: function () {
+
+            this.total = 0;
+
+            for (let i = 0; i < this.cart.length; i++) {
+                this.total += this.cart[i].price * this.cart[i].qty;
+
+            }
+
+            return this.total
+        },
+
     },
 });

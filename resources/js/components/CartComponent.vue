@@ -9,9 +9,25 @@
       </button>
       <!-- funzione per selezionare la quantità -->
       <div class="QtyBtn">
-        <button @click="remove_qty(product, cart)" id="lessQty">-</button>
+        <button
+          @click="
+            remove_qty(product, cart);
+            refreshQty(product.qty);
+          "
+          id="lessQty"
+        >
+          -
+        </button>
         <span id="coutnerQty">{{ product.qty }}</span>
-        <button @click="add_qty(product)" id="moreQty">+</button>
+        <button
+          @click="
+            add_qty(product);
+            refreshQty(product.qty);
+          "
+          id="moreQty"
+        >
+          +
+        </button>
       </div>
     </div>
     <span class="p-5">{{ total }}</span>
@@ -21,7 +37,7 @@
 <script>
 export default {
   props: {
-    cart: {},
+    cart: [],
     total: Number,
   },
 
@@ -45,6 +61,10 @@ export default {
     /* more qty product */
     add_qty(product) {
       product.qty++;
+    },
+
+    refreshQty(qty) {
+      this.$emit("refresh-qty", qty);
     },
   },
 };

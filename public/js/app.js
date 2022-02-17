@@ -5118,9 +5118,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    cart: {},
+    cart: [],
     total: Number
   },
   mounted: function mounted() {},
@@ -5144,6 +5160,9 @@ __webpack_require__.r(__webpack_exports__);
     /* more qty product */
     add_qty: function add_qty(product) {
       product.qty++;
+    },
+    refreshQty: function refreshQty(qty) {
+      this.$emit("refresh-qty", qty);
     }
   }
 });
@@ -42279,11 +42298,12 @@ var render = function () {
                 attrs: { id: "lessQty" },
                 on: {
                   click: function ($event) {
-                    return _vm.remove_qty(product, _vm.cart)
+                    _vm.remove_qty(product, _vm.cart)
+                    _vm.refreshQty(product.qty)
                   },
                 },
               },
-              [_vm._v("-")]
+              [_vm._v("\n        -\n      ")]
             ),
             _vm._v(" "),
             _c("span", { attrs: { id: "coutnerQty" } }, [
@@ -42296,11 +42316,12 @@ var render = function () {
                 attrs: { id: "moreQty" },
                 on: {
                   click: function ($event) {
-                    return _vm.add_qty(product)
+                    _vm.add_qty(product)
+                    _vm.refreshQty(product.qty)
                   },
                 },
               },
-              [_vm._v("+")]
+              [_vm._v("\n        +\n      ")]
             ),
           ]),
         ])
@@ -54799,7 +54820,8 @@ var app = new Vue({
   el: '#app',
   data: {
     cart: [],
-    total: 0
+    total: 0,
+    quantità: 0
   },
   methods: {
     /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
@@ -54811,11 +54833,23 @@ var app = new Vue({
         this.cart.push(product);
         console.log("entro");
       }
+    },
+    refreshQty: function refreshQty(qty) {
+      this.quantità += qty;
     }
   },
-  computed: {
+  watch: {
     /* Prende il prezzo e quantità dei singoli prodotti e li somma ottenendeno il totale */
-    TotalCart: function TotalCart() {
+    cart: function cart() {
+      this.total = 0;
+
+      for (var i = 0; i < this.cart.length; i++) {
+        this.total += this.cart[i].price * this.cart[i].qty;
+      }
+
+      return this.total;
+    },
+    quantità: function quantità() {
       this.total = 0;
 
       for (var i = 0; i < this.cart.length; i++) {
