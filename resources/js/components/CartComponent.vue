@@ -8,8 +8,7 @@
         <button @click="add_qty(product)" id="moreQty">+</button>
       </div>
     </div>
-
-    {{ cart }}
+    <span class="p-5">{{ total }}</span>
   </div>
 </template>
 
@@ -17,12 +16,10 @@
 export default {
   props: {
     cart: {},
+    total: Number,
   },
 
-  mounted() {
-    //console.log("Component mounted.");
-    //console.log(this.cart);
-  },
+  mounted() {},
 
   methods: {
     remove_qty(product) {
