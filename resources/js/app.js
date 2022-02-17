@@ -19,7 +19,6 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('restaurants', require('./components/Restaurants.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.component('product-component', require('./components/ProductsComponent.vue').default);
@@ -41,24 +40,18 @@ const app = new Vue({
     methods: {
         /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
         AddNewCart(product) {
-
             if (!this.cart.some(e => e.id === product.id)) {
                 product.qty = 1
                 this.cart.push(product)
-                console.log("entro")
-
             }
         },
 
         totalCart() {
-
             this.total = 0;
-
             for (let i = 0; i < this.cart.length; i++) {
                 this.total += this.cart[i].price * this.cart[i].qty;
 
             }
-
             return this.total
         },
 
@@ -68,7 +61,6 @@ const app = new Vue({
     },
 
     watch: {
-
         cart: function () {
             this.totalCart()
         },
@@ -76,6 +68,5 @@ const app = new Vue({
         quantità: function () {
             this.totalCart()
         }
-
     },
 });

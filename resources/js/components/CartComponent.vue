@@ -1,6 +1,6 @@
 <template>
   <!-- Stampo il singolo prodotto del carello-->
-  <div>
+  <div v-show="cart.length > 0">
     <div class="card" v-for="(product, i) in cart" :key="i">
       <h1>{{ product.name }}</h1>
 
