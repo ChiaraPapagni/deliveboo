@@ -35,35 +35,25 @@ const app = new Vue({
         cart: [],
         newCart: null,
         total: 0,
-        quantità: 0
+        quantità: 0,
+        restaurant: Number,
     },
 
-    // mounted() {
-    //     if (localStorage.getItem("cart")) {
-    //         try {
-    //             this.cart = JSON.parse(localStorage.cart);
-    //             console.log(this.cart[0].restaurant_id);
-    //         } catch (e) {
-    //             localStorage.removeItem("cart");
-    //         }
-    //     }
-    // },
+    created() {
+        const el = document.getElementById('custom-data')
+        if (el != null) {
+            const profiles = JSON.parse(el.dataset.profiles)
+            this.restaurant = profiles
+        }
+    },
+
     methods: {
         /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
         AddNewCart(product) {
-            /* if (!this.cart) {
-                return;
-            } */
-            //console.log(window.localStorage);
-
             if (!this.cart.some(e => e.id === product.id)) {
                 product.qty = 1;
                 this.cart.push(product);
             }
-
-            /* this.newCart.push(this.cart);
-            this.cart = '';
-            this.saveCart(); */
         },
 
         totalCart() {
@@ -78,20 +68,27 @@ const app = new Vue({
             this.quantità += qty;
         },
 
-        /* saveCart() {
-            const parsed = JSON.stringify(this.cart);
-            localStorage.setItem('cart', parsed);
-        } */
+        changeLocalStorage() {
+            if (localStorage.getItem("cart")) {
+                if (JSON.parse(localStorage.getItem("cart")).length > 0) {
+                    if (
+                        JSON.parse(localStorage.getItem("cart"))[0].restaurant_id ==
+                        this.restaurant
+                    ) {
+                        console.log("cart overwritten");
+                        this.cart = JSON.parse(localStorage.cart);
+                    }
+                }
+            }
+        },
+
     },
 
     watch: {
-        /*         cart: {
-                    handler(product) {
-                        localStorage.cart = JSON.stringify(product);
-                        this.totalCart();
-                    },
-                    deep: true,
-                }, */
+
+        restaurant: function () {
+            this.changeLocalStorage();
+        },
 
         cart: function () {
             this.totalCart();
