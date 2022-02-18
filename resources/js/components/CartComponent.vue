@@ -45,38 +45,15 @@ export default {
   mounted() {
     if (localStorage.getItem("cart")) {
       try {
-        /*
-We can access local storage data before passing them, now. (CHECK)
-
-We need to make a check with restaurant ID/ product when:
-
-ON REFRESH
--on refresh, if the restaurant isn't the same as the products rest. id, the cart wil not be updated
- AND the local storage is not erased
-
-ON REFRESH
--if the current restaurant is the same as the product rest. id, the cart is updated with local storage.
-
-ON CLICK
--if a product is added to cart while the restaurant id is different from product ones local storage is erased and cart is updated
-
-ON SCORDATO
-If cart has the same rest. id, 
-
-
-
-
-
-        */
-        // console.log(JSON.parse(localStorage.getItem("cart"))[0].restaurant_id);
-        //VAFFANCULO ALLA IF
         if (
           JSON.parse(localStorage.getItem("cart"))[0].restaurant_id ==
           this.restaurant
         ) {
+          console.log("cart overwritten");
           this.cart = JSON.parse(localStorage.cart);
         }
       } catch (e) {
+        console.log("CATCH E");
         localStorage.removeItem("cart");
       }
     }
@@ -111,23 +88,22 @@ If cart has the same rest. id,
     cart: {
       handler(product) {
         //IF local cart exist
-        if (localStorage.getItem("cart")) {
-          console.log("YES");
-
-          //   // local cart first product == this page restaurant ID
-          //   if (
-          //     JSON.parse(localStorage.getItem("cart"))[0].restaurant_id ==
-          //     this.restaurant
-          //   ) {
-          //     console.log("SAME LOCAL CART ON PRODUCT ADD (I HOPE)");
-          //     localStorage.cart = JSON.stringify(product);
-          //   } else {
-          //     console.log("NOT LOCAL CART");
-          //     localStorage.clear();
-          //   }
-        } else {
-          console.log("NO");
-        }
+        // if (localStorage.getItem("cart")) {
+        //   //   // local cart first product == this page restaurant ID
+        //   if (
+        //     JSON.parse(localStorage.getItem("cart"))[0].restaurant_id ==
+        //     this.restaurant
+        //   ) {
+        //     console.log("SAME LOCAL CART ON PRODUCT ADD (I HOPE)");
+        //     // localStorage.cart = JSON.stringify(product);
+        //   } else {
+        //     console.log("NOT LOCAL CART");
+        //     // localStorage.clear();
+        //   }
+        // } else {
+        //   console.log("NO");
+        // }
+        console.log("assign");
         localStorage.cart = JSON.stringify(product);
 
         /*
