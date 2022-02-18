@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
-
 @section('personalCss')
     <link href="{{ asset('css/ShowRistorante.css') }}" rel="stylesheet">
 @endsection
 
-
 @section('content')
     {{-- jumbo pizza --}}
-    <div class="contenitore-jumbo">
+    <div id="custom-data" data-profiles="{{ $restaurant->id }}" class="contenitore-jumbo">
         <img src="http://127.0.0.1:8000/img-prova/sfondo-pizza.png" alt="pizza" class="pizza">
         <div class="contenitore-titolo">
             <h1>{{ $restaurant->name }}</h1>
@@ -22,8 +20,6 @@
         <div class="text">Top Picks</div>
         <div class="line"></div>
     </div>
-
-
 
     {{-- griglia cibo --}}
     <div class="container mt-3">
@@ -67,33 +63,6 @@
             voluptas.</p>
     </div>
 
-    {{-- griglia ingredienti/ prodotti --}}
-    {{-- @foreach ($restaurant->products as $product)
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-3 hover01">
-                    <figure><img src="http://127.0.0.1:8000/img-prova/panino1.png" alt="" class="img"></figure>
-                    <h3>{{ $product->name }}</h3>
-                    <p>{{ $product->price }} $</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                </div>
-               
-                <div class="col-lg-3 hover01">
-                    <figure><img src="http://127.0.0.1:8000/img-prova/panino1.png" alt="" class="img"></figure>
-                    <h3>{{ $product->name }}</h3>
-                    <p>{{ $product->price }} $</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                </div>
-                <div class="col-lg-3 hover01">
-                    <figure><img src="http://127.0.0.1:8000/img-prova/panino1.png" alt="" class="img"></figure>
-                    <h3>{{ $product->name }}</h3>
-                    <p>{{ $product->price }} $</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-        </div>
-    @endforeach --}}
-
     <div class="container mt-5">
 
         <div class="row">
@@ -106,7 +75,7 @@
     </div>
 
     {{-- carrello --}}
-    <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart" :restaurant="{{ $restaurant->id }}">
+    <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart">
     </cart-component>
 
     <div class="jumbo-consegne mt-5">

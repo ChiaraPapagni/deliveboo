@@ -20,8 +20,6 @@ export default {
     product: {},
   },
 
-  mounted() {},
-
   methods: {
     /* passo il prodotto al carello */
     add_product() {
