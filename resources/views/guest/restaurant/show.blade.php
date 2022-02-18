@@ -106,7 +106,8 @@
     </div>
 
     {{-- carrello --}}
-    <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart"></cart-component>
+    <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart" :restaurant="{{ $restaurant->id }}">
+    </cart-component>
 
     <div class="jumbo-consegne mt-5">
         <img src="http://127.0.0.1:8000/img-prova/jumbo-cinese.jpg" alt="" class="img-jumbo-consegne">

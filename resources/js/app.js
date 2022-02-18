@@ -33,40 +33,72 @@ const app = new Vue({
 
     data: {
         cart: [],
+        newCart: null,
         total: 0,
         quantità: 0
     },
 
+    // mounted() {
+    //     if (localStorage.getItem("cart")) {
+    //         try {
+    //             this.cart = JSON.parse(localStorage.cart);
+    //             console.log(this.cart[0].restaurant_id);
+    //         } catch (e) {
+    //             localStorage.removeItem("cart");
+    //         }
+    //     }
+    // },
     methods: {
         /* Prende il singolo prodotto e lo aggiunge all'array cart se non è presente */
         AddNewCart(product) {
+            /* if (!this.cart) {
+                return;
+            } */
+            //console.log(window.localStorage);
+
             if (!this.cart.some(e => e.id === product.id)) {
-                product.qty = 1
-                this.cart.push(product)
+                product.qty = 1;
+                this.cart.push(product);
             }
+
+            /* this.newCart.push(this.cart);
+            this.cart = '';
+            this.saveCart(); */
         },
 
         totalCart() {
             this.total = 0;
             for (let i = 0; i < this.cart.length; i++) {
                 this.total += this.cart[i].price * this.cart[i].qty;
-
             }
-            return this.total
+            return this.total;
         },
 
         refreshQty(qty) {
-            this.quantità += qty
+            this.quantità += qty;
         },
+
+        /* saveCart() {
+            const parsed = JSON.stringify(this.cart);
+            localStorage.setItem('cart', parsed);
+        } */
     },
 
     watch: {
-        cart: function () {
-            this.totalCart()
-        },
+        /*         cart: {
+                    handler(product) {
+                        localStorage.cart = JSON.stringify(product);
+                        this.totalCart();
+                    },
+                    deep: true,
+                }, */
 
+        cart: function () {
+            this.totalCart();
+        },
         quantità: function () {
-            this.totalCart()
-        }
+            this.totalCart();
+        },
     },
+
 });
