@@ -28,20 +28,7 @@
                     @endif
 
                 @else
-                    <a class="" href="#">
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <a href="{{ route('homepage') }}">Dashboard</a>
-
-                    <a class="" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                                                  document.getElementById('logout-form').submit();">{{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                    <h2 class="py-2">Delive<span class="text-danger">boo</span></h2>
 
                 @endguest
             </div>
@@ -80,7 +67,7 @@
 
                     <a class="" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                                                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                                                                                                  document.getElementById('logout-form').submit();">{{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

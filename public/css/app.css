@@ -11248,8 +11248,6 @@ textarea.form-control-lg {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
-  width: 100%;
   background-color: #fece2c;
   z-index: 10000;
 }
@@ -11349,10 +11347,10 @@ footer .fab {
   color: white;
 }
 footer .fab:hover {
-  color: #ca1d1f;
+  color: #b82225;
 }
 footer span:hover {
-  color: #ca1d1f;
+  color: #b82225;
   cursor: pointer;
 }
 

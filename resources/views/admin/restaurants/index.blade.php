@@ -2,43 +2,53 @@
 
 @extends('layouts.admin')
 
+@section('personalCss')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
+
 @section('content')
+    <div class="dashboardJumbo">
 
-    <div class="container mt-5">
 
-        {{-- Restaurant / Admin --}}
-        <div class="pt-5">
-            <h1 class="pt-2 text-center">Restaurants</h1>
+        <div class="container dashboardJumbo pt-5">
+
+            {{-- Restaurant / Admin --}}
+            <div class="pt-5 pb-4">
+                <h1 class="pt-2 text-center text-capitalize">
+                    <span class="titleBox">i tuoi ristoranti</span>
+                </h1>
+            </div>
+
             <a class="btn btn-success mb-2" href="{{ route('admin.restaurants.create') }}" role="button">
                 Create Restaurants
             </a>
-        </div>
+            {{-- Restaurant List --}}
 
-        {{-- Restaurant List --}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Website</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+            <div class="row">
                 @foreach ($restaurants as $restaurant)
-                    <tr>
-                        <td scope="row">{{ $restaurant->id }}</td>
-                        <td>{{ $restaurant->name }}</td>
-                        <td><a target="_blank" href="">{{ $restaurant->website }}</a></td>
-                        <td>{{ $restaurant->phone }}</td>
-                        <td>
-                            <div class="btns d-flex">
+                    <div class="card mb-5">
+
+                        <div class="row align-items-center">
+
+                            <div class="image col-4">
+                                <img class="w-100 p-1" style="object-fit:cover" height=" 150"
+                                    src="{{ asset('storage/' . $restaurant->restaurant_image) }}">
+                            </div>
+
+
+                            <div class="col-6">
+                                <h5 class="card-title ">Restaurant Name: {{ $restaurant->name }}</h5>
+                            </div>
+
+
+                            <div class="btns col-2 d-flex flex-column justify-content-around pe-4">
+
                                 <a class="btn btn-primary " href="{{ route('admin.restaurants.show', $restaurant->id) }}">
                                     Show
                                 </a>
-                                <a class="btn btn-warning ms-2 me-2"
-                                    href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
+
+                                <a class="btn btn-warning my-2"
+                                    href="{{ route('admin.products.edit', $restaurant->id) }}">
                                     Edit
                                 </a>
 
@@ -54,7 +64,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Delete restaurant: {{ $restaurant->name }}
+                                                <h5 class="modal-title">Elimina il Ristorante: {{ $restaurant->name }}
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
@@ -77,17 +87,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form> --}}
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
 
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+
+        </div>
+    </div>
 @endsection

@@ -9,10 +9,10 @@
 
             {{-- Nome ristorante --}}
             <div class="mb-3">
-                <label for="name" class="form-label">Nome Ristorante</label>
+                <label for="name" class="form-label">Nome Ristorante*</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your restaurant name here..." aria-describedby="nameHelper" value="{{ old('name') }}"
-                    required min="3" max="255">
+                    placeholder="Inserisci il nome del Tuo Ristorante" aria-describedby="nameHelper"
+                    value="{{ old('name') }}" required min="3" max="255">
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -32,9 +32,9 @@
 
             {{-- Partita iva --}}
             <div class="mb-3">
-                <label for="vat" class="form-label">Partita IVA</label>
+                <label for="vat" class="form-label">Partita IVA*</label>
                 <input type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror" required
-                    placeholder="Your restaurant vat here..." aria-describedby="vatHelper" value="{{ old('vat') }}">
+                    placeholder="Inserisci la Tua Partita IVA" aria-describedby="vatHelper" value="{{ old('vat') }}">
 
                 @error('vat')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -43,10 +43,10 @@
 
             {{-- Indirizzo --}}
             <div class="mb-3">
-                <label for="address" class="form-label">Indirizzo</label>
+                <label for="address" class="form-label">Indirizzo*</label>
                 <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror"
-                    placeholder="Your restaurant address here..." aria-describedby="addressHelper"
-                    value="{{ old('address') }}" required min="3" max="255">
+                    placeholder="Inserisci il Tuo Indirizzo" aria-describedby="addressHelper" value="{{ old('address') }}"
+                    required min="3" max="255">
 
                 @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -57,8 +57,7 @@
             <div class="mb-3">
                 <label for="website" class="form-label">Sito web</label>
                 <input type="text" name="website" id="website" class="form-control @error('website') is-invalid @enderror"
-                    placeholder="Your restaurant website here..." aria-describedby="websiteHelper"
-                    value="{{ old('website') }}">
+                    placeholder="Inserisci il Tuo Sito" aria-describedby="websiteHelper" value="{{ old('website') }}">
 
                 @error('website')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -69,7 +68,7 @@
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di telefono</label>
                 <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" min="8"
-                    max="20" placeholder="Your restaurant phone here..." aria-describedby="phoneHelper"
+                    max="20" placeholder="Inserisci un recapito telefonico" aria-describedby="phoneHelper"
                     value="{{ old('phone') }}">
 
                 @error('phone')
@@ -92,11 +91,14 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description"
-                    id="description" rows="5">{{ old('description') }}</textarea>
+                    id="description" rows="5"
+                    placeholder="Inserisci la descrizione del Tuo Ristorante">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <p class="text-capitalize">campi obbligatori</p>
 
             <button type="submit" class="btn btn-dark">Save</button>
         </form>

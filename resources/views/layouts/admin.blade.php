@@ -16,8 +16,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -42,33 +43,55 @@
                 <div class="row">
                     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                         <div class="sidebar-sticky pt-3">
-                            <ul class="navbar ul-sidebar flex-column">
-                                <li class="nav-item">
-                                    @if (Auth::user()->has_restaurant)
+                            <ul class="list-group">
+                                @if (Auth::user()->has_restaurant)
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ route('admin.restaurants.index') }}">
 
-                                            <i class="fa fa-shopping-bag fa-lg fa-fw" aria-hidden="true"></i>
-                                            Restaurants
+                                            <i class="fas fa-house-user"></i>
+                                            Dashboard
                                         </a>
-                                    @else
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('homepage') }}">
+
+                                            <i class="fas fa-home"></i>
+                                            Homepage
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item ps-3">
+                                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            <i class=" fas fa-sign-out-alt"></i>
+
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                @else
+                                    <li>
+
                                         <a href="{{ route('admin.register.create') }}">Crea il primo ristorante
                                         </a>
-                                    @endif
-                                </li>
+                                    </li>
+                                @endif
+
                             </ul>
                         </div>
                     </nav>
 
-                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
                         @yield('content')
 
                     </main>
                 </div>
             </div>
         </div>
-
-        @include('partials.footer')
-
     </div>
 
 

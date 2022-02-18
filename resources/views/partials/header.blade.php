@@ -37,13 +37,13 @@
                     {{ Auth::user()->name }}
                 </span>
 
-                <a class="" href="{{ route('admin.dashboard') }}">
+                <a class="" href="{{ route('admin.restaurants.index') }}">
                     Dashboard
                 </a>
 
                 <a class="" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
