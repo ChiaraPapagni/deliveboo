@@ -23,8 +23,19 @@
             {{-- Immagine --}}
             <div class="mb-3">
                 <div class="row">
+
+
+
                     <div class="col-4">
-                        <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->name }}" />
+
+                        @if ($product->product_image === null)
+                            <img src="{{ url('/img/placeholder/placeholder_product.jpg') }}" alt="placeholder_product"
+                                class="card-img-top w-50">
+                        @else
+                            <img class="w-50" src="{{ asset('storage/' . $product->product_image) }}"
+                                alt="{{ $product->name }}" />>
+                        @endif
+
                     </div>
                     <div class="col">
                         <label for="product_image" class="form-label">Modifica immagine</label>
