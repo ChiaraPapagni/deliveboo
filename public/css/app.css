@@ -11244,6 +11244,10 @@ textarea.form-control-lg {
   }
 }
 /* header */
+.w-5 {
+  width: 25px;
+}
+
 .nav {
   position: fixed;
   top: 0;
@@ -11264,13 +11268,13 @@ textarea.form-control-lg {
   float: right;
   font-size: 18px;
 }
-.nav > .nav-links > div > a {
+.nav > .nav-links a {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
-  color: #3b3b3b;
+  color: white;
 }
-.nav > .nav-links > div > a > a:hover {
+.nav > .nav-links a > a:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .nav > #nav-check {

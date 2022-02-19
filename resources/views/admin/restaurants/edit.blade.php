@@ -19,12 +19,14 @@
                 <div class="row">
                     <div class="col-4">
                         @if ($restaurant->restaurant_image)
-                            <img src="{{ asset('storage/' . $restaurant->restaurant_image) }}"
+                            <img class="card-img-top w-50" src="{{ asset('storage/' . $restaurant->restaurant_image) }}"
                                 alt="{{ $restaurant->name }}" />
                         @else
-                            <img src="{{ asset('storage/placeholder/placeholder_restaurant.jpg') }}"
-                                alt="placeholder_restaurant" class="card-img-top">
+                            <img src="{{ url('/img/placeholder/placeholder_restaurant.jpg') }}"
+                                alt="placeholder_restaurant" class="card-img-top w-50">
                         @endif
+
+
 
                     </div>
                     <div class="col">
@@ -108,21 +110,6 @@
                     @enderror
                 </select>
             </div>
-            {{-- <div class="mb-3">
-                <label for="categories" class="form-label">Seleziona categoria</label>
-                @foreach ($categories as $category)
-                    <input name="categories[]" type="checkbox" value="{{ $category->id }}"
-                        {{ $restaurant->categories->contains($category) ? 'checked=checked' : '' }}>
-                    <label>
-                        {{ $category->name }}
-                    </label>
-                @endforeach
-                @error('categories')
-                    <div class="alert alert-dange">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div> --}}
 
             {{-- Descrizione --}}
             <div class="mb-3">

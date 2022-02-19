@@ -33,17 +33,27 @@
                 @endif
 
             @else
-                <span class="" href="#">
-                    {{ Auth::user()->name }}
+
+                <span>
+                    <a href="{{ route('admin.dashboard') }}">
+                        @if (Auth::user()->account_image)
+                            <img class="w-5 rounded-circle"
+                                src="{{ asset('storage/account_image/' . Auth::user()->id . '/' . Auth::user()->account_image) }}"
+                                alt="{{ Auth::user()->name }}">
+                        @else
+                            <img class="w-5 rounded-circle" src="{{ url('/img/placeholder/placeholder_user.png') }}"
+                                alt="placeholder_user">
+                        @endif
+                        <span>{{ Auth::user()->name }}</span>
+
+                    </a>
                 </span>
 
-                <a class="" href="{{ route('admin.dashboard') }}">
-                    Dashboard
-                </a>
+
 
                 <a class="" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

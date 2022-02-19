@@ -7,6 +7,9 @@
 @import "variables";
 
 /* header */
+.w-5 {
+     width: 25px;
+}
 .nav {
      position: fixed;
      top: 0;
@@ -29,11 +32,11 @@
           float: right;
           font-size: 18px;
 
-          & > div > a {
+          & a {
                display: inline-block;
                padding: 13px 10px 13px 10px;
                text-decoration: none;
-               color: #3b3b3b;
+               color: white;
                & > a:hover {
                     background-color: rgba(0, 0, 0, 0.3);
                }
