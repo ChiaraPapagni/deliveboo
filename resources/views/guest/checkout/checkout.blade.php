@@ -53,7 +53,7 @@
                             {{-- Email --}}
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email*</label>
-                                <input type="text" name="email" id="email"
+                                <input type="email" name="email" id="email"
                                     class="form-control @error('email') is-invalid @enderror"
                                     placeholder="Indirizzo del ristorante..." aria-describedby="emailHelper"
                                     value="{{ old('email') }}" required minlength="3" maxlength="255">

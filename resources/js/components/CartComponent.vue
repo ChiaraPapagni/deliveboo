@@ -43,6 +43,18 @@ export default {
   },
 
   methods: {
+    postOrder() {
+      axios
+        .post("/api/orders")
+        .then((response) => {
+          //this.categories = response.data.data;
+          response = localStorage.cart;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     removeProduct(product, cart) {
       var index = cart.findIndex(function (element) {
         return element.id === product.id;

@@ -5141,6 +5141,14 @@ __webpack_require__.r(__webpack_exports__);
     total: Number
   },
   methods: {
+    postOrder: function postOrder() {
+      axios.post("/api/orders").then(function (response) {
+        //this.categories = response.data.data;
+        response = localStorage.cart;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     removeProduct: function removeProduct(product, cart) {
       var index = cart.findIndex(function (element) {
         return element.id === product.id;

@@ -22,4 +22,5 @@ Route::namespace('API')->group(function () {
     Route::get('restaurants', 'RestaurantController@index');
     Route::get('categories', 'RestaurantController@categories');
     Route::get('restaurants/filter', 'RestaurantController@filter');
+    Route::post('orders', 'OrderController@store');
 });

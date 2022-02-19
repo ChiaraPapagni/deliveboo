@@ -30,6 +30,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'min:3', 'max:200'],
+            'last_name' => ['required', 'min:3', 'max:200'],
+            'phone' => ['required', 'min:9', 'max:30'],
+            'email' => ['required', 'max:200'],
+            'address' => ['required', 'min:3', 'max:200'],
+            'notes' => ['nullable'],
+        ]);
     }
 }
