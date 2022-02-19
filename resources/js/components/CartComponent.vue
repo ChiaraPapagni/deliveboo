@@ -30,6 +30,7 @@
           +
         </button>
       </div>
+      <a class="btn" href="/checkout">Acquista</a>
     </div>
   </div>
 </template>
