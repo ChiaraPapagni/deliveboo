@@ -7,15 +7,17 @@
 @section('content')
     {{-- jumbo pizza --}}
     <div id="custom-data" data-profiles="{{ $restaurant->id }}" class="contenitore-jumbo">
-        <img src="http://127.0.0.1:8000/img-prova/sfondo-pizza.png" alt="pizza" class="pizza">
+        <img src="http://127.0.0.1:8000/img-prova/background-food.png" alt="pizza" class="pizza mt-5">
+
         <div class="contenitore-titolo">
-            <h1>{{ $restaurant->name }}</h1>
+            <h1 class="restaurant-name">{{ $restaurant->name }}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aperiam perferendis voluptate.</p>
             <a href="#" role="button" class="btn btn-warning mb-2">Order Now</a>
         </div>
+
     </div>
 
-    <div class="top-pics mt-5">
+    <div class="top-pics">
         <div class="line"></div>
         <div class="text">Top Picks</div>
         <div class="line"></div>
@@ -79,9 +81,9 @@
     </cart-component>
 
     <div class="jumbo-consegne mt-5">
-        <img src="http://127.0.0.1:8000/img-prova/jumbo-cinese.jpg" alt="" class="img-jumbo-consegne">
+        <img src="http://127.0.0.1:8000/img-prova/fast-food.png" alt="" class="img-jumbo-consegne ">
         <div class="contenitore-titolo-consegne">
-            <h3>Consegne gratuite sopra i 12$</h3>
+            <h3 class="delivery-title">Free shipping over $12</h3>
             <a href="#" role="button" class="btn btn-dark mb-2">Order Now</a>
         </div>
     </div>

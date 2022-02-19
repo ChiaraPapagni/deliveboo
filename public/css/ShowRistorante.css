@@ -13,8 +13,14 @@
 .contenitore-titolo {
     position: absolute;
     top: 20rem;
-    left: 5rem;
-    color: white;
+    left: 27rem;
+    color: black;
+    text-align: center;
+    align-items: center;
+}
+
+.restaurant-name {
+    font-size: 55px;
 }
 
 
@@ -51,7 +57,8 @@
 .img-jumbo-consegne {
     object-fit: cover;
     width: 100%;
-    height: 60vh;
+    height: 100vh;
+    opacity: 0.5;
 }
 
 .pics {
@@ -72,7 +79,7 @@
 .top-pics {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 
 .text {
@@ -104,6 +111,11 @@
 
 .col-pics {
     width: 50px;
+}
+
+.delivery-title {
+    font-size: 40px;
+    margin-right: 35rem;
 }
 
 /* effects */
