@@ -5236,6 +5236,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -42537,6 +42544,11 @@ var render = function () {
         _c("input", {
           attrs: { type: "hidden", id: "cart-data", name: "cart" },
           domProps: { value: JSON.stringify(_vm.cart) },
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "hidden", id: "cart_total-data", name: "cart-total" },
+          domProps: { value: _vm.total() },
         }),
       ],
       2

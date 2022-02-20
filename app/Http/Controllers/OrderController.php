@@ -32,8 +32,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {;
-        $x = (json_decode($request->input('cart')));
-        dd($request, $x);
+        $cart_products = (json_decode($request->input('cart')));
+        $cart_total = (json_decode($request->input('cart-total')));
+        dd($request, $cart_products, $cart_total);
 
         $validated = $request->validate([
             'name' => ['required', 'min:3', 'max:200'],

@@ -32,6 +32,13 @@
         name="cart"
         :value="JSON.stringify(cart)"
       />
+
+      <input
+        type="hidden"
+        id="cart_total-data"
+        name="cart-total"
+        :value="total()"
+      />
     </div>
   </div>
 </template>
