@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use Braintree;
 use Illuminate\Http\Request;
 use Braintree_Transaction;
+use Braintree\Transaction;
 
 class OrderController extends Controller
 {
@@ -62,7 +64,22 @@ class OrderController extends Controller
         $order = Order::create($validated);
         //ddd($order);
 
+        //ddd($request->input('payload', false));
 
+        // ------  PROVA PAGAMENTO  -------
+        /*  $payload = $request->input('payload', false);
+        $nonce = $payload['nonce'];
+
+        $status = Braintree\Transaction::sale([
+            'amount' => '10.00',
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+        return response()->json($status);
+ */
         //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
         $order->status = true;
         $order->save();
