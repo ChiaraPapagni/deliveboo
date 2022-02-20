@@ -11,7 +11,7 @@
       >
         <img class="card-image" :src="product.image" alt="" />
         <h3>{{ product.name }}</h3>
-        <span> Singola unita: {{ product.price }} </span>
+        <span> Singola unita: {{ product.price }} $ </span>
         <!-- funzione per selezionare la quantità -->
 
         <div class="QtyBtn">
@@ -22,6 +22,10 @@
       </div>
 
       <!-- Pass array cart to $request -->
+      <div class="card-footer">
+        <h6>TOTALE:</h6>
+        <!-- <span class="p-5">{{ total.toFixed(2) }}</span> -->
+      </div>
       <input
         type="hidden"
         id="cart-data"
@@ -37,28 +41,33 @@ export default {
   data() {
     return {
       cart: [],
+      total: Number,
     };
   },
 
   methods: {
+    totalCart() {
+      this.total = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        this.total += this.cart[i].price * this.cart[i].qty;
+      }
+      return this.total;
+    },
+
     add_qty(product) {
       product.qty++;
       if (product.qty > 100) {
         product.qty = 100;
       }
-      console.log("add qty", product);
+      this.totalCart();
     },
+
     remove_qty(product) {
       product.qty--;
       if (product.qty < 0) {
         product.qty = 0;
       }
-      console.log("remove qty", product);
-    },
-
-    changeQty(product) {
-      product;
-      console.log("entro");
+      this.totalCart();
     },
 
     getCart() {

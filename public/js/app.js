@@ -5232,13 +5232,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cart: []
+      cart: [],
+      total: Number
     };
   },
   methods: {
+    totalCart: function totalCart() {
+      this.total = 0;
+
+      for (var i = 0; i < this.cart.length; i++) {
+        this.total += this.cart[i].price * this.cart[i].qty;
+      }
+
+      return this.total;
+    },
     add_qty: function add_qty(product) {
       product.qty++;
 
@@ -5246,7 +5260,7 @@ __webpack_require__.r(__webpack_exports__);
         product.qty = 100;
       }
 
-      console.log("add qty", product);
+      this.totalCart();
     },
     remove_qty: function remove_qty(product) {
       product.qty--;
@@ -5255,11 +5269,7 @@ __webpack_require__.r(__webpack_exports__);
         product.qty = 0;
       }
 
-      console.log("remove qty", product);
-    },
-    changeQty: function changeQty(product) {
-      product;
-      console.log("entro");
+      this.totalCart();
     },
     getCart: function getCart() {
       /* Cart */
@@ -42484,7 +42494,7 @@ var render = function () {
               _c("h3", [_vm._v(_vm._s(product.name))]),
               _vm._v(" "),
               _c("span", [
-                _vm._v(" Singola unita: " + _vm._s(product.price) + " "),
+                _vm._v(" Singola unita: " + _vm._s(product.price) + " $ "),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "QtyBtn" }, [
@@ -42522,6 +42532,8 @@ var render = function () {
           )
         }),
         _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", id: "cart-data", name: "cart" },
           domProps: { value: JSON.stringify(_vm.cart) },
@@ -42531,7 +42543,16 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c("h6", [_vm._v("TOTALE:")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
