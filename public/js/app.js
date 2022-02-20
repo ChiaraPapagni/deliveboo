@@ -5290,6 +5290,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getCart();
+    this.totalCart();
   }
 });
 
@@ -42539,7 +42540,15 @@ var render = function () {
           )
         }),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "card-footer" }, [
+          _c("h6", [_vm._v("TOTALE:")]),
+          _vm._v(" "),
+          _vm.total > 0
+            ? _c("span", { staticClass: "p-5" }, [
+                _vm._v(_vm._s(_vm.total.toFixed())),
+              ])
+            : _vm._e(),
+        ]),
         _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", id: "cart-data", name: "cart" },
@@ -42548,23 +42557,14 @@ var render = function () {
         _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", id: "cart_total-data", name: "cart-total" },
-          domProps: { value: _vm.total() },
+          domProps: { value: _vm.total },
         }),
       ],
       2
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("h6", [_vm._v("TOTALE:")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

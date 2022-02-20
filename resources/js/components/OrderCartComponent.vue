@@ -24,7 +24,7 @@
       <!-- Pass array cart to $request -->
       <div class="card-footer">
         <h6>TOTALE:</h6>
-        <!-- <span class="p-5">{{ total.toFixed(2) }}</span> -->
+        <span v-if="total > 0" class="p-5">{{ total.toFixed() }}</span>
       </div>
       <input
         type="hidden"
@@ -37,7 +37,7 @@
         type="hidden"
         id="cart_total-data"
         name="cart-total"
-        :value="total()"
+        :value="total"
       />
     </div>
   </div>
@@ -90,6 +90,7 @@ export default {
 
   mounted() {
     this.getCart();
+    this.totalCart();
   },
 };
 </script>

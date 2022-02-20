@@ -33,7 +33,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {;
         $cart_products = (json_decode($request->input('cart')));
-        $cart_total = (json_decode($request->input('cart-total')));
+
+        //$cart_total = (json_decode($request->input('cart-total')));
+        $cart_total = $request->input('cart-total');
+        $cart_total = number_format($cart_total, 2);
         dd($request, $cart_products, $cart_total);
 
         $validated = $request->validate([
@@ -43,6 +46,7 @@ class OrderController extends Controller
             'email' => ['required', 'max:200'],
             'address' => ['required', 'min:3', 'max:200'],
             'notes' => ['nullable'],
+            'amount' => ['required', 'integer', 'between:2,10'],
         ]);
 
         //$order = Order::create($validated);
