@@ -30,29 +30,31 @@
           +
         </button>
       </div>
-      <a class="btn" href="/checkout">Acquista</a>
+      <a href="/checkout"><button type="submit">PROCEDI AL CHECKOUT</button></a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      success: false,
+      error: false,
+    };
+  },
   props: {
     cart: [],
     total: Number,
   },
 
   methods: {
-    postOrder() {
-      axios
-        .post("/api/orders")
-        .then((response) => {
-          //this.categories = response.data.data;
-          response = localStorage.cart;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    onSuccess(message) {
+      this.success = true;
+    },
+
+    onFailure(message) {
+      this.error = true;
     },
 
     removeProduct(product, cart) {

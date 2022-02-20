@@ -129,7 +129,6 @@ export default {
   mounted() {
     this.getCategories();
     this.getRestaurants();
-    console.log("Component mounted.");
   },
 };
 </script>
