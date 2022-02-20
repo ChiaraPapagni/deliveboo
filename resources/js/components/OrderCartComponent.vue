@@ -24,7 +24,7 @@
       <!-- Pass array cart to $request -->
       <div class="card-footer">
         <h6>TOTALE:</h6>
-        <span v-if="total > 0" class="p-5">{{ total.toFixed() }}</span>
+        <span v-if="total > 0" class="p-5">{{ total.toFixed(2) }}</span>
       </div>
       <input
         type="hidden"
@@ -33,12 +33,7 @@
         :value="JSON.stringify(cart)"
       />
 
-      <input
-        type="hidden"
-        id="cart_total-data"
-        name="cart-total"
-        :value="total"
-      />
+      <input type="hidden" id="amount-data" name="amount" :value="total" />
     </div>
   </div>
 </template>

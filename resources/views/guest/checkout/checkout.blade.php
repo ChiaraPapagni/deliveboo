@@ -91,8 +91,6 @@
                             @enderror
                         </div>
 
-                        <input type="number" id="tentacles" name="quantità" min="0" max="100">
-
                         {{-- Campi Obbligatori --}}
                         <div class="form-group row mb-2">
                             <div class="col-md-4 col-form-label text-md-right">

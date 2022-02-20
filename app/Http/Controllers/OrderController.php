@@ -35,9 +35,12 @@ class OrderController extends Controller
         $cart_products = (json_decode($request->input('cart')));
 
         //$cart_total = (json_decode($request->input('cart-total')));
-        $cart_total = $request->input('cart-total');
-        $cart_total = number_format($cart_total, 2);
-        dd($request, $cart_products, $cart_total);
+        //$cart_total = $request->input('amount');
+        //$cart_total = number_format($request->input('amount'), 2);
+        $cart_total = (float) number_format($request->input('amount'), 2);
+        //dd($request, $cart_products, $cart_total);
+
+
 
         $validated = $request->validate([
             'name' => ['required', 'min:3', 'max:200'],
@@ -46,10 +49,40 @@ class OrderController extends Controller
             'email' => ['required', 'max:200'],
             'address' => ['required', 'min:3', 'max:200'],
             'notes' => ['nullable'],
-            'amount' => ['required', 'integer', 'between:2,10'],
+            'amount' => ['required', 'numeric'],
+            'status' => ['nullable'],
         ]);
 
-        //$order = Order::create($validated);
-        Order::find(1)->products()->sync([1, 2, 3],);
+
+
+        //ddd($validated);
+
+
+
+        $order = Order::create($validated);
+
+
+
+        //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
+        $order->status = true;
+        ddd($order);
+
+
+
+
+
+
+        // creo i records nella tabella pivot  
+        for ($i = 0; $i < sizeof($cart_products); $i++) {
+            $order->products()->attach([$cart_products[$i]->id => ['quantity' => $cart_products[$i]->qty]]);
+        }
+
+
+
+
+
+        //$order->products()->attach([product.id => ['quantity' => numero.quantità], product.id => ['quantity' => numero.quantità]]);
+        //Order::find(1)->products()->sync([1, 2, 3],);
+        return view('guest.welcome');
     }
 }

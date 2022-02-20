@@ -5238,11 +5238,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -42430,10 +42425,10 @@ var render = function () {
               [_vm._v("\n        +\n      ")]
             ),
           ]),
-          _vm._v(" "),
-          _vm._m(0, true),
         ])
       }),
+      _vm._v(" "),
+      _vm._m(0),
     ],
     2
   )
@@ -42545,7 +42540,7 @@ var render = function () {
           _vm._v(" "),
           _vm.total > 0
             ? _c("span", { staticClass: "p-5" }, [
-                _vm._v(_vm._s(_vm.total.toFixed())),
+                _vm._v(_vm._s(_vm.total.toFixed(2))),
               ])
             : _vm._e(),
         ]),
@@ -42556,7 +42551,7 @@ var render = function () {
         }),
         _vm._v(" "),
         _c("input", {
-          attrs: { type: "hidden", id: "cart_total-data", name: "cart-total" },
+          attrs: { type: "hidden", id: "amount-data", name: "amount" },
           domProps: { value: _vm.total },
         }),
       ],
