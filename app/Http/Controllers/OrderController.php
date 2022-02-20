@@ -60,12 +60,13 @@ class OrderController extends Controller
 
 
         $order = Order::create($validated);
-
+        //ddd($order);
 
 
         //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
         $order->status = true;
-        ddd($order);
+        $order->save();
+
 
 
 
