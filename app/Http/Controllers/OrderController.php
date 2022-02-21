@@ -99,6 +99,7 @@ class OrderController extends Controller
 
 
 
+
         //$order->products()->attach([product.id => ['quantity' => numero.quantità], product.id => ['quantity' => numero.quantità]]);
         //Order::find(1)->products()->sync([1, 2, 3],);
         return view('guest.welcome');
