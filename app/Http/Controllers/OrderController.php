@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
+use App\Mail\SendMailToAdmin;
+use App\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Restaurant;
 use Braintree;
 use Illuminate\Http\Request;
 use Braintree_Transaction;
 use Braintree\Transaction;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
     public function checkout()
     {
-
         $gateway = new \Braintree\Gateway([
             'environment' => 'sandbox',
             'merchantId' => '88zhvyrjnfvrndyw',
@@ -33,16 +38,14 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {;
-        $cart_products = (json_decode($request->input('cart')));
+    {
+        $cart_products = json_decode($request->input('cart'));
 
         //$cart_total = (json_decode($request->input('cart-total')));
         //$cart_total = $request->input('amount');
         //$cart_total = number_format($request->input('amount'), 2);
         $cart_total = (float) number_format($request->input('amount'), 2);
         //dd($request, $cart_products, $cart_total);
-
-
 
         $validated = $request->validate([
             'name' => ['required', 'min:3', 'max:200'],
@@ -55,11 +58,7 @@ class OrderController extends Controller
             'status' => ['nullable'],
         ]);
 
-
-
         //ddd($validated);
-
-
 
         $order = Order::create($validated);
         //ddd($order);
@@ -84,21 +83,24 @@ class OrderController extends Controller
         $order->status = true;
         $order->save();
 
+        //Email al cliente
+        Mail::to($request->email)->send(new SendMail($order));
 
+        //Email al ristoratore
+        $id_restaurant = $cart_products[0]->restaurant_id;
+        $restaurant = Restaurant::where('id', $id_restaurant)->get();
+        $user = User::where('id', $restaurant[0]->user_id)->get();
+        // ddd($user[0]->email);
+        Mail::to($user[0]['email'])->send(new SendMailToAdmin($order));
 
-
-
-
-
-        // creo i records nella tabella pivot  
+        // creo i records nella tabella pivot
         for ($i = 0; $i < sizeof($cart_products); $i++) {
-            $order->products()->attach([$cart_products[$i]->id => ['quantity' => $cart_products[$i]->qty]]);
+            $order->products()->attach([
+                $cart_products[$i]->id => [
+                    'quantity' => $cart_products[$i]->qty,
+                ],
+            ]);
         }
-
-
-
-
-
 
         //$order->products()->attach([product.id => ['quantity' => numero.quantità], product.id => ['quantity' => numero.quantità]]);
         //Order::find(1)->products()->sync([1, 2, 3],);

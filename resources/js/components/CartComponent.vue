@@ -30,6 +30,7 @@
         </button>
       </div>
     </div>
+    <span class="p-5">{{ total.toFixed(2) }}</span>
     <a href="/checkout"><button type="submit">PROCEDI AL CHECKOUT</button></a>
   </div>
 </template>
