@@ -12,7 +12,7 @@
             <div class="card mt-5" style="width: 35rem;">
 
                 @if ($restaurant->restaurant_image === null)
-                    <img src="{{ asset('storage/placeholder/placeholder_restaurant.jpg') }}" alt="placeholder_restaurant"
+                    <img src="{{ url('/img/placeholder/placeholder_restaurant.jpg') }}" alt="placeholder_restaurant"
                         class="card-img-top">
                 @else
                     <img src=" {{ asset('storage/' . $restaurant->restaurant_image) }}" class="card-img-top"
@@ -70,8 +70,8 @@
 
                     <div class="image col-4">
                         @if ($restaurant->restaurant_image === null)
-                            <img src="{{ asset('storage/placeholder/placeholder_product.jpg') }}"
-                                style="object-fit:cover" height="150" alt="product placeholder">
+                            <img src="{{ url('/img/placeholder/placeholder_product.jpg') }}" style="object-fit:cover"
+                                height="150" alt="product placeholder">
                         @else
                             <img class="w-100 p-1" style="object-fit:cover" height=" 150"
                                 src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->name }}">
