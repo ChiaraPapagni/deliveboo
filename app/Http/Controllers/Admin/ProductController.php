@@ -67,6 +67,13 @@ class ProductController extends Controller
                 So, if the user that created the product has the same id as the restaurant, create the product and return to
                 the Index view, if not aborts the operation
                 */
+                //ddd($validated);
+                $products = Product::all()->where('name', $validated['name'])->where('restaurant_id', $validated['restaurant_id']);
+
+                if (count($products) > 0) {
+
+                    return redirect()->back()->with('message', 'Prodotto già disponibile nel tuo menù');
+                }
                 $product = Product::create($validated);
                 return redirect()
                     ->route(
@@ -102,6 +109,7 @@ class ProductController extends Controller
         foreach (Auth::user()->restaurants as $restaurant) {
             if ($product->restaurant_id == $restaurant->id) {
                 $validated = $request->validate([
+                    'name' => ['required', 'min:3', 'max:200'],
                     'ingredients' => ['nullable'],
                     'price' => ['required', 'numeric', 'min:0'],
                     'product_image' => ['nullable', 'mimes:jpg,jpeg,bmp,png'],
@@ -117,6 +125,13 @@ class ProductController extends Controller
                         $request->file('product_image')
                     );
                     $validated['product_image'] = $image_path;
+                }
+
+                $products = Product::all()->where('name', $validated['name'])->where('restaurant_id', $product['restaurant_id']);
+                $products = $products->except($product->id);
+                if (count($products) > 0) {
+
+                    return redirect()->back()->with('message', 'Prodotto già disponibile nel tuo menù');
                 }
 
                 $product->update($validated);
