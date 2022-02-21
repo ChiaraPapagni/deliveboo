@@ -5201,6 +5201,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     product: {}
@@ -42251,13 +42258,9 @@ var render = function () {
       ],
     },
     [
-      _c("span", { staticClass: "p-5" }, [
-        _vm._v(_vm._s(_vm.total.toFixed(2))),
-      ]),
-      _vm._v(" "),
       _vm._l(_vm.cart, function (product, i) {
         return _c("div", { key: i, staticClass: "card" }, [
-          _c("h1", [_vm._v(_vm._s(product.name))]),
+          _c("p", [_vm._v(_vm._s(product.name))]),
           _vm._v(" "),
           _c(
             "button",
@@ -42307,6 +42310,8 @@ var render = function () {
           ]),
         ])
       }),
+      _vm._v(" "),
+      _c("span", [_vm._v("Totale: " + _vm._s(_vm.total.toFixed(2)) + " €")]),
     ],
     2
   )
@@ -42344,31 +42349,33 @@ var render = function () {
       },
     },
     [
-      _vm._m(0),
+      _c("figure", [
+        !_vm.product.product_image
+          ? _c("img", {
+              staticClass: "img",
+              attrs: {
+                src: "http://127.0.0.1:8000/img-prova/panino1.png",
+                alt: _vm.product.name,
+              },
+            })
+          : _c("img", {
+              staticClass: "img",
+              attrs: {
+                src: "/storage/" + _vm.product.product_image,
+                alt: _vm.product.name,
+              },
+            }),
+      ]),
       _vm._v(" "),
       _c("h3", [_vm._v(_vm._s(_vm.product.name))]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.product.price) + " $")]),
+      _c("p", [_vm._v(_vm._s(_vm.product.price) + " €")]),
       _vm._v(" "),
-      _c("p", [
-        _vm._v("Lorem ipsum dolor sit, amet consectetur adipisicing elit."),
-      ]),
+      _c("p", [_vm._v(_vm._s(_vm.product.ingredients))]),
     ]
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("figure", [
-      _c("img", {
-        staticClass: "img",
-        attrs: { src: "http://127.0.0.1:8000/img-prova/panino1.png", alt: "" },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55111,9 +55118,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
+__webpack_require__(/*! C:\Users\princ\Desktop\deliveboo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\princ\Desktop\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\princ\Desktop\deliveboo\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
 
 
 /***/ })

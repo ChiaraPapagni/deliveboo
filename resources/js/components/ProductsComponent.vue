@@ -3,14 +3,21 @@
   <div class="col hover01" @click="add_product()">
     <figure>
       <img
+        v-if="!product.product_image"
         src="http://127.0.0.1:8000/img-prova/panino1.png"
-        alt=""
+        :alt="product.name"
+        class="img"
+      />
+      <img
+        v-else
+        :src="'/storage/' + product.product_image"
+        :alt="product.name"
         class="img"
       />
     </figure>
     <h3>{{ product.name }}</h3>
-    <p>{{ product.price }} $</p>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <p>{{ product.price }} €</p>
+    <p>{{ product.ingredients }}</p>
   </div>
 </template>
 
