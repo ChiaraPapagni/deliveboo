@@ -1,9 +1,8 @@
 <template>
   <!-- Stampo il singolo prodotto del carello-->
   <div v-show="cart.length > 0">
-    <span class="p-5">{{ total.toFixed(2) }}</span>
     <div class="card" v-for="(product, i) in cart" :key="i">
-      <h1>{{ product.name }}</h1>
+      <p>{{ product.name }}</p>
 
       <button type="button" @click="removeProduct(product, cart)">
         ELIMINA

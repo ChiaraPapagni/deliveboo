@@ -17,8 +17,8 @@
     <div class="container-lg container-fluid nav-links d-flex justify-content-between w-100">
 
         <div>
-            <a href="//github.io/jo_geek" target="_blank">pagina (link inutili)</a>
-            <a href="http://stackoverflow.com/users/4084003/" target="_blank"> utente (link inutili)</a>
+            <a href="/">Deliveboo</a>
+            {{-- <a href="http://stackoverflow.com/users/4084003/" target="_blank"> utente (link inutili)</a> --}}
         </div>
 
 
@@ -53,7 +53,7 @@
 
                 <a class="" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                                                                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

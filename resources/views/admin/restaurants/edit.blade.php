@@ -10,8 +10,19 @@
             @method('PUT')
 
             {{-- Nome ristorante --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <h2>{{ $restaurant->name }}</h2>
+            </div> --}}
+            {{-- Nome ristorante --}}
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome Ristorante</label>
+                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Your restaurant name here..." aria-describedby="nameHelper"
+                    value="{{ $restaurant->name }}" required min="3" max="255">
+
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Immagine --}}

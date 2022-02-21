@@ -1,8 +1,4 @@
-{{-- WARNING! Temporary target="_blank" for testing! remember to remove it when building --}}
-
-
 @extends('layouts.admin')
-
 
 @section('content')
     <div class="container mt-5">
