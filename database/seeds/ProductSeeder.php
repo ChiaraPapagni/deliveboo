@@ -21,7 +21,6 @@ class ProductSeeder extends Seeder
             $product->restaurant_id = $faker->numberBetween(1, 10);
             $product->price = $faker->randomFloat(2, 1, 100);
             $product->visible = $faker->boolean(75);
-            $product->product_image = $faker->imageUrl(200, 200);
             $product->save();
         }
     }
