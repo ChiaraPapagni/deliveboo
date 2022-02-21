@@ -38,7 +38,6 @@ class RestaurantSeeder extends Seeder
             $_restaurant->vat = $faker->numerify('###########');
             $_restaurant->phone = $faker->numerify('###-######');
             $_restaurant->address = $faker->streetAddress();
-            $_restaurant->restaurant_image = $faker->imageUrl(200, 200);
             $_restaurant->description = $faker->paragraph();
             $_restaurant->website = $faker->sentence();
             $_restaurant->save();
