@@ -3,14 +3,13 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="container mt-5">
 
         {{-- Restaurant / Admin --}}
         <div class="pt-5">
-            <h1 class="pt-2 text-center">Restaurants</h1>
+            <h1 class="pt-2 text-center">Ristoranti</h1>
             <a class="btn btn-success mb-2" href="{{ route('admin.restaurants.create') }}" role="button">
-                Create Restaurants
+                Creazione ristorante
             </a>
         </div>
 
@@ -19,10 +18,10 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Nome</th>
                     <th scope="col">Website</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Numero cellulare</th>
+                    <th scope="col">Azioni</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,17 +34,17 @@
                         <td>
                             <div class="btns d-flex">
                                 <a class="btn btn-primary " href="{{ route('admin.restaurants.show', $restaurant->id) }}">
-                                    Show
+                                    Guarda
                                 </a>
                                 <a class="btn btn-warning ms-2 me-2"
                                     href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
-                                    Edit
+                                    Edita
                                 </a>
 
                                 {{-- Button trigger modal --}}
                                 <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
                                     data-bs-target="#delete_restaurant_{{ $restaurant->id }}">
-                                    Delete
+                                    Cancella
                                 </button>
 
                                 {{-- Modal --}}
@@ -54,34 +53,29 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Delete restaurant: {{ $restaurant->name }}
+                                                <h5 class="modal-title">Cancella ristorante: {{ $restaurant->name }}
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Are you sure you want to proceed?
-                                                This operation is irreversible!
+                                                Sei sicuro di procedere ?
+                                                Questa operazione è irreversibile
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
+                                                    data-bs-dismiss="modal">Chiudi</button>
                                                 <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger text-white"
-                                                        data-bs-dismiss="modal">Delete</button>
+                                                        data-bs-dismiss="modal">Cancella</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form> --}}
                             </div>
                         </td>
                     </tr>
@@ -89,5 +83,4 @@
             </tbody>
         </table>
     </div>
-
 @endsection

@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="container mt-5 pt-5">
-        <h1>Create a new Product</h1>
+        @include('partials.error')
+        @include('partials.message')
+
+        <h1>Creazione nuovo piatto</h1>
 
         <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -13,8 +16,11 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Piatto*</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your dish name here..." aria-describedby="nameHelper" value="{{ old('name') }}" required
+                    placeholder="Nome prodotto qui..." aria-describedby="nameHelper" value="{{ old('name') }}" required
                     min="3" max="255">
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -77,7 +83,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-dark">Save</button>
+            <button type="submit" class="btn btn-dark">Salva</button>
         </form>
     </div>
 @endsection
