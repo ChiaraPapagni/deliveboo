@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Order extends Model
 {
+    protected $fillable = [
+        'name',
+        'last_name',
+        'phone',
+        'email',
+        'address',
+        'notes',
+        'amount',
+    ];
     //Relazione many to many
     //Un prodotto può essere in più ordini
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withTimestamps();
     }
 }

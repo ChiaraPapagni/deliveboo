@@ -31,17 +31,32 @@
         </button>
       </div>
     </div>
+    <a href="/checkout"><button type="submit">PROCEDI AL CHECKOUT</button></a>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      success: false,
+      error: false,
+    };
+  },
   props: {
     cart: [],
     total: Number,
   },
 
   methods: {
+    onSuccess(message) {
+      this.success = true;
+    },
+
+    onFailure(message) {
+      this.error = true;
+    },
+
     removeProduct(product, cart) {
       var index = cart.findIndex(function (element) {
         return element.id === product.id;

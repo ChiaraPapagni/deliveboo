@@ -3,28 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use Braintree;
 use Illuminate\Http\Request;
+use Braintree_Transaction;
+use Braintree\Transaction;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function checkout()
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $gateway = new \Braintree\Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => '88zhvyrjnfvrndyw',
+            'publicKey' => '56g7zcjrywn646q9',
+            'privateKey' => '831d7fd5cd83e327972f1b71275e7562',
+        ]);
+
+        $token = $gateway->ClientToken()->generate();
+
+        return view('guest.checkout.checkout', compact('token'));
     }
 
     /**
@@ -34,52 +33,75 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+    {;
+        $cart_products = (json_decode($request->input('cart')));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
+        //$cart_total = (json_decode($request->input('cart-total')));
+        //$cart_total = $request->input('amount');
+        //$cart_total = number_format($request->input('amount'), 2);
+        $cart_total = (float) number_format($request->input('amount'), 2);
+        //dd($request, $cart_products, $cart_total);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'min:3', 'max:200'],
+            'last_name' => ['required', 'min:3', 'max:200'],
+            'phone' => ['required', 'min:9', 'max:30'],
+            'email' => ['required', 'max:200'],
+            'address' => ['required', 'min:3', 'max:200'],
+            'notes' => ['nullable'],
+            'amount' => ['required', 'numeric'],
+            'status' => ['nullable'],
+        ]);
+
+
+
+        //ddd($validated);
+
+
+
+        $order = Order::create($validated);
+        //ddd($order);
+
+        //ddd($request->input('payload', false));
+
+        // ------  PROVA PAGAMENTO  -------
+        /*  $payload = $request->input('payload', false);
+        $nonce = $payload['nonce'];
+
+        $status = Braintree\Transaction::sale([
+            'amount' => '10.00',
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+        return response()->json($status);
+ */
+        //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
+        $order->status = true;
+        $order->save();
+
+
+
+
+
+
+
+        // creo i records nella tabella pivot  
+        for ($i = 0; $i < sizeof($cart_products); $i++) {
+            $order->products()->attach([$cart_products[$i]->id => ['quantity' => $cart_products[$i]->qty]]);
+        }
+
+
+
+
+
+
+        //$order->products()->attach([product.id => ['quantity' => numero.quantità], product.id => ['quantity' => numero.quantità]]);
+        //Order::find(1)->products()->sync([1, 2, 3],);
+        return view('guest.welcome');
     }
 }
