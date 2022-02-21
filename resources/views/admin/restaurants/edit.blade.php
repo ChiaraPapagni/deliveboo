@@ -17,8 +17,8 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Ristorante</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your restaurant name here..." aria-describedby="nameHelper"
-                    value="{{ $restaurant->name }}" required min="3" max="255">
+                    placeholder="Nome ristorante qui..." aria-describedby="nameHelper" value="{{ $restaurant->name }}"
+                    required min="3" max="255">
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -82,7 +82,7 @@
             <div class="mb-3">
                 <label for="website" class="form-label">Sito web</label>
                 <input type="text" name="website" id="website" class="form-control @error('website') is-invalid @enderror"
-                    placeholder="Your restaurant website here..." aria-describedby="websiteHelper"
+                    placeholder="Inserisci il tuo sito web..." aria-describedby="websiteHelper"
                     value="{{ $restaurant->website }}">
 
                 @error('website')
@@ -124,7 +124,7 @@
 
             {{-- Descrizione --}}
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
+                <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description"
                     id="description" rows="5">{{ $restaurant->description }}</textarea>
                 @error('description')
@@ -139,7 +139,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn mb-3 btn-dark">Save</button>
+            <button type="submit" class="btn mb-3 btn-dark">Salva</button>
         </form>
     </div>
 @endsection
