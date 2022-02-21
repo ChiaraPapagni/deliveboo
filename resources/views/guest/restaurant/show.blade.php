@@ -11,20 +11,20 @@
 
         <div class="contenitore-titolo">
             <h1 class="restaurant-name">{{ $restaurant->name }}</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aperiam perferendis voluptate.</p>
-            <a href="#" role="button" class="btn btn-warning mb-2">Order Now</a>
+            <p>{{ $restaurant->description }}</p>
+            <a href="#order_now" role="button" class="btn btn-warning mb-2">Order Now</a>
         </div>
 
     </div>
 
-    <div class="top-pics">
+    {{-- <div class="top-pics">
         <div class="line"></div>
         <div class="text">Top Picks</div>
         <div class="line"></div>
-    </div>
+    </div> --}}
 
     {{-- griglia cibo --}}
-    <div class="container mt-3">
+    {{-- <div class="container mt-3">
         <p class="paragraph ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, quasi eveniet quibusdam
             totam repellat nemo,
             reiciendis iusto officia animi placeat asperiores!</p>
@@ -51,10 +51,10 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 
 
-    <div class="top-pics mt-5">
+    <div class="top-pics mt-5 pt-5" id="order_now">
         <div class="line"></div>
         <div class="text">Choose your meal</div>
         <div class="line"></div>
@@ -65,26 +65,28 @@
             voluptas.</p>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5 position-relative">
 
         <div class="row">
             @foreach ($restaurant->products as $product)
                 {{-- Componente per il singolo prodotto --}}
-                <product-component @add-cart="AddNewCart" :product="{{ $product }}">
-                </product-component>
+                @if ($product->visible === 1)
+                    <product-component @add-cart="AddNewCart" :product="{{ $product }}" class="product">
+                    </product-component>
+                @endif
             @endforeach
+
+            {{-- carrello --}}
+            <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart" class="cart">
+            </cart-component>
+
         </div>
     </div>
-
-    {{-- carrello --}}
-    <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart">
-    </cart-component>
-
-    <div class="jumbo-consegne mt-5">
+    {{-- <div class="jumbo-consegne mt-5">
         <img src="http://127.0.0.1:8000/img-prova/fast-food.png" alt="" class="img-jumbo-consegne ">
         <div class="contenitore-titolo-consegne">
             <h3 class="delivery-title">Free shipping over $12</h3>
             <a href="#" role="button" class="btn btn-dark mb-2">Order Now</a>
         </div>
-    </div>
+    </div> --}}
 @endsection

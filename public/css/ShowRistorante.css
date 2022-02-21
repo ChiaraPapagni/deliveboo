@@ -11,9 +11,10 @@
 }
 
 .contenitore-titolo {
+    width: 100%;
     position: absolute;
     top: 20rem;
-    left: 27rem;
+    /* left: 27rem; */
     color: black;
     text-align: center;
     align-items: center;
@@ -31,9 +32,6 @@
     margin-right: -15px;
     margin-left: -15px;
     padding: 40px;
-
-
-
 }
 
 .col-lg-6 {
@@ -133,4 +131,11 @@
     transform: scale(0.9);
     opacity: 0.9;
 
+}
+
+.cart {
+    position: absolute;
+    right: -17rem;
+    top: 0rem;
+    width:270px;
 }
