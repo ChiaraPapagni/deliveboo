@@ -14,6 +14,7 @@ use Braintree_Transaction;
 use Braintree\Transaction;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Braintree\Gateway;
 
 class OrderController extends Controller
 {
@@ -39,6 +40,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
         $cart_products = json_decode($request->input('cart'));
 
         //$cart_total = (json_decode($request->input('cart-total')));
@@ -58,31 +60,21 @@ class OrderController extends Controller
             'status' => ['nullable'],
         ]);
 
-        //ddd($validated);
 
         $order = Order::create($validated);
-        //ddd($order);
+
 
         //ddd($request->input('payload', false));
 
-        // ------  PROVA PAGAMENTO  -------
-        /*  $payload = $request->input('payload', false);
-        $nonce = $payload['nonce'];
-
-        $status = Braintree\Transaction::sale([
-            'amount' => '10.00',
-            'paymentMethodNonce' => $nonce,
-            'options' => [
-                'submitForSettlement' => True
-            ]
-        ]);
-
-        return response()->json($status);
- */
         //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
         $order->status = true;
         $order->save();
 
+
+        // $payload = $request->input('payload', false);
+        //dd($payload);
+
+        /* 
         //Email al cliente
         Mail::to($request->email)->send(new SendMail($order));
 
@@ -90,20 +82,22 @@ class OrderController extends Controller
         $id_restaurant = $cart_products[0]->restaurant_id;
         $restaurant = Restaurant::where('id', $id_restaurant)->get();
         $user = User::where('id', $restaurant[0]->user_id)->get();
-        // ddd($user[0]->email);
-        Mail::to($user[0]['email'])->send(new SendMailToAdmin($order));
+       
+        Mail::to($user[0]['email'])->send(new SendMailToAdmin($order)); */
 
         // creo i records nella tabella pivot
         for ($i = 0; $i < sizeof($cart_products); $i++) {
             $order->products()->attach([
                 $cart_products[$i]->id => [
                     'quantity' => $cart_products[$i]->qty,
+                    'restaurant_id' => $cart_products[$i]->restaurant_id,
                 ],
             ]);
         }
 
         //$order->products()->attach([product.id => ['quantity' => numero.quantità], product.id => ['quantity' => numero.quantità]]);
         //Order::find(1)->products()->sync([1, 2, 3],);
+
         return view('guest.welcome');
     }
 }

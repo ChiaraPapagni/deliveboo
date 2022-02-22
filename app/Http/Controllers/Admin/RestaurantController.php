@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Restaurant;
 use App\Http\Controllers\Controller;
+use DB;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -99,6 +100,25 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        $order_id = DB::table('order_product')->where('restaurant_id', $restaurant->id)->pluck('order_id')->unique();
+
+
+        //$products = Product::where('restaurant_id', $restaurant->id)->get();
+
+        $products_id = DB::table('order_product')->where('order_id', $order_id)->pluck('product_id');
+
+        //ddd($order_id);
+
+
+        for ($i = 0; $i < count($products_id); $i++) {
+            $arrayproduct[] = $products_id[$i];
+        }
+
+        dd($arrayproduct, $products_id);
+        $products = Product::whereIn('id', $arrayproduct)->get();
+        //dd($order_id, $products_id, $products);
+
+        //ddd($products_id);
         return view('admin.restaurants.show', compact('restaurant'));
     }
 
