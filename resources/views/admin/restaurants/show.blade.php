@@ -4,7 +4,7 @@
     <div class="container mt-5">
 
         {{-- Mostra ordini --}}
-
+        <a href="{{ route('admin.order.index') }}"></a>
 
         {{-- Restaurant Card --}}
         <div class="myCard pt-5 d-flex justify-content-center">
