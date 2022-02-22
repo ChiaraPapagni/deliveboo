@@ -4,11 +4,13 @@
     <div class="container mt-5">
 
         {{-- Mostra ordini --}}
-        <a href="{{ route('admin.order.index') }}"></a>
+        <a class="btn btn-info" href="{{ route('admin.order.index', $restaurant->id) }}" role="button">ORDINI
+            RISTORANTE</a>
 
         {{-- Restaurant Card --}}
         <div class="myCard pt-5 d-flex justify-content-center">
             <div class="card mt-5" style="width: 35rem;">
+
 
                 @if ($restaurant->restaurant_image === null)
                     <img src="{{ url('/img/placeholder/placeholder_restaurant.jpg') }}" alt="placeholder_restaurant"
