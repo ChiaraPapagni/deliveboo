@@ -5134,6 +5134,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -42460,6 +42461,10 @@ var render = function () {
         ])
       }),
       _vm._v(" "),
+      _c("span", { staticClass: "p-5" }, [
+        _vm._v(_vm._s(_vm.total.toFixed(2))),
+      ]),
+      _vm._v(" "),
       _vm._m(0),
     ],
     2
@@ -55531,9 +55536,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\emanu\Desktop\deliveboo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\emanu\Desktop\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\emanu\Desktop\deliveboo\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel_projects\deliveboo\deliveboo\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
 
 
 /***/ })

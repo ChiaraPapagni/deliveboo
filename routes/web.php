@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -55,4 +56,6 @@ Route::namespace('Admin')
             '/products/create/{restaurant}',
             'ProductController@create'
         )->name('product.create');
+
+        Route::get('/restaurants/orders/{restaurant:id}', 'OrderController@show')->name('order.index');
     });
