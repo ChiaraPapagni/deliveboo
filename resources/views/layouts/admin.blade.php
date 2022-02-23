@@ -29,8 +29,6 @@
 </head>
 
 <body>
-
-
     <div id="app">
         <div class="dashboard overflow-hidden">
             <div class="container-fluid">
@@ -41,67 +39,54 @@
                                 @if (Auth::user()->has_restaurant)
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('admin.restaurants.index') }}">
-
                                             <i class="fas fa-house-user"></i>
                                             Dashboard
                                         </a>
                                     </li>
-
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('homepage') }}">
-
                                             <i class="fas fa-home"></i>
                                             Homepage
                                         </a>
                                     </li>
-
-
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                                             <i class="fas fa-sign-out-alt"></i>
                                             {{ __('Logout') }}
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
                                             @csrf
                                         </form>
-
                                     </li>
                                 @else
                                     <li>
-
-                                        <a href="{{ route('admin.register.create') }}">Crea il primo ristorante
+                                        <a href="{{ route('admin.register.create') }}" class="fw-bold">
+                                            <i class="fa fa-plus"></i>
+                                            Crea il primo ristorante
                                         </a>
                                     </li>
                                     <li>
                                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
-                                            <i class="fas fa-sign-out"></i>
+                                            <i class="fas fa-sign-out-alt"></i>
                                             {{ __('Logout') }}
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
                                             @csrf
                                         </form>
-
                                     </li>
                                 @endif
                             </ul>
                         </div>
                     </nav>
-
                     <main role="main" class="col px-0 dashboardJumbo">
                         @yield('content')
-
                     </main>
                 </div>
             </div>
         </div>
-
     </div>
-
-
 </body>
