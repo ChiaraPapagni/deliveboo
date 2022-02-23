@@ -30,6 +30,7 @@ class CreateOrderProductTable extends Migration
                 ->cascadeOnDelete();
 
             $table->integer('quantity');
+            $table->integer('restaurant_id')->nullable();
             $table->timestamps();
         });
     }

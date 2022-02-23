@@ -149,5 +149,7 @@
                 });
             });
         });
+
+        console.log(client_token)
     </script>
 @endsection

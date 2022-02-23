@@ -30,6 +30,6 @@ class Product extends Model
     //Un ordine può avere più prodotti
     public function orders()
     {
-        return $this->belongsToMany(Order::class)->withTimestamps();
+        return $this->belongsToMany(Order::class)->withPivot('order_product')->withTimestamps();
     }
 }
