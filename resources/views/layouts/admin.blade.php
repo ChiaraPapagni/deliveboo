@@ -35,7 +35,7 @@
         <div class="dashboard overflow-hidden">
             <div class="container-fluid">
                 <div class="row">
-                    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <nav class="col-md-2 d-none d-md-block sidebar">
                         <div class="sidebar-sticky pt-3">
                             <ul class="navbar text-light list-unstyled ul-sidebar flex-column">
                                 @if (Auth::user()->has_restaurant)
