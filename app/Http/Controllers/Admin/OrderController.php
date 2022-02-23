@@ -54,7 +54,7 @@ class OrderController extends Controller
                return Carbon::parse($data->created_at)->format('Y, M');
           });
 
-          /* $data_amount = Order::whereIn('id', $array_order_id)->select('amount', 'created_at')->get()->SortBy('created_at'); */
+          $data_amount = Order::whereIn('id', $array_order_id)->select('amount', 'created_at')->get()->SortBy('created_at');
 
           //ddd($data);
           $months = [];
@@ -64,14 +64,14 @@ class OrderController extends Controller
                $monthOrders[] = count($values);
           }
 
-          /* $amounts = [];
+          $amounts = [];
           foreach ($data_amount as $amount => $values) {
                $amounts[] = $values->amount;
-          } */
+          }
 
 
-          //dd($orders, $data, $months, $monthOrders);
+          //dd($orders, $data, $months, $monthOrders, $amounts);
 
-          return view('admin.restaurants.orders.chart', compact('id', 'months', 'monthOrders'));
+          return view('admin.restaurants.orders.chart', compact('id', 'months', 'monthOrders', 'amounts'));
      }
 }

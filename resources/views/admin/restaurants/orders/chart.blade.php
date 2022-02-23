@@ -1,27 +1,38 @@
 @extends('layouts.admin')
 
 @section('content')
-    <canvas id="canvas" height="280" width="600"></canvas>
+    <div>
+        <canvas id="canvas" width="240px" height="135px"></canvas>
+    </div>
+
+    <div>
+        <canvas id="canvas2" width="240px" height="135px"></canvas>
+    </div>
 @endsection
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.33.1/apexcharts.min.js"
-integrity="sha512-oyNqW6ArxqcGtg9kzTbOQqKC+q7+tS9Ab09S44+VbZiKY6xJtMNA6v13vJwoqiKLGJuQQwams0W5E19QnLfxWw=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
-integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 <script type="module">
     /* var data_y = "<?php echo json_encode($monthOrders); ?>" */
     var data_y = JSON.parse('{!! json_encode($monthOrders) !!}')
-    var data_x = JSON.parse('{!! json_encode($months) !!}')
-    console.log(data_y, data_x);
+    var data_x1 = JSON.parse('{!! json_encode($months) !!}')
+    var data_y2 = JSON.parse('{!! json_encode($amounts) !!}')
+
+    console.log(data_y, data_x1, data_y2);
     var barChartData = {
-        labels: data_x,
+        labels: data_x1,
         datasets: [{
-            label: 'Orders',
+            label: 'Total Orders',
             backgroundColor: "pink",
             data: data_y,
+        }]
+    };
+    var barChartData2 = {
+        labels: data_x1,
+        datasets: [{
+            label: 'Amount orders',
+            backgroundColor: "pink",
+            data: data_y2,
         }]
     };
 
@@ -41,7 +52,34 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Ordini per anno e mese'
+                    text: 'Numero Ordini per anno/mese'
+                },
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        var ctx = document.getElementById("canvas2").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData2,
+            options: {
+                elements: {
+                    rectangle: {
+                        borderWidth: 1,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom',
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Fatturato per mese/anno'
                 },
                 scales: {
                     yAxes: [{
