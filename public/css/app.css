@@ -11295,6 +11295,26 @@ textarea.form-control-lg {
   left: calc(50% - 50px);
 }
 
+.sidebar {
+  height: 100vh;
+  background-color: #fece2c !important;
+}
+.sidebar * {
+  color: black !important;
+}
+
+.dashboardJumbo {
+  background-image: url("https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg");
+  background-blend-mode: multiply;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: gray;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
 @media (max-width: 992px) {
   .nav > .logo {
     height: 75px;

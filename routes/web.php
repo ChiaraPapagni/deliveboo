@@ -58,4 +58,5 @@ Route::namespace('Admin')
         )->name('product.create');
 
         Route::get('/restaurants/orders/{restaurant:id}', 'OrderController@show')->name('order.index');
+        Route::get('/restaurants/orders/chart/{restaurant:id}', 'OrderController@chart')->name('order.chart');
     });
