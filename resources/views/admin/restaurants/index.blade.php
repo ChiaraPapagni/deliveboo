@@ -2,92 +2,127 @@
 
 @extends('layouts.admin')
 
-@section('content')
+@section('personalCss')
+    <link rel="stylesheet" href="{{ asset('css/app.css') }} ">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+@endsection
 
-    <div class="container mt-5">
+@section('content')
+    <div class="scroll">
 
         {{-- Restaurant / Admin --}}
-        <div class="pt-5">
-            <h1 class="pt-2 text-center">Restaurants</h1>
+
+        <h1 class="pt-5 text-center text-capitalize">
+            <span class="titleBox">i tuoi ristoranti</span>
+        </h1>
+        <div class="btnContain text-center pt-5 pb-3">
             <a class="btn btn-success mb-2" href="{{ route('admin.restaurants.create') }}" role="button">
                 Create Restaurants
             </a>
         </div>
 
+
         {{-- Restaurant List --}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Website</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="container p-3">
+            <div class="row row-cols-2 justify-content-center g-5 m-3">
                 @foreach ($restaurants as $restaurant)
-                    <tr>
-                        <td scope="row">{{ $restaurant->id }}</td>
-                        <td>{{ $restaurant->name }}</td>
-                        <td><a target="_blank" href="">{{ $restaurant->website }}</a></td>
-                        <td>{{ $restaurant->phone }}</td>
-                        <td>
-                            <div class="btns d-flex">
-                                <a class="btn btn-primary " href="{{ route('admin.restaurants.show', $restaurant->id) }}">
-                                    Show
-                                </a>
-                                <a class="btn btn-warning ms-2 me-2"
-                                    href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
-                                    Edit
-                                </a>
-
-                                {{-- Button trigger modal --}}
-                                <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
-                                    data-bs-target="#delete_restaurant_{{ $restaurant->id }}">
-                                    Delete
-                                </button>
-
-                                {{-- Modal --}}
-                                <div class="modal fade" id="delete_restaurant_{{ $restaurant->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="modal_{{ $restaurant->id }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Delete restaurant: {{ $restaurant->name }}
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                    <div class="col">
+                        {{-- <div class="position-relative;"> --}}
+                        <div class="card">
+                            <div class="animationCard">
+                                <div class="flip-card">
+                                    <div class="flip-card__container">
+                                        <div class="card-front">
+                                            <div class="card-front__tp card-front__tp--city">
+                                                <h2 class="card-front__heading px-2">
+                                                    {{ $restaurant->name }}
+                                                </h2>
                                             </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to proceed?
-                                                This operation is irreversible!
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger text-white"
-                                                        data-bs-dismiss="modal">Delete</button>
-                                                </form>
+                                        </div>
+                                        <div class="card-back">
+                                            <div class="video__container"
+                                                style="
+                                                                                                                                                                                                                        @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
+                                            @else
+                                                background-image: url('/img/placeholder/placeholder_restaurant.jpg'); @endif">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form> --}}
+
+                                <div class="inside-page">
+                                    <div class="inside-page__container">
+                                        <h3 class="inside-page__heading inside-page__heading--city text-uppercase">
+                                            {{ $restaurant->name }}
+                                        </h3>
+                                        <ul class="inside-page__text list-unstyled">
+                                            <li>Indirizzo: {{ $restaurant->address }}</li>
+                                            <li>Partita IVA: {{ $restaurant->vat }} </li>
+                                        </ul>
+                                        <div class="btns d-flex position-absolute actionRestaurantindex pb-2">
+
+                                            <a class="btn btn-primary "
+                                                href="{{ route('admin.restaurants.show', $restaurant->id) }}">
+                                                Show
+                                            </a>
+
+                                            <a class="btn btn-warning mx-2"
+                                                href="{{ route('admin.products.edit', $restaurant->id) }}">
+                                                Edit
+                                            </a>
+
+                                            {{-- Button trigger modal --}}
+                                            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
+                                                data-bs-target="#delete_restaurant_{{ $restaurant->id }}">
+                                                Delete
+                                            </button>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+
+                        {{-- </div> --}}
+                        {{-- Modal --}}
+                        <div class="modal fade" id="delete_restaurant_{{ $restaurant->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="modal_{{ $restaurant->id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Elimina il Ristorante:
+                                            {{ $restaurant->name }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to proceed?
+                                        This operation is irreversible!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger text-white"
+                                                data-bs-dismiss="modal">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
-            </tbody>
-        </table>
+            </div>
+        </div>
+    </div>
     </div>
 
+
+    </div>
 @endsection

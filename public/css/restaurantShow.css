@@ -11243,145 +11243,73 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-/* header */
-.w-5 {
-  width: 25px;
+.scroll {
+  max-height: 100vh;
+  overflow: auto;
+}
+.scroll .myCard {
+  height: 400px;
+}
+.scroll .myCard .cardR {
+  width: 30rem;
 }
 
-.nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  width: 100%;
-  background-color: #fece2c;
-  z-index: 10000;
-}
-.nav > .nav-header {
-  display: inline;
-}
-.nav > .nav-btn {
-  display: none;
-}
-.nav > .nav-links {
-  display: inline;
-  float: right;
-  font-size: 18px;
-}
-.nav > .nav-links a {
-  display: inline-block;
-  padding: 13px 10px 13px 10px;
-  text-decoration: none;
-  color: white;
-}
-.nav > .nav-links a > a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-.nav > #nav-check {
-  display: none;
-}
-.nav > .logo {
-  background-size: 125%;
-  background-repeat: no-repeat;
-  background-color: #3b3b3b;
-  background-position: center;
-  background-image: url("../img/logo_deliveboo_xs.png");
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 1;
-  top: 20%;
-  left: calc(50% - 50px);
-}
-
-.sidebar {
-  height: 100vh;
-  background-color: #fece2c !important;
-}
-.sidebar * {
-  color: black !important;
-}
-
-.dashboardJumbo {
-  background-image: url("https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg");
-  background-blend-mode: multiply;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: gray;
-  background-repeat: no-repeat;
-  height: 100vh;
-  overflow-y: hidden;
-}
-
-@media (max-width: 992px) {
-  .nav > .logo {
-    height: 75px;
-    width: 75px;
-  }
-  .nav > .nav-btn {
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-  }
-  .nav > .nav-btn > label {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    padding: 13px;
-  }
-  .nav > .nav-btn > label > span {
-    display: block;
-    width: 25px;
-    height: 10px;
-    border-top: 2px solid #eee;
-  }
-  .nav > .nav-links {
-    position: absolute;
-    display: block !important;
-    width: 100%;
-    background-color: #333;
-    height: 0px;
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
-    top: 50px;
-    left: 0px;
-  }
-  .nav > .nav-links > div > a {
-    display: block;
-    width: 100%;
-    color: #eee;
-  }
-  .nav > #nav-check:not(:checked) ~ .nav-links {
-    height: 0px;
-  }
-  .nav > #nav-check:checked ~ .nav-links {
-    height: calc(100vh - 425px);
-    overflow-y: auto;
+@media screen and (max-width: 1305px) {
+  * {
+    transition: all 0.4s ease;
   }
 
-  .nav > .nav-btn > label:hover,
-.nav #nav-check:checked ~ .nav-btn > label {
-    background-color: rgba(0, 0, 0, 0.3);
+  .respCard .row {
+    position: relative;
+    left: 15px;
   }
 }
-/* header */
-/* Footer */
-footer {
-  background-color: #3b3b3b;
-  width: 100%;
-}
-footer .fab {
-  color: white;
-}
-footer .fab:hover {
-  color: #ca1d1f;
-}
-footer span:hover {
-  color: #ca1d1f;
-  cursor: pointer;
-}
+@media screen and (max-width: 1135px) {
+  .respCard {
+    padding: 0.5rem 0.5rem;
+  }
+  .respCard .row {
+    position: relative;
+    left: 15px;
+  }
 
-/* Footer */
+  .infoR {
+    text-align: center;
+    font-size: 0.8em !important;
+  }
+  .infoR h5 {
+    font-size: 0.9rem !important;
+  }
+
+  .btns {
+    font-size: 0.7em !important;
+  }
+  .btns * {
+    font-size: 0.9em !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .btns * {
+    margin: 0.3rem 0;
+  }
+}
+@media screen and (max-width: 535px) {
+  .cardR {
+    width: 20rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .respCard {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .btns * {
+    font-size: 1.2em !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  .centered {
+    text-align: center;
+  }
+}

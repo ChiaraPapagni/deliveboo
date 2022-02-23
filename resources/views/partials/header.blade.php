@@ -35,25 +35,40 @@
             @else
 
                 <span>
-                    <a href="{{ route('admin.dashboard') }}">
-                        @if (Auth::user()->account_image)
-                            <img class="w-5 rounded-circle"
-                                src="{{ asset('storage/account_image/' . Auth::user()->id . '/' . Auth::user()->account_image) }}"
-                                alt="{{ Auth::user()->name }}">
-                        @else
-                            <img class="w-5 rounded-circle" src="{{ url('/img/placeholder/placeholder_user.png') }}"
-                                alt="placeholder_user">
-                        @endif
-                        <span>{{ Auth::user()->name }}</span>
+                    @if (Auth::user()->has_restaurant)
+                        <a href="{{ route('admin.restaurants.index') }}">
+                            @if (Auth::user()->account_image)
+                                <img class="w-5 rounded-circle"
+                                    src="{{ asset('storage/account_image/' . Auth::user()->id . '/' . Auth::user()->account_image) }}"
+                                    alt="{{ Auth::user()->name }}">
+                            @else
+                                <img class="w-5 rounded-circle" src="{{ url('/img/placeholder/placeholder_user.png') }}"
+                                    alt="placeholder_user">
+                            @endif
+                            <span>{{ Auth::user()->name }}</span>
 
-                    </a>
+                        </a>
+                    @else
+                        <a href="{{ route('admin.register.create') }}">
+                            @if (Auth::user()->account_image)
+                                <img class="w-5 rounded-circle"
+                                    src="{{ asset('storage/account_image/' . Auth::user()->id . '/' . Auth::user()->account_image) }}"
+                                    alt="{{ Auth::user()->name }}">
+                            @else
+                                <img class="w-5 rounded-circle" src="{{ url('/img/placeholder/placeholder_user.png') }}"
+                                    alt="placeholder_user">
+                            @endif
+                            <span>{{ Auth::user()->name }}</span>
+
+                        </a>
+                    @endif
                 </span>
 
 
 
                 <a class="" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                                                                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                                                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
