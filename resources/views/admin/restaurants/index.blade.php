@@ -17,7 +17,7 @@
         </h1>
         <div class="btnContain text-center pt-5 pb-3">
             <a class="btn btn-success mb-2" href="{{ route('admin.restaurants.create') }}" role="button">
-                Create Restaurants
+                Creazione ristorante
             </a>
         </div>
 
@@ -42,9 +42,10 @@
                                         <div class="card-back">
                                             <div class="video__container"
                                                 style="
-                                                                                                                                                                                                                        @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
+                                                                                                                                                                                                                                    @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
                                             @else
                                                 background-image: url('/img/placeholder/placeholder_restaurant.jpg'); @endif">
+
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +86,7 @@
                             </div>
                         </div>
 
-                        {{-- </div> --}}
+
                         {{-- Modal --}}
                         <div class="modal fade" id="delete_restaurant_{{ $restaurant->id }}" tabindex="-1"
                             role="dialog" aria-labelledby="modal_{{ $restaurant->id }}" aria-hidden="true">
@@ -120,9 +121,5 @@
                 @endforeach
             </div>
         </div>
-    </div>
-    </div>
-
-
     </div>
 @endsection

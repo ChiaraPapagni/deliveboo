@@ -5,9 +5,16 @@
     <link href="{{ asset('css/restaurantShow.css') }}" rel="stylesheet">
 @endsection
 
+
 @section('content')
     <div class="scroll">
         <div class="container">
+            {{-- Mostra ordini --}}
+            <a class="btn btn-info" href="{{ route('admin.order.index', $restaurant->id) }}" role="button">ORDINI
+                RISTORANTE</a>
+
+            <a class="btn btn-info" href="{{ route('admin.order.chart', $restaurant->id) }}" role="button">DIAGRAMMA
+                ORDINI-RISTORANTE</a>
 
             {{-- Restaurant Card --}}
             <div class="pt-2 row row-cols-1 row-cols-lg-2">
@@ -24,7 +31,8 @@
                                 alt="{{ $restaurant->name }}">
                         @endif
                         <div class="card-body text-dark">
-                            <h5 class="card-title">Restaurant: ID:{{ $restaurant->id }} -> {{ $restaurant->name }}
+                            <h5 class="card-title">Restaurant: ID:{{ $restaurant->id }} ->
+                                {{ $restaurant->name }}
                             </h5>
                             <p class="card-text">{{ $restaurant->description }}</p>
 
@@ -120,7 +128,8 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Elimina prodotto: {{ $product->name }}
+                                                        <h5 class="modal-title">Elimina prodotto:
+                                                            {{ $product->name }}
                                                         </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>

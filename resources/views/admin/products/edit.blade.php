@@ -12,8 +12,8 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome Piatto*</label>
                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    placeholder="Your dish name here..." aria-describedby="nameHelper" value="{{ $product->name }}"
-                    required min="3" max="255">
+                    placeholder="Nome prodotto qui..." aria-describedby="nameHelper" value="{{ $product->name }}" required
+                    min="3" max="255">
 
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -23,8 +23,6 @@
             {{-- Immagine --}}
             <div class="mb-3">
                 <div class="row">
-
-
 
                     <div class="col-4">
 

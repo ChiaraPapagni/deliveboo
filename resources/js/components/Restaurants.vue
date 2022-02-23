@@ -1,30 +1,60 @@
 <template>
   <div class="container">
     <div class="categoryContainer py-5">
-      <h2 class="text-capitalize pb-5 pt-3 fs-1 text-end">
+      <!-- <h2 class="pb-5 pt-3 fs-1 category-title">
         Scegli la categoria preferita
-      </h2>
+      </h2> -->
+      <div class="container categorie pt-5" id="order_now">
+        <div class="line"></div>
+        <div class="titolo-ristorante">Seleziona le categorie</div>
+        <div class="line"></div>
+      </div>
 
-      <div class="d-flex flex-wrap align-items-center justify-content-center">
-        <div class="m-2" v-for="(category, i) in categories" :key="i">
-          <input
-            type="checkbox"
-            class="categories"
-            :id="category.id"
-            :value="category.id"
-            v-model="checkedCat"
-            @change="getRestaurants()"
-          />
+      <div
+        class="
+          d-flex
+          flex-wrap
+          align-items-center
+          justify-content-center
+          seleziona-categorie
+        "
+      >
+        <div
+          class="m-2 category-input"
+          v-for="(category, i) in categories"
+          :key="i"
+        >
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              :src="'./img/categories_images/' + category.category_image"
+              alt="Card
+            image cap"
+            />
+            <div class="card-body">
+              <input
+                type="checkbox"
+                class="categories"
+                :id="category.id"
+                :value="category.id"
+                v-model="checkedCat"
+                @change="getRestaurants()"
+              />
 
-          <label :for="category.id" class="btn btn-sm border">{{
-            category.name
-          }}</label>
+              <label
+                :for="category.id"
+                class="btn btn-sm border category-name"
+                >{{ category.name }}</label
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <!-- Categories -->
 
     <!-- {{-- SearchBar Per i Ristoranti --}}
+
     <div class="searchbarContainer py-5">
         <div class="container">
 
@@ -37,6 +67,12 @@
         </div>
     </div> -->
 
+    <div class="risotranti-disponibili pt-5" id="order_now">
+      <div class="line"></div>
+      <div class="titolo-ristorante">Scegli i Ristoranti disponibili</div>
+      <div class="line"></div>
+    </div>
+
     <div class="restaurantContainer py-5">
       <div
         class="
@@ -47,7 +83,7 @@
         "
       >
         <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
-          <a :href="'/restaurants/' + restaurant.slug">
+          <a :href="'/restaurants/' + restaurant.slug" class="link">
             <div class="card">
               <div class="card-body w-100 text-center">
                 <img
@@ -61,7 +97,7 @@
                 />
               </div>
               <div class="card-text w-100">
-                <h3>{{ restaurant.name }}</h3>
+                <h3 class="text">{{ restaurant.name }}</h3>
               </div>
             </div>
           </a>
@@ -128,6 +164,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* .categoryContainer {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.categorie {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.category-title {
+  margin-top: 2rem;
+}
+
+.category-name {
+  font-size: 20px;
+  border-radius: 0.5rem;
+}
+
+.category-name:hover {
+  color: black;
+}
+
+.seleziona-categorie {
+  margin-top: 5rem;
+}
+
 input.categories {
   display: none;
 }
@@ -135,5 +198,62 @@ input.categories {
 input.categories:checked + label {
   background-color: brown;
   color: #fff;
+}
+
+.risotranti-disponibili {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.titolo-ristorante {
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.col {
+  width: 300px;
+}
+
+/* card */
+
+.text {
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.card {
+  --card-gradient: rgba(0, 0, 0, 0.8);
+  --card-blend-mode: overlay;
+  // --card-blend-mode: multiply;
+
+  background-color: brown;
+  border-radius: 0.5rem;
+  box-shadow: 0.05rem 0.1rem 0.2rem -0.03rem rgba(0, 0, 0, 0.45);
+  padding-bottom: 1rem;
+  background-image: linear-gradient(
+    var(--card-gradient),
+    white max(9.5rem, 27vh)
+  );
+  overflow: hidden;
+  text-align: center;
+
+  img {
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    object-fit: cover;
+    // height: max(10rem, 25vh);
+    max-height: max(8rem, 20vh);
+    aspect-ratio: 4/3;
+  }
 }
 </style>
