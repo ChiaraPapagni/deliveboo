@@ -3,8 +3,7 @@
 @section('content')
     <div class="container mt-5 py-5">
 
-        <form class="row" action="{{ route('store') }}" id="payment-form" method="post"
-            enctype="multipart/form-data">
+        <form class="row" action="{{ route('store') }}" id="payment-form" method="post">
             @csrf
 
             <div class="col-8">
@@ -99,55 +98,54 @@
                         </div>
 
                         {{-- Pagamento --}}
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <div id="dropin-container"></div>
-                                    <button id="submit-button">Request payment method</button>
-                                </div>
-                            </div>
+                        <div class="mb-3">
+
+                            <div id="dropin-container"></div>
+                            <input id="nonce" name="payment_method_nonce" type="hidden" />
+                            <button id="submit-button">Procedi al pagamento</button>
+
                         </div>
 
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-4">
-
                 <order-cart></order-cart>
-
             </div>
-
-
         </form>
-
     </div>
 @endsection
 
 @section('script')
-    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
-    <script>
-        /* Braintree  */
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.js"></script>
+    <script type="module">
         var form = document.querySelector('#payment-form');
         var button = document.querySelector('#submit-button');
+        //var client_token = "sandbox_fwg98qpr_3xb8zby2rfx6jzmb";
         var client_token = "{{ $token }}";
         braintree.dropin.create({
             authorization: client_token,
-            selector: '#dropin-container'
+            selector: '#dropin-container',
+            /* paypal: {
+                flow: 'vault'
+            } */
         }, function(createErr, instance) {
-            button.addEventListener('click', function() {
+            if (createErr) {
+                console.log('Create Error', createErr);
+                return;
+            }
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
                 instance.requestPaymentMethod(function(err, payload) {
-                    $.get('{{ route('checkout') }}', {
+                    if (err) {
+                        console.log('Request Payment Method Error', err);
+                        return;
+                    }
+                    document.querySelector('input[name="payment_method_nonce"]').value =
                         payload
-                    }, function(response) {
-                        if (response.success) {
-                            alert('Payment successfull!');
-                        } else {
-                            alert('Payment failed');
-                        }
-                    }, 'json');
+                        .nonce;
+                    form.submit();
                 });
             });
         });

@@ -1,0 +1,1 @@
+Pagamento avvenuto con successo
