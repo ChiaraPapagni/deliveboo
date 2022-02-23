@@ -118,29 +118,33 @@
 @endsection
 
 @section('script')
-    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
-    <script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.js"></script>
+    <script type="module">
         var form = document.querySelector('#payment-form');
-        //var client_token = "sandbox_7bv5zbqv_3xb8zby2rfx6jzmb";
+        var button = document.querySelector('#submit-button');
+        //var client_token = "sandbox_fwg98qpr_3xb8zby2rfx6jzmb";
+        var client_token = "{{ $token }}";
         braintree.dropin.create({
-            authorization: "sandbox_7bv5zbqv_3xb8zby2rfx6jzmb",
-            selector: '#bt-dropin',
-            paypal: {
+            authorization: client_token,
+            selector: '#dropin-container',
+            /* paypal: {
                 flow: 'vault'
-            }
+            } */
         }, function(createErr, instance) {
             if (createErr) {
                 console.log('Create Error', createErr);
                 return;
             }
-            form.addEventListener('submit', function(event) {
+            button.addEventListener('click', function(event) {
                 event.preventDefault();
                 instance.requestPaymentMethod(function(err, payload) {
                     if (err) {
                         console.log('Request Payment Method Error', err);
                         return;
                     }
-                    document.querySelector('#nonce').value = payload.nonce;
+                    document.querySelector('input[name="payment_method_nonce"]').value =
+                        payload
+                        .nonce;
                     form.submit();
                 });
             });

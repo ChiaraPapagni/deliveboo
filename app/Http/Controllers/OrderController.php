@@ -10,9 +10,6 @@ use App\Mail\SendMail;
 use App\Mail\SendMailToAdmin;
 use Illuminate\Http\Request;
 use Braintree;
-/* use Braintree\Gateway;
-use Braintree_Transaction;
-use Braintree\Transaction; */
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,8 +37,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //$cart_products = json_decode($request->input('cart'));
-        //$cart_total = (float) number_format($request->input('amount'), 2);
+        $cart_products = json_decode($request->input('cart'));
+        $cart_total = (float) number_format($request->input('amount'), 2);
 
         $validated = $request->validate([
             'name' => ['required', 'min:3', 'max:200'],
@@ -83,18 +80,28 @@ class OrderController extends Controller
                 'submitForSettlement' => true,
             ],
         ]);
-        ddd($request, $result);
+        //ddd($amount, $nonce, $result);
 
         if ($result->success) {
             $order = Order::create($validated);
 
-            $products = collect($request->input('products', []))->map(function (
+            /* $products = collect($request->input('products', []))->map(function (
                 $product
             ) {
                 return ['quantity' => $product];
             });
 
-            $order->products()->sync($products);
+            $order->products()->sync($products); */
+
+            // creo i records nella tabella pivot
+            for ($i = 0; $i < sizeof($cart_products); $i++) {
+                $order->products()->attach([
+                    $cart_products[$i]->id => [
+                        'quantity' => $cart_products[$i]->qty,
+                        'restaurant_id' => $cart_products[$i]->restaurant_id,
+                    ],
+                ]);
+            }
 
             $order['status'] = true;
 
