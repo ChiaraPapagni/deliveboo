@@ -7,6 +7,9 @@
         <a class="btn btn-info" href="{{ route('admin.order.index', $restaurant->id) }}" role="button">ORDINI
             RISTORANTE</a>
 
+        <a class="btn btn-info" href="{{ route('admin.order.chart', $restaurant->id) }}" role="button">DIAGRAMMA
+            ORDINI-RISTORANTE</a>
+
         {{-- Restaurant Card --}}
         <div class="myCard pt-5 d-flex justify-content-center">
             <div class="card mt-5" style="width: 35rem;">
