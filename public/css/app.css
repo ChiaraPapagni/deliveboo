@@ -11482,6 +11482,23 @@ footer span:hover {
   margin-right: 35rem;
 }
 
+.prodotto-carrello {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.right-sidebar {
+  background-color: #fece2c;
+  max-height: 100vh;
+  width: 300px;
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  z-index: 10;
+}
+
 /* effects */
 .hover01 figure img {
   transform: scale(1);
