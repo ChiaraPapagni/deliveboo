@@ -16,9 +16,9 @@
     /* var data_y = "<?php echo json_encode($monthOrders); ?>" */
     var data_y = JSON.parse('{!! json_encode($monthOrders) !!}')
     var data_x1 = JSON.parse('{!! json_encode($months) !!}')
-    var data_y2 = JSON.parse('{!! json_encode($amounts) !!}')
+    var data_y2 = JSON.parse('{!! json_encode($amountOrders) !!}')
 
-    console.log(data_y, data_x1, data_y2);
+    console.log(data_y, data_x1, data_y2[0].sums);
     var barChartData = {
         labels: data_x1,
         datasets: [{
