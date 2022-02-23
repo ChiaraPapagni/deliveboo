@@ -8,7 +8,7 @@
 @section('content')
     <div class="scroll">
         <div class="container mt-2 pt-2">
-            <h1 class="pb-3">Creazione del ristorante</h1>
+            <h1 class="pb-3 ">Creazione del ristorante</h1>
 
             <form action="{{ route('admin.restaurants.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
