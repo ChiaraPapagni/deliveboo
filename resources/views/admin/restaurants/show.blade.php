@@ -85,7 +85,7 @@
 
                                 <div class="col">
                                     <div class="image centered d-flex justify-content-center align-items-center h-100">
-                                        @if ($restaurant->restaurant_image === null)
+                                        @if ($product->product_image === null)
                                             <img src="{{ url('/img/placeholder/placeholder_product.jpg') }}"
                                                 style="object-fit:cover" height="150" alt="product placeholder">
                                         @else
