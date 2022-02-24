@@ -37,6 +37,17 @@
                         <div class="sidebar-sticky pt-3">
                             <ul class="navbar text-light list-unstyled ul-sidebar flex-column">
                                 @if (Auth::user()->has_restaurant)
+                                    <li class="nav-item user-info d-flex justify-content-center align-items-center mb-4">
+                                        @if (Auth::user()->account_image)
+                                            <img src="{{ asset('storage/account_image/' . Auth::user()->id . '/' . Auth::user()->account_image) }}"
+                                                alt="{{ Auth::user()->name }}" width="50px" height="50px"
+                                                class="rounded-circle" style="object-fit: cover">
+                                        @else
+                                            <img src="{{ url('/img/placeholder/placeholder_user.png') }}" width="50px"
+                                                height="50px" class="rounded-circle">
+                                        @endif
+                                        <h4 class="ms-3">{{ Auth::user()->name }}</h4>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('admin.restaurants.index') }}">
                                             <i class="fas fa-house-user"></i>

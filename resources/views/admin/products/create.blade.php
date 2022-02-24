@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container mt-5 pt-5">
+    <div class="container mt-5 pt-5 text-white">
         @include('partials.error')
         @include('partials.message')
 

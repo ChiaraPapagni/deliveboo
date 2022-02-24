@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container mt-5 pt-5">
+    <div class="container mt-5 pt-5 text-white">
         <h1>Aggiorna Prodotto</h1>
 
         <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                         <label for="product_image" class="form-label">Modifica immagine</label>
                         <input type="file" name="product_image" id="product_image" aria-describedby="imageHelper"
                             accept="images/*" class="form-control @error('product_image') is_invalid @enderror" />
-                        <small id="product_imageHelper" class="text-muted">
+                        <small id="product_imageHelper">
                             Aggiungi una immagine al prodotto. [Max 500kb]
                         </small>
                     </div>
