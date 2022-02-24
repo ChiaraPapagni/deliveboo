@@ -37,9 +37,7 @@
                 @change="getRestaurants()"
               />
 
-              <label :for="category.id" class="category-name">{{
-                category.name
-              }}</label>
+              <label :for="category.id">{{ category.name }}</label>
             </div>
           </div>
         </div>
@@ -62,23 +60,23 @@
           justify-content-center
         "
       >
-        <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
-          <a :href="'/restaurants/' + restaurant.slug" class="link">
-            <div class="card">
-              <div class="card-body w-100 text-center">
-                <img
-                  width="90%"
-                  :src="
-                    restaurant.restaurant_image
-                      ? '/storage/' + restaurant.restaurant_image
-                      : 'https://demofree.sirv.com/nope-not-here.jpg'
-                  "
-                  :alt="restaurant.name"
-                />
-              </div>
-              <div class="card-text w-100">
-                <h3 class="text">{{ restaurant.name }}</h3>
-              </div>
+        <div
+          class="restaurant-card col-12 col-sm-12 col-md-4 p-0 mx-2"
+          v-for="restaurant in restaurants"
+          :key="restaurant.id"
+        >
+          <a :href="'/restaurants/' + restaurant.slug">
+            <img
+              :src="
+                restaurant.restaurant_image
+                  ? '/storage/' + restaurant.restaurant_image
+                  : 'https://demofree.sirv.com/nope-not-here.jpg'
+              "
+              :alt="restaurant.name"
+            />
+            <div class="restaurant-info">
+              <h4 class="mb-2">{{ restaurant.name }}</h4>
+              <p class="desc">{{ restaurant.description }}</p>
             </div>
           </a>
         </div>
@@ -172,6 +170,10 @@ export default {
       cursor: pointer;
     }
 
+    input.categories {
+      display: none;
+    }
+
     input.categories:checked + label {
       color: #fece2c;
       background-color: #3b3b3b;
@@ -179,37 +181,6 @@ export default {
       -webkit-box-shadow: -5px 6px 0px 1px #fece2c;
     }
   }
-}
-
-/* .categoryContainer {
-  display: flex;
-  justify-content: space-between;
-} */
-
-.categorie {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-}
-.category-title {
-  margin-top: 2rem;
-}
-
-.category-name {
-  font-size: 20px;
-  border-radius: 0.5rem;
-}
-
-.category-name:hover {
-  color: black;
-}
-
-.seleziona-categorie {
-  margin-top: 5rem;
-}
-
-input.categories {
-  display: none;
 }
 
 .risotranti-disponibili {
@@ -226,46 +197,75 @@ input.categories {
   margin-right: 10px;
 }
 
-.col {
-  width: 300px;
+.line {
+  height: 5px;
+  width: 140px;
+  background-color: #fece2c;
+  align-items: center;
+  margin-top: 15px;
 }
 
-/* card */
-
-.text {
-  font-size: 20px;
+.restaurant-card {
+  width: 235px;
+  height: 270px;
+  border-radius: 5px;
+  position: relative;
   text-align: center;
-  text-decoration: none;
-  color: black;
-}
-
-.link {
-  text-decoration: none;
-}
-
-.card {
-  --card-gradient: rgba(0, 0, 0, 0.8);
-  --card-blend-mode: overlay;
-  // --card-blend-mode: multiply;
-
-  background-color: brown;
-  border-radius: 0.5rem;
-  box-shadow: 0.05rem 0.1rem 0.2rem -0.03rem rgba(0, 0, 0, 0.45);
-  padding-bottom: 1rem;
-  background-image: linear-gradient(
-    var(--card-gradient),
-    white max(9.5rem, 27vh)
-  );
   overflow: hidden;
-  text-align: center;
 
-  img {
-    border-radius: 0.5rem 0.5rem 0 0;
+  a {
+    color: #fff;
+    text-decoration: none;
 
-    object-fit: cover;
-    // height: max(10rem, 25vh);
-    max-height: max(8rem, 20vh);
-    aspect-ratio: 4/3;
+    img {
+      width: 235px;
+      height: 270px;
+      border-radius: 5px;
+      object-fit: cover;
+      transition: 0.3s ease;
+      filter: brightness(0.8);
+    }
+
+    .restaurant-info {
+      h4 {
+        transition: 0.4s ease;
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        bottom: 2rem;
+        transform: translateX(-50%);
+        text-align: center;
+        line-height: 10.8rem;
+      }
+      .desc {
+        padding: 0 1.5rem;
+        transition: 0.4s ease;
+        position: absolute;
+        left: 0;
+        bottom: -12rem;
+        color: #fff;
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    &:hover img {
+      transform: scale(1.2);
+      overflow: hidden;
+      object-fit: cover;
+      object-position: center;
+      filter: blur(1px) brightness(0.4);
+    }
+
+    &:hover h4 {
+      bottom: 13rem;
+    }
+
+    &:hover {
+      bottom: 1rem;
+    }
   }
 }
 </style>
