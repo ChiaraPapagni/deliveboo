@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mx-auto">
     <div class="categoryContainer py-5">
       <div class="container categorie pt-5" id="order_now">
         <div class="line"></div>
