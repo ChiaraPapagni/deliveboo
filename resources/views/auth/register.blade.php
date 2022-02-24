@@ -5,14 +5,14 @@
         <div class="row justify-content-center m-5">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Registrazione') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input placeholder="Inserisci il tuo nome" id="name" type="text"
@@ -29,7 +29,7 @@
 
                             <div class="form-group row mb-3">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}*</label>
 
                                 <div class="col-md-6">
                                     <input placeholder="Inserisci la tua email" id="email" type="email"
@@ -63,7 +63,7 @@
 
                             <div class="form-group row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input placeholder="Reinserisci la password precedente" id="password-confirm"
@@ -81,7 +81,7 @@
                             {{-- Immagine Utente --}}
                             <div class="form-group row mb-3">
                                 <label for="account_image"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('User Image') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Immagine Personale') }}</label>
 
                                 <div class="col-md-6">
                                     <input type="file" name="account_image" id="account_image" accept="image/*"
@@ -103,7 +103,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>

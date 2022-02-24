@@ -9,6 +9,10 @@
 @section('content')
     {{-- jumbo pizza --}}
     <div id="custom-data" data-profiles="{{ $restaurant->id }}" class="contenitore-jumbo">
+        <div class="right-sidebar">
+
+            <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart"></cart-component>
+        </div>
         <img src="http://127.0.0.1:8000/img-prova/background-food.png" alt="pizza" class="pizza mt-5">
 
         <div class="contenitore-titolo">
@@ -69,7 +73,8 @@
 
     <div class="container mt-5 position-relative">
 
-        <div class="row">
+        <div class="row prodotto-carrello">
+
             @foreach ($restaurant->products as $product)
                 {{-- Componente per il singolo prodotto --}}
                 @if ($product->visible === 1)
@@ -78,12 +83,9 @@
                 @endif
             @endforeach
 
-            {{-- carrello --}}
-            <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart"></cart-component>
-
-
         </div>
     </div>
+
     {{-- <div class="jumbo-consegne mt-5">
         <img src="http://127.0.0.1:8000/img-prova/fast-food.png" alt="" class="img-jumbo-consegne ">
         <div class="contenitore-titolo-consegne">

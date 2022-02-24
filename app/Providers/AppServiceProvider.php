@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+
+use Braintree\Gateway;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,15 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /* Braintree_Configuration::environment(env('BRAINTREE_ENV'));
-        Braintree_Configuration::merchantId(env('BRAINTREE_MERCHANT_ID'));
-        Braintree_Configuration::publicKey(env('BRAINTREE_PUBLIC_KEY'));
-        Braintree_Configuration::privateKey(env('BRAINTREE_PRIVATE_KEY')); */
-        /*         $gateway = new \Braintree\Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => '88zhvyrjnfvrndyw',
-            'publicKey' => '56g7zcjrywn646q9',
-            'privateKey' => '831d7fd5cd83e327972f1b71275e7562',
-        ]); */
+        $this->app->singleton(Gateway::class, function ($app) {
+            return new Gateway(
+                [
+                    'environment' => env('BRAINTREE_ENV'),
+                    'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+                    'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+                    'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+                ]
+            );
+        });
     }
 }

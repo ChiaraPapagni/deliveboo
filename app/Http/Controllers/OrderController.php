@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendMail;
-use App\Mail\SendMailToAdmin;
 use App\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Restaurant;
-use Braintree;
+use App\Mail\SendMail;
+use App\Mail\SendMailToAdmin;
 use Illuminate\Http\Request;
-use Braintree_Transaction;
-use Braintree\Transaction;
-use Illuminate\Support\Facades\Validator;
+use Braintree;
 use Illuminate\Support\Facades\Mail;
-use Braintree\Gateway;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -40,14 +37,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
         $cart_products = json_decode($request->input('cart'));
-
-        //$cart_total = (json_decode($request->input('cart-total')));
-        //$cart_total = $request->input('amount');
-        //$cart_total = number_format($request->input('amount'), 2);
         $cart_total = (float) number_format($request->input('amount'), 2);
-        //dd($request, $cart_products, $cart_total);
 
         $validated = $request->validate([
             'name' => ['required', 'min:3', 'max:200'],
@@ -60,44 +51,81 @@ class OrderController extends Controller
             'status' => ['nullable'],
         ]);
 
-
-        $order = Order::create($validated);
-
-
-        //ddd($request->input('payload', false));
-
-        //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
-        $order->status = true;
-        $order->save();
-
-
-        // $payload = $request->input('payload', false);
-        //dd($payload);
-
-        /* 
-        //Email al cliente
-        Mail::to($request->email)->send(new SendMail($order));
-
-        //Email al ristoratore
-        $id_restaurant = $cart_products[0]->restaurant_id;
-        $restaurant = Restaurant::where('id', $id_restaurant)->get();
-        $user = User::where('id', $restaurant[0]->user_id)->get();
-       
-        Mail::to($user[0]['email'])->send(new SendMailToAdmin($order)); */
-
         // creo i records nella tabella pivot
-        for ($i = 0; $i < sizeof($cart_products); $i++) {
+        /* for ($i = 0; $i < sizeof($cart_products); $i++) {
             $order->products()->attach([
                 $cart_products[$i]->id => [
                     'quantity' => $cart_products[$i]->qty,
-                    'restaurant_id' => $cart_products[$i]->restaurant_id,
                 ],
             ]);
+        } */
+
+        //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
+        //$order->save();
+
+        $gateway = new \Braintree\Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => '88zhvyrjnfvrndyw',
+            'publicKey' => '56g7zcjrywn646q9',
+            'privateKey' => '831d7fd5cd83e327972f1b71275e7562',
+        ]);
+
+        $amount = $request->amount;
+        $nonce = $request->payment_method_nonce;
+
+        $result = $gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true,
+            ],
+        ]);
+        //ddd($amount, $nonce, $result);
+
+        if ($result->success) {
+            $order = Order::create($validated);
+
+            /* $products = collect($request->input('products', []))->map(function (
+                $product
+            ) {
+                return ['quantity' => $product];
+            });
+
+            $order->products()->sync($products); */
+
+            // creo i records nella tabella pivot
+            for ($i = 0; $i < sizeof($cart_products); $i++) {
+                $order->products()->attach([
+                    $cart_products[$i]->id => [
+                        'quantity' => $cart_products[$i]->qty,
+                        'restaurant_id' => $cart_products[$i]->restaurant_id,
+                    ],
+                ]);
+            }
+
+            $order['status'] = true;
+
+            //Email al cliente
+            Mail::to($request->email)->send(new SendMail($order));
+
+            //Email al ristoratore
+            $id_restaurant = $cart_products[0]->restaurant_id;
+            $restaurant = Restaurant::where('id', $id_restaurant)->get();
+            $user = User::where('id', $restaurant[0]->user_id)->get();
+            Mail::to($user[0]['email'])->send(new SendMailToAdmin($order));
+
+            return view('guest.checkout.success');
+        } else {
+            $errorString = '';
+
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .=
+                    'Error: ' . $error->code . ': ' . $error->message . "\n";
+            }
+
+            return back()->withErrors(
+                'An error occurred with the message: ' . $result->message
+            );
         }
-
-        //$order->products()->attach([product.id => ['quantity' => numero.quantità], product.id => ['quantity' => numero.quantità]]);
-        //Order::find(1)->products()->sync([1, 2, 3],);
-
-        return view('guest.welcome');
     }
 }
