@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <div class="categoryContainer py-5">
-      <!-- <h2 class="pb-5 pt-3 fs-1 category-title">
-        Scegli la categoria preferita
-      </h2> -->
       <div class="container categorie pt-5" id="order_now">
         <div class="line"></div>
         <div class="titolo-ristorante">Seleziona le categorie</div>
@@ -24,14 +21,13 @@
           v-for="(category, i) in categories"
           :key="i"
         >
-          <div class="card" style="width: 18rem">
+          <div class="category-card" style="width: 15rem">
             <img
-              class="card-img-top"
               :src="'./img/categories_images/' + category.category_image"
               alt="Card
             image cap"
             />
-            <div class="card-body">
+            <div class="category-body">
               <input
                 type="checkbox"
                 class="categories"
@@ -41,31 +37,15 @@
                 @change="getRestaurants()"
               />
 
-              <label
-                :for="category.id"
-                class="btn btn-sm border category-name"
-                >{{ category.name }}</label
-              >
+              <label :for="category.id" class="category-name">{{
+                category.name
+              }}</label>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Categories -->
-
-    <!-- {{-- SearchBar Per i Ristoranti --}}
-
-    <div class="searchbarContainer py-5">
-        <div class="container">
-
-            <div class="mb-3">
-                <h3 for="restaurant" class="form-label text-capitalize">ricerca i tuoi ristoranti preferiti!</h3>
-                <input type="text" name="restaurant" id="restaurant" class="form-control"
-                    placeholder="Type restaurant's name" aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Scrivi il nome del ristorante dove vuoi ordinare</small>
-            </div>
-        </div>
-    </div> -->
 
     <div class="risotranti-disponibili pt-5" id="order_now">
       <div class="line"></div>
@@ -164,6 +144,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.category-card {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  img {
+    width: 100%;
+    object-fit: cover;
+    height: 7.5rem;
+    aspect-ratio: 4/3;
+  }
+  .category-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    label {
+      background-color: #fece2c;
+      box-shadow: -5px 6px 0px 1px #3b3b3b;
+      -webkit-box-shadow: -5px 6px 0px 1px #3b3b3b;
+      border-radius: 0;
+      padding: 0.2rem 0.8rem;
+      color: #3b3b3b;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    input.categories:checked + label {
+      color: #fece2c;
+      background-color: #3b3b3b;
+      box-shadow: -5px 6px 0px 1px #fece2c;
+      -webkit-box-shadow: -5px 6px 0px 1px #fece2c;
+    }
+  }
+}
+
 /* .categoryContainer {
   display: flex;
   justify-content: space-between;
@@ -193,11 +210,6 @@ export default {
 
 input.categories {
   display: none;
-}
-
-input.categories:checked + label {
-  background-color: brown;
-  color: #fff;
 }
 
 .risotranti-disponibili {
