@@ -10,21 +10,18 @@ use App\Mail\SendMail;
 use App\Mail\SendMailToAdmin;
 use Illuminate\Http\Request;
 use Braintree;
+use Braintree\Gateway;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    public function checkout()
+    public function checkout(Gateway $gateway)
     {
-        $gateway = new \Braintree\Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => '88zhvyrjnfvrndyw',
-            'publicKey' => '56g7zcjrywn646q9',
-            'privateKey' => '831d7fd5cd83e327972f1b71275e7562',
-        ]);
-
         $token = $gateway->ClientToken()->generate();
+
+        // ddd(env('BRAINTREE_ENV'));
+
 
         return view('guest.checkout.checkout', compact('token'));
     }
@@ -35,7 +32,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Gateway $gateway)
     {
         $cart_products = json_decode($request->input('cart'));
         $cart_total = (float) number_format($request->input('amount'), 2);
@@ -62,13 +59,6 @@ class OrderController extends Controller
 
         //controllare se il pagamento è andato a buon fine e cambiare lo stato dell'ordine da false a true
         //$order->save();
-
-        $gateway = new \Braintree\Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => '88zhvyrjnfvrndyw',
-            'publicKey' => '56g7zcjrywn646q9',
-            'privateKey' => '831d7fd5cd83e327972f1b71275e7562',
-        ]);
 
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
