@@ -11317,9 +11317,18 @@ textarea.form-control-lg {
 /* For both inside page's main heading and 'view me' text on card front cover */
 .inside-page__heading,
 .card-front__text-view {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  margin-top: 0.2rem;
+}
+.inside-page__heading a,
+.card-front__text-view a {
+  color: #fece2c;
+  text-decoration: none;
+}
+.inside-page__heading a:hover,
+.card-front__text-view a:hover {
+  color: #eab405;
+  transition: 0.3 ease-in-out;
 }
 
 .inside-page__heading--city,

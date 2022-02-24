@@ -139,6 +139,8 @@ export default {
 .border {
   border-radius: 0.25rem;
   padding: 10px;
+  background-color: #fece2c;
+  margin-top: 3rem;
 }
 
 .button-checkout {
@@ -172,10 +174,5 @@ export default {
   font-size: 13px;
   margin-top: 5px;
   color: white;
-}
-
-.img-prodotti {
-  width: 50px;
-  height: 50px;
 }
 </style>
