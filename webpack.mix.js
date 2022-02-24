@@ -23,6 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
   .sass('resources/sass/restaurantCreate.scss', 'public/css')
   .sass('resources/sass/restaurantShow.scss', 'public/css')
   .sass('resources/sass/ristoranteGuestShow.scss', 'public/css')
+  .sass('resources/sass/restaurantEdit.scss', 'public/css')
   ;
 
 

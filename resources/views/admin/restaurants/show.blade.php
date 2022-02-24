@@ -9,19 +9,14 @@
 @section('content')
     <div class="scroll">
         <div class="container">
-            {{-- Mostra ordini --}}
-            <a class="btn btn-info" href="{{ route('admin.order.index', $restaurant->id) }}" role="button">ORDINI
-                RISTORANTE</a>
 
-            <a class="btn btn-info" href="{{ route('admin.order.chart', $restaurant->id) }}" role="button">DIAGRAMMA
-                ORDINI-RISTORANTE</a>
 
             {{-- Restaurant Card --}}
             <div class="pt-2 row row-cols-1 row-cols-lg-2">
                 <div class="col">
 
 
-                    <div class="card mt-5 w-100 cardR justify-content-center">
+                    <div class="card mt-5 w-100 cardR justify-content-center border-0">
 
                         @if ($restaurant->restaurant_image === null)
                             <img src="{{ url('/img/placeholder/placeholder_restaurant.jpg') }}"
@@ -31,7 +26,7 @@
                                 alt="{{ $restaurant->name }}">
                         @endif
                         <div class="card-body text-dark">
-                            <h5 class="card-title">Restaurant: ID:{{ $restaurant->id }} ->
+                            <h5 class="card-title">
                                 {{ $restaurant->name }}
                             </h5>
                             <p class="card-text">{{ $restaurant->description }}</p>
@@ -41,20 +36,20 @@
 
                                 @if ($restaurant->website)
                                     <a href="{{ $restaurant->website }}" target="_blank"
-                                        class="btn btn-primary">{{ $restaurant->website }}</a>
+                                        class="btn btn-sm btn-primary">{{ $restaurant->website }}</a>
                                 @else
                                     <span>Nessun sito web</span>
                                 @endif
 
                                 <div class="mt-2">
-                                    {{ $restaurant->phone }}
+                                    Tel: {{ $restaurant->phone }}
                                 </div>
 
                                 {{-- Category badges --}}
                                 <div class="badges mt-2">
                                     <p>
                                         @forelse($restaurant->categories as $category)
-                                            <span class="badge bg-info">
+                                            <span class="badge bg-warning text-dark rounded-0">
                                                 {{ $category->name }}
                                             </span>
                                         @empty
@@ -65,6 +60,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="ordini-stats mt-3 d-flex align-items-center">
+                        {{-- Mostra ordini --}}
+                        <a class="btn btn-warning rounded-0 me-3"
+                            href="{{ route('admin.order.index', $restaurant->id) }}" role="button">Ordini Ristorante</a>
+
+                        <a class="btn btn-warning rounded-0" href="{{ route('admin.order.chart', $restaurant->id) }}"
+                            role="button">Statistiche</a>
+                    </div>
                 </div>
 
 
@@ -72,7 +76,7 @@
                     {{-- Menu and create new product --}}
                     <div class="d-flex align-items-center mb-4 mt-4 justify-content-between text-warning">
                         <h4 class="me-3">Menu</h4>
-                        <a class="btn btn-success "
+                        <a class="btn btn-success  rounded-pill"
                             href="{{ route('admin.product.create', ['restaurant' => $restaurant->id]) }}" role="button">
                             Aggiungi un piatto
                         </a>
@@ -161,9 +165,9 @@
                 </div>
             </div>
 
-            <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurants.index') }}" role="button">
+            {{-- <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurants.index') }}" role="button">
                 Torna indietro
-            </a>
+            </a> --}}
         </div>
     </div>
 @endsection
