@@ -1,27 +1,38 @@
 <footer>
     <div class="container text-light">
-        <div class="row pt-5 pb-3">
+        <div class="row py-4">
 
-            <div class="col-6">
-                <h5>Deliveboo</h5>
+            <div class="col-sm-12 col-md-6">
+                <h5 class="mt-4">Deliveboo</h5>
                 <span>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam soluta praesentium sed distinctio
                     eligendi, mollitia excepturi voluptatibus cumque laborum obcaecati!
                 </span>
+                <h5 class="mt-4">Pagamenti sicuri</h5>
+                <span>
+                    <img src="../img/cards/Visa-card-light.png" alt="Visa" width="50px">
+                    <img src="../img/cards/MasterCard-light.png" alt="MasterCard" width="50px">
+                    <img src="../img/cards/Maestro-card-light.png" alt="Maestro" width="50px">
+                    <img src="../img/cards/AmericanExpress-light.png" alt="AmericanExpress" width="50px">
+                    <img src="../img/cards/JCB-card-light.png" alt="JCB" width="50px">
+                    <img src="../img/cards/UnionPay-card-light.png" alt="UnionPay" width="50px">
+                    <img src="../img/cards/Discover-card-light.png" alt="Discover" width="50px">
+                    <img src="../img/cards/DinersClub-card-light.png" alt="DinersClub" width="50px">
+                </span>
             </div>
 
-            <div class="col-3">
-                <h5>Services</h5>
-                <div class="row row-cols-1">
+            <div class="col-sm-12 col-md-3">
+                <h5 class="mt-4">I nostri servizi</h5>
+                <div class="row row-cols-1 footer-info">
                     <span class="py-2">Lorem 1</span>
                     <span class="py-2">Lorem 2</span>
                     <span class="py-2">Lorem 3</span>
                 </div>
             </div>
 
-            <div class="col-3">
-                <h5>About</h5>
-                <div class="row row-cols-1">
+            <div class="col-sm-12 col-md-3">
+                <h5 class="mt-4">Chi siamo</h5>
+                <div class="row row-cols-1 footer-info">
                     <span class="py-2">Lorem 1</span>
                     <span class="py-2">Lorem 2</span>
                     <span class="py-2">Lorem 3</span>
@@ -31,13 +42,21 @@
         </div>
 
         <div class="row justify-content-center row-cols-6 fs-3 text-center py-2">
-
-            <a href="https://www.facebook.com/boolean.careers/" target=”_blank”><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/booleancareers" target=”_blank”><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/school/boolean-careers/" target=”_blank”><i
-                    class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/boolean.careers/" target=”_blank”><i class="fab fa-instagram"></i></a>
-
+            <p class="social">
+                <a href="https://www.facebook.com/boolean.careers/" target=”_blank”><i
+                        class="fab fa-facebook-f"></i></a>
+            </p>
+            <p class="social">
+                <a href="https://twitter.com/booleancareers" target=”_blank”><i class="fab fa-twitter"></i></a>
+            </p>
+            <p class="social">
+                <a href="https://www.linkedin.com/school/boolean-careers/" target=”_blank”><i
+                        class="fab fa-linkedin"></i></a>
+            </p>
+            <p class="social">
+                <a href="https://www.instagram.com/boolean.careers/" target=”_blank”><i
+                        class="fab fa-instagram"></i></a>
+            </p>
         </div>
 
         <div class="row justify-content-center py-3">
