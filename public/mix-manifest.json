@@ -4,5 +4,6 @@
     "/css/homepage.css": "/css/homepage.css",
     "/css/admin.css": "/css/admin.css",
     "/css/restaurantCreate.css": "/css/restaurantCreate.css",
-    "/css/restaurantShow.css": "/css/restaurantShow.css"
+    "/css/restaurantShow.css": "/css/restaurantShow.css",
+    "/css/ristoranteGuestShow.css": "/css/ristoranteGuestShow.css"
 }
