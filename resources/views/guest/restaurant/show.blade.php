@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('personalCss')
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ristoranteGuestShow.css') }}">
+@endsection
+
 
 @section('content')
     {{-- jumbo pizza --}}
