@@ -83,9 +83,10 @@
                     </div>
                     {{-- NEW card products --}}
                     @foreach ($restaurant->products as $product)
-                        <div class="card respCard mb-5">
+                        <div class=" card respCard mb-5">
 
-                            <div class="row justify-content-center row-cols-1 row-cols-md-3">
+                            <div
+                                class="{{ $product->visible === 0 ? 'text-secondary' : '' }} row justify-content-center row-cols-1 row-cols-md-3">
 
                                 <div class="col">
                                     <div class="image centered d-flex justify-content-center align-items-center h-100">
