@@ -4,6 +4,17 @@
      height: 75vh;
      width: 100%;
      position: relative;
+
+     .right-sidebar {
+       width: 20%;
+       height: 50vh;
+       overflow-y: auto;
+       position: fixed;
+       right: 0px;
+       top: 0px;
+
+
+     }
    }
    
    .pizza {
