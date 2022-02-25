@@ -1,4 +1,11 @@
 /* --------------------Show Ristorante---------------------- */
+@use "bootstrap";
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
 
 .contenitore-jumbo {
     height: 75vh;
@@ -137,7 +144,6 @@
        top: 0px;
        z-index: 10;
      }
-   }
    
    .pizza {
      object-fit: cover;
