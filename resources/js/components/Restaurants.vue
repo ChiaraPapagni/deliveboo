@@ -232,7 +232,7 @@ export default {
         width: 100%;
         position: absolute;
         left: 50%;
-        bottom: 2rem;
+        bottom: -2rem;
         transform: translateX(-50%);
         text-align: center;
         line-height: 10.8rem;
@@ -260,10 +260,10 @@ export default {
     }
 
     &:hover h4 {
-      bottom: 13rem;
+      bottom: 9rem;
     }
 
-    &:hover {
+    &:hover .desc {
       bottom: 1rem;
     }
   }
