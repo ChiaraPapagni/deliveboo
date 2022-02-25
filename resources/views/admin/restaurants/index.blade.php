@@ -42,7 +42,7 @@
                                         <div class="card-back">
                                             <div class="video__container"
                                                 style="
-                                                                                                                                                                                                                                                                                                @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
+                                                                                                                                                                                                                                                                                                                @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
                                             @else
                                                 background-image: url('/img/placeholder/placeholder_restaurant.jpg'); @endif">
 
@@ -50,45 +50,44 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a href="{{ route('admin.restaurants.show', $restaurant->id) }}"
+                                    class="text-decoration-none">
+                                    <div class="inside-page p-2">
+                                        <div class="inside-page__container">
+                                            <h4 class="inside-page__heading inside-page__heading--city text-uppercase mt-0">
 
-                                <div class="inside-page p-2">
-                                    <div class="inside-page__container">
-                                        <h4 class="inside-page__heading inside-page__heading--city text-uppercase mt-0">
-                                            <a href="{{ route('admin.restaurants.show', $restaurant->id) }}">
                                                 {{ $restaurant->name }}
-                                            </a>
-                                        </h4>
-                                        <ul class="inside-page__text list-unstyled">
-                                            <li>{{ $restaurant->address }}</li>
-                                            <li>Partita IVA: {{ $restaurant->vat }} </li>
-                                        </ul>
-                                        <div class="btns d-flex position-absolute actionRestaurantindex pb-2">
 
-                                            {{-- <a class="btn btn-primary "
+                                            </h4>
+                                            <ul class="inside-page__text list-unstyled">
+                                                <li>{{ $restaurant->address }}</li>
+                                                <li>Partita IVA: {{ $restaurant->vat }} </li>
+                                            </ul>
+                                            <div class="btns d-flex position-absolute actionRestaurantindex pb-2">
+
+                                                {{-- <a class="btn btn-primary "
                                                 href="{{ route('admin.restaurants.show', $restaurant->id) }}">
                                                 Show
                                             </a> --}}
 
-                                            <a class="btn btn-sm btn-warning mx-2 rounded-0"
-                                                href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
-                                                Modifica
-                                            </a>
+                                                <a class="btn btn-sm btn-warning mx-2 rounded-0"
+                                                    href="{{ route('admin.restaurants.edit', $restaurant->id) }}">
+                                                    Modifica
+                                                </a>
 
-                                            {{-- Button trigger modal --}}
-                                            <button type="button" class="btn btn-sm btn-danger text-white rounded-0"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#delete_restaurant_{{ $restaurant->id }}">
-                                                Elimina
-                                            </button>
+                                                {{-- Button trigger modal --}}
+                                                <button type="button" class="btn btn-sm btn-danger text-white rounded-0"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#delete_restaurant_{{ $restaurant->id }}">
+                                                    Elimina
+                                                </button>
 
-
-
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
-
 
                         {{-- Modal --}}
                         <div class="modal fade" id="delete_restaurant_{{ $restaurant->id }}" tabindex="-1"
