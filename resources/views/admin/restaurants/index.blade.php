@@ -3,6 +3,9 @@
 @extends('layouts.admin')
 
 @section('personalCss')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }} ">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 @endsection
@@ -33,7 +36,7 @@
                                 <div class="flip-card">
                                     <div class="flip-card__container">
                                         <div class="card-front">
-                                            <div class="card-front__tp card-front__tp--city">
+                                            <div class="card-front__tp text-center card-front__tp--city">
                                                 <h2 class="card-front__heading px-2">
                                                     {{ $restaurant->name }}
                                                 </h2>
@@ -42,7 +45,7 @@
                                         <div class="card-back">
                                             <div class="video__container"
                                                 style="
-                                                                                                                                                                                                                                                                                                                @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
+                                                                                                                                                                                                                                                                                                                        @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
                                             @else
                                                 background-image: url('/img/placeholder/placeholder_restaurant.jpg'); @endif">
 
