@@ -10,14 +10,16 @@
                 </span>
                 <h5 class="mt-4">Pagamenti sicuri</h5>
                 <span>
-                    <img src="../img/cards/Visa-card-light.png" alt="Visa" width="50px">
-                    <img src="../img/cards/MasterCard-light.png" alt="MasterCard" width="50px">
-                    <img src="../img/cards/Maestro-card-light.png" alt="Maestro" width="50px">
-                    <img src="../img/cards/AmericanExpress-light.png" alt="AmericanExpress" width="50px">
-                    <img src="../img/cards/JCB-card-light.png" alt="JCB" width="50px">
-                    <img src="../img/cards/UnionPay-card-light.png" alt="UnionPay" width="50px">
-                    <img src="../img/cards/Discover-card-light.png" alt="Discover" width="50px">
-                    <img src="../img/cards/DinersClub-card-light.png" alt="DinersClub" width="50px">
+                    <img src="../img/cards/Visa-card-light.png" alt="Visa" width="50px" class="mb-2">
+                    <img src="../img/cards/MasterCard-light.png" alt="MasterCard" width="50px" class="mb-2">
+                    <img src="../img/cards/Maestro-card-light.png" alt="Maestro" width="50px" class="mb-2">
+                    <img src="../img/cards/AmericanExpress-light.png" alt="AmericanExpress" width="50px"
+                        class="mb-2">
+                    <img src="../img/cards/JCB-card-light.png" alt="JCB" width="50px" class="mb-2">
+                    <img src="../img/cards/UnionPay-card-light.png" alt="UnionPay" width="50px" class="mb-2">
+                    <img src="../img/cards/Discover-card-light.png" alt="Discover" width="50px" class="mb-2">
+                    <img src="../img/cards/DinersClub-card-light.png" alt="DinersClub" width="50px"
+                        class="mb-2">
                 </span>
             </div>
 

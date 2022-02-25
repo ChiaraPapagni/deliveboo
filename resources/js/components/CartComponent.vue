@@ -1,55 +1,66 @@
 <template>
   <!-- Stampo il singolo prodotto del carello-->
-  <div v-show="cart.length > 0" class="border">
-    <div>
-      <h3 class="carrello">Carrello</h3>
-    </div>
-    <div class="card" v-for="(product, i) in cart" :key="i">
-      <div class="d-flex justify-content-between">
-        <p class="product-name">{{ product.name }}</p>
-        <p class="product-price">{{ product.price }} €</p>
-      </div>
-
-      <!-- funzione per selezionare la quantità -->
-      <div class="QtyBtn">
-        <div>
-          <button
-            @click="
-              remove_qty(product, cart);
-              refreshQty(product.qty);
-            "
-            id="lessQty"
-            class="btn-minus"
-          >
-            -
-          </button>
-          <span id="coutnerQty">{{ product.qty }}</span>
-          <button
-            @click="
-              add_qty(product);
-              refreshQty(product.qty);
-            "
-            id="moreQty"
-            class="btn-plus"
-          >
-            +
-          </button>
+  <div v-if="cart.length > 0">
+    <div class="cart shadow p-3 bg-body rounded">
+      <h5 class="text-center mb-4">Il tuo ordine</h5>
+      <div v-for="(product, i) in cart" :key="i">
+        <div class="d-flex justify-content-between">
+          <p class="m-0">{{ product.name }}</p>
+          <p class="m-0">{{ product.price }} €</p>
         </div>
 
-        <i
-          class="fas fa-trash-alt"
-          style="color: red; font-size: 25px"
-          @click="removeProduct(product, cart)"
-        ></i>
+        <!-- funzione per selezionare la quantità -->
+        <div class="QtyBtn">
+          <div>
+            <button
+              @click="
+                remove_qty(product, cart);
+                refreshQty(product.qty);
+              "
+              id="lessQty"
+              class="btn-minus"
+            >
+              <span>-</span>
+            </button>
+            <span id="coutnerQty">{{ product.qty }}</span>
+            <button
+              @click="
+                add_qty(product);
+                refreshQty(product.qty);
+              "
+              id="moreQty"
+              class="btn-plus"
+            >
+              <span>+</span>
+            </button>
+          </div>
+
+          <i
+            class="fas fa-trash-alt"
+            style="color: #ca1d1f; font-size: 20px"
+            @click="removeProduct(product, cart)"
+          ></i>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <span class="totale">Totale: {{ total.toFixed(2) }} €</span>
+        <a href="/checkout">
+          <button type="submit" class="button-checkout">
+            Procedi all'ordine
+          </button>
+        </a>
       </div>
     </div>
-    <div class="d-flex justify-content-between">
-      <span class="subtotale">Subtotale: {{ total.toFixed(2) }} €</span>
-      <a href="/checkout"
-        ><button type="submit" class="button-checkout">
-          Procedi all'ordine
-        </button></a
-      >
+  </div>
+
+  <div v-else class="opacity shadow p-3 bg-body rounded">
+    <h5 class="text-center mb-4">Il tuo carrello è vuoto</h5>
+    <div class="d-flex justify-content-center">
+      <i
+        class="fas fa-shopping-basket text-center"
+        style="color: #3b3b3b; font-size: 40px"
+      ></i>
     </div>
   </div>
 </template>
@@ -112,67 +123,68 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.carrello {
-  color: white;
-  text-align: end;
-  font-size: 20px;
-}
-.card {
-  margin-bottom: 2rem;
-  padding: 10px;
+.cart {
+  .QtyBtn {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.3rem 0 1rem 0;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .btn-minus,
+      .btn-plus {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 2px solid #fece2c;
+        color: #fece2c;
+        font-size: 1.3rem;
+      }
+
+      #coutnerQty {
+        margin: 0 1rem;
+      }
+    }
+
+    .fa-trash-alt:hover {
+      cursor: pointer;
+    }
+  }
+
+  .totale {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+
+  .button-checkout {
+    background-color: #fece2c;
+    box-shadow: -5px 6px 0px 1px #3b3b3b;
+    -webkit-box-shadow: -5px 6px 0px 1px #3b3b3b;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    color: #3b3b3b;
+    transition: 0.3s ease;
+
+    &:hover {
+      color: #fece2c;
+      background-color: #3b3b3b;
+      box-shadow: -5px 6px 0px 1px #fece2c;
+      -webkit-box-shadow: -5px 6px 0px 1px #fece2c;
+    }
+  }
 }
 
-.product-name {
-  font-weight: bold;
-  margin-bottom: 2rem;
-}
-
-.product-price {
-  font-weight: bold;
-}
-
-.QtyBtn {
-  display: flex;
-  justify-content: space-between;
-}
-
-.border {
-  border-radius: 0.25rem;
-  padding: 10px;
-  background-color: #fece2c;
-  margin-top: 3rem;
-}
-
-.button-checkout {
-  background-color: lightgreen;
-  border: 2px solid lightgreen;
-  border-radius: 0.25rem;
-  align-items: center;
-  width: 150px;
-  font-size: 15px;
-  color: white;
-}
-
-.fa-trash-alt:hover {
-  cursor: pointer;
-}
-
-.btn-minus {
-  border-radius: 0.25rem;
-  border: 2px solid lightgrey;
-  width: 25px;
-}
-
-.btn-plus {
-  border-radius: 0.25rem;
-  border: 2px solid lightgrey;
-  width: 25px;
-}
-
-.subtotale {
-  font-weight: bold;
-  font-size: 13px;
-  margin-top: 5px;
-  color: white;
+.opacity {
+  opacity: 0.5;
+  cursor: no-drop;
 }
 </style>
