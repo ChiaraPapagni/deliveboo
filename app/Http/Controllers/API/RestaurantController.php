@@ -21,7 +21,7 @@ class RestaurantController extends Controller
         return RestaurantResource::collection(
             Restaurant::with('categories')
                 ->orderBy('id', 'desc')
-                ->paginate(11)
+                ->paginate(20)
         );
     }
 
@@ -38,7 +38,7 @@ class RestaurantController extends Controller
             $query
         ) use ($_request) {
             $query->whereIn('category_id', $_request);
-        })->paginate(11);
+        })->paginate(20);
 
         return response()->json($restaurants);
     }
