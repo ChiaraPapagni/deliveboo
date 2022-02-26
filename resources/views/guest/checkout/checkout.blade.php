@@ -115,10 +115,10 @@
                 </div>
             </form>
         </div>
+        {{-- <img src="{{ asset('../img/loading.gif') }}"> --}}
 
         {{-- Loading --}}
-        <div id="loading" {{-- style="
-                            loading.classList.contains(active) ? background-image:url('{{ asset('../img/loading.gif') }}')  : '' " --}}>
+        <div id="loading">
             <span class="circle circle-1"></span>
             <span class="circle circle-2"></span>
             <span class="circle circle-3"></span>
@@ -216,7 +216,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.20);
+            background-color: #99999955;
         }
 
         .circle {
