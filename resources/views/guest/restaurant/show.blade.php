@@ -12,9 +12,10 @@
         {{-- <div class="right-sidebar">
             <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart"></cart-component>
         </div> --}}
-        <img src="http://127.0.0.1:8000/img-prova/background-food.png" alt="pizza" class="pizza mt-5">
+        <img src="{{ asset('storage/' . $restaurant->restaurant_image) }}" alt="{{ $restaurant->name }}"
+            class="pizza mt-5">
 
-        <div class="contenitore-titolo">
+        <div class="contenitore-titolo text-white">
             <h1 class="restaurant-name">{{ $restaurant->name }}</h1>
             <p>{{ $restaurant->description }}</p>
             <a href="#order_now" role="button" class="btn btn-warning mb-2">Order Now</a>
@@ -35,7 +36,7 @@
     <div class="m-5 px-5 position-relative">
         <div class="row">
             <div class="col">
-                <div class="row prodotto-carrello">
+                <div class="row prodotto-carrello gy-4">
 
                     @foreach ($restaurant->products as $product)
                         {{-- Componente per il singolo prodotto --}}
