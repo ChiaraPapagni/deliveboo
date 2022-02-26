@@ -3,8 +3,8 @@
 @section('content')
     <div class="container mt-5 pt-5">
         <div class="row justify-content-center m-5">
-            <div class="col-md-8">
-                <div class="card">
+            <div class="col-md-8 pb-5 mb-5">
+                <div class="card shadow border-0">
                     <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
                     <div class="card-body">

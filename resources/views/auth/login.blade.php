@@ -3,8 +3,8 @@
 @section('content')
     <div class="container mt-5 pt-5">
         <div class="row justify-content-center m-5 pt-4">
-            <div class="col-md-8 pb-5 mb-4">
-                <div class="card">
+            <div class="col-md-8 pb-5 mb-5">
+                <div class="card shadow border-0">
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body">
@@ -61,7 +61,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                        {{ __('Accedi') }}
                                     </button>
 
                                     @if (Route::has('password.request'))

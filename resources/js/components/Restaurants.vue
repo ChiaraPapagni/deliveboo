@@ -1,12 +1,12 @@
 <template>
   <div class="container mx-auto">
-    <div class="categoryContainer py-5">
-      <div class="container categorie pt-5" id="order_now">
-        <div class="line"></div>
-        <div class="titolo-ristorante">Seleziona le categorie</div>
-        <div class="line"></div>
-      </div>
+    <div class="categorie-disponibili pt-5" id="order_now">
+      <div class="line"></div>
+      <div class="titolo-ristorante">Seleziona le categorie</div>
+      <div class="line"></div>
+    </div>
 
+    <div class="categoryContainer py-5">
       <div
         class="
           d-flex
@@ -47,7 +47,7 @@
 
     <div class="risotranti-disponibili pt-5" id="order_now">
       <div class="line"></div>
-      <div class="titolo-ristorante">Scegli i Ristoranti disponibili</div>
+      <div class="titolo-ristorante">Scegli i ristoranti</div>
       <div class="line"></div>
     </div>
 
@@ -142,6 +142,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.categorie-disponibili,
+.risotranti-disponibili {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 .category-card {
   position: relative;
   border-radius: 0.5rem;
@@ -181,12 +188,6 @@ export default {
       -webkit-box-shadow: -5px 6px 0px 1px #fece2c;
     }
   }
-}
-
-.risotranti-disponibili {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
 }
 
 .titolo-ristorante {

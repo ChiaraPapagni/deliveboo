@@ -8,21 +8,16 @@
 
             <div class="col-8">
 
-                <div class="card">
-
-                    <div class="card-header">{{ __('Pagamento') }}</div>
-
+                <div class="card shadow border-0">
                     <div class="card-body">
-
-
                         {{-- Nome --}}
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="name" class="form-label">Nome*</label>
                                 <input type="text" name="name" id="name"
-                                    class="form-control @error('name') is-invalid @enderror"
-                                    placeholder="Inserisci il tuo nome" aria-describedby="nameHelper"
-                                    value="{{ old('name') }}" required minlength="3" maxlength="255">
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Mario"
+                                    aria-describedby="nameHelper" value="{{ old('name') }}" required minlength="3"
+                                    maxlength="255">
 
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -33,9 +28,9 @@
                             <div class="col mb-3">
                                 <label for="last_name" class="form-label">Cognome*</label>
                                 <input type="text" name="last_name" id="last_name"
-                                    class="form-control @error('last_name') is-invalid @enderror"
-                                    placeholder="Inserisci il tuo nome" aria-describedby="last_nameHelper"
-                                    value="{{ old('last_name') }}" required minlength="3" maxlength="255">
+                                    class="form-control @error('last_name') is-invalid @enderror" placeholder="Rossi"
+                                    aria-describedby="last_nameHelper" value="{{ old('last_name') }}" required
+                                    minlength="3" maxlength="255">
 
                                 @error('last_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -49,8 +44,7 @@
                                 <label for="phone" class="form-label">Numero di telefono*</label>
                                 <input type="tel" name="phone" id="phone"
                                     class="form-control @error('phone') is-invalid @enderror" minlength="8" maxlength="20"
-                                    placeholder="Telefono del ristorante ..." aria-describedby="phoneHelper"
-                                    value="{{ old('phone') }}">
+                                    placeholder="" aria-describedby="phoneHelper" value="{{ old('phone') }}">
 
                                 @error('phone')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -61,9 +55,9 @@
                             <div class="col mb-3">
                                 <label for="email" class="form-label">Email*</label>
                                 <input type="email" name="email" id="email"
-                                    class="form-control @error('email') is-invalid @enderror"
-                                    placeholder="Indirizzo del ristorante..." aria-describedby="emailHelper"
-                                    value="{{ old('email') }}" required minlength="3" maxlength="255">
+                                    class="form-control @error('email') is-invalid @enderror" placeholder="mario@rossi.it"
+                                    aria-describedby="emailHelper" value="{{ old('email') }}" required minlength="3"
+                                    maxlength="255">
 
                                 @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -76,7 +70,7 @@
                             <label for="address" class="form-label">Indirizzo*</label>
                             <input type="text" name="address" id="address"
                                 class="form-control @error('address') is-invalid @enderror"
-                                placeholder="Indirizzo del ristorante..." aria-describedby="addressHelper"
+                                placeholder="Via Giuseppe Garibaldi" aria-describedby="addressHelper"
                                 value="{{ old('address') }}" required minlength="3" maxlength="255">
 
                             @error('address')
@@ -87,9 +81,8 @@
                         {{-- Note --}}
                         <div class="mb-0">
                             <label for="notes" class="form-label">Note</label>
-                            <textarea class="form-control @error('notes') is-invalid @enderror" name="notes"
-                                placeholder="Inserisci la descrizione del ristorante" id="notes"
-                                rows="5">{{ old('notes') }}</textarea>
+                            <textarea class="form-control @error('notes') is-invalid @enderror" name="notes" placeholder=""
+                                id="notes" rows="5">{{ old('notes') }}</textarea>
                             @error('notes')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
