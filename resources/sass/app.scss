@@ -21,15 +21,15 @@
     background-color: $secondary_color;
     z-index: 10000;
 
-    &>.nav-header {
+    & > .nav-header {
         display: inline;
     }
 
-    &>.nav-btn {
+    & > .nav-btn {
         display: none;
     }
 
-    &>.nav-links {
+    & > .nav-links {
         display: inline;
         float: right;
         font-size: 18px;
@@ -40,17 +40,17 @@
             text-decoration: none;
             color: white;
 
-            &>a:hover {
+            & > a:hover {
                 background-color: rgba(0, 0, 0, 0.3);
             }
         }
     }
 
-    &>#nav-check {
+    & > #nav-check {
         display: none;
     }
 
-    &>.logo {
+    & > .logo {
         background-size: 125%;
         background-repeat: no-repeat;
         background-color: #3b3b3b;
@@ -66,19 +66,17 @@
     }
 }
 
-
 .sidebar {
     height: 100vh;
     background-color: $secondary_color !important;
 
     * {
         color: black !important;
-
     }
 }
 
 .dashboardJumbo {
-    background-image: url('https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg');
+    background-image: url("https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg");
     background-blend-mode: multiply;
     background-position: center;
     background-attachment: fixed;
@@ -91,24 +89,24 @@
 
 @media (max-width: 992px) {
     .nav {
-        &>.logo {
+        & > .logo {
             height: 75px;
             width: 75px;
         }
 
-        &>.nav-btn {
+        & > .nav-btn {
             display: inline-block;
             position: absolute;
             right: 0px;
             top: 0px;
 
-            &>label {
+            & > label {
                 display: inline-block;
                 width: 50px;
                 height: 50px;
                 padding: 13px;
 
-                &>span {
+                & > span {
                     display: block;
                     width: 25px;
                     height: 10px;
@@ -117,7 +115,7 @@
             }
         }
 
-        &>.nav-links {
+        & > .nav-links {
             position: absolute;
             display: block !important;
             width: 100%;
@@ -128,25 +126,25 @@
             top: 50px;
             left: 0px;
 
-            &>div>a {
+            & > div > a {
                 display: block;
                 width: 100%;
                 color: #eee;
             }
         }
 
-        &>#nav-check:not(:checked)~.nav-links {
+        & > #nav-check:not(:checked) ~ .nav-links {
             height: 0px;
         }
 
-        &>#nav-check:checked~.nav-links {
+        & > #nav-check:checked ~ .nav-links {
             height: calc(100vh - 425px);
             overflow-y: auto;
         }
     }
 
-    .nav>.nav-btn>label:hover,
-    .nav #nav-check:checked~.nav-btn>label {
+    .nav > .nav-btn > label:hover,
+    .nav #nav-check:checked ~ .nav-btn > label {
         background-color: rgba(0, 0, 0, 0.3);
     }
 }
@@ -159,7 +157,7 @@ footer {
     background-color: $brand_color;
     width: 100%;
 
-    & .footer-info>span:hover {
+    & .footer-info > span:hover {
         color: $secondary_color;
         padding-left: 18px;
         -webkit-transition: 0.3s ease-in-out;
@@ -180,7 +178,6 @@ footer {
         & .fab {
             font-size: 1.5rem;
             color: white;
-
         }
 
         &:hover {
@@ -193,8 +190,16 @@ footer {
 
 /* Footer */
 
-
 /* Form */
 .card-header {
     background-color: rgb(254 206 44 / 40%);
+}
+
+#loading_image {
+    background-image: url("../img/placeholder/loading_checkout.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 99.7vh;
+    display: none;
 }
