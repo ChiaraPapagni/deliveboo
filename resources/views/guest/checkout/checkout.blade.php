@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5 py-5">
+    <div id="loading_image">
+    </div>
+    <div id="container_checkout" class="container mt-5 py-5">
 
         <form class="row mt-5" action="{{ route('store') }}" id="payment-form" method="post">
             @csrf
@@ -118,8 +120,11 @@
 @section('script')
     <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.js"></script>
     <script type="module">
+        var loading_image = document.querySelector('#loading_image');
+        var container = document.querySelector('#container_checkout');
         var form = document.querySelector('#payment-form');
         var button = document.querySelector('#submit-button');
+
         //var client_token = "sandbox_fwg98qpr_3xb8zby2rfx6jzmb";
         var client_token = "{{ $token }}";
         braintree.dropin.create({
@@ -144,6 +149,8 @@
                         payload
                         .nonce;
                     form.submit();
+                    container.style.display = "none";
+                    loading_image.style.display = "block";
                 });
             });
         });
