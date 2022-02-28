@@ -22,4 +22,5 @@
     </div>
 
     <restaurants></restaurants>
+    <steps></steps>
 @endsection

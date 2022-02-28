@@ -24,6 +24,7 @@ Vue.component('restaurants', require('./components/Restaurants.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.component('product-component', require('./components/ProductsComponent.vue').default);
 Vue.component('order-cart', require('./components/OrderCartComponent.vue').default);
+Vue.component('steps', require('./components/Steps.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -118,7 +118,7 @@
         {{-- <img src="{{ asset('../img/loading.gif') }}"> --}}
 
         {{-- Loading --}}
-        <div id="loading">
+        {{-- <div id="loading">
             <span class="circle circle-1"></span>
             <span class="circle circle-2"></span>
             <span class="circle circle-3"></span>
@@ -126,8 +126,21 @@
             <span class="circle circle-5"></span>
             <span class="circle circle-6"></span>
             <span class="circle circle-7"></span>
-            <span class="circle circle-8"></span>
+            <span class="circle circle-8"></span> 
+        </div> --}}
+
+        <div id="loading" class="cooking">
+            <div id="area">
+                <div id="sides">
+                    <div id="pan"></div>
+                    <div id="handle"></div>
+                </div>
+                <div id="pancake">
+                    <div id="pastry"></div>
+                </div>
+            </div>
         </div>
+
 
     </div>
 @endsection
@@ -156,7 +169,6 @@
             }
             button.addEventListener('click', function(event) {
                 loading.className = 'active-loading';
-                //loading.className = 'active';
                 event.preventDefault();
                 instance.requestPaymentMethod(function(err, payload) {
                     if (err) {
@@ -198,16 +210,6 @@
             display: none;
         }
 
-        .active {
-            z-index: 5;
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
         .active-loading {
             z-index: 5;
             display: block;
@@ -219,68 +221,270 @@
             background-color: #99999955;
         }
 
-        .circle {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            background-color: #fcdc29;
-            border-radius: 50%;
-            animation: loading 1.5s cubic-bezier(.8, .5, .2, 1.4) infinite;
-            transform-origin: bottom center;
+        .cooking {
             position: relative;
+            margin: 0 auto;
+            top: 0;
+            width: 75vh;
+            height: 75vh;
+            overflow: hidden;
         }
 
-        @keyframes loading {
+        #area {
+            position: absolute;
+            width: 10%;
+            height: 20%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            transform-origin: 15% 60%;
+            animation: flip 2.1s ease-in-out infinite;
+        }
+
+        #sides {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: 15% 60%;
+            animation: switchSide 2.1s ease-in-out infinite;
+        }
+
+        #handle {
+            position: absolute;
+            bottom: 18%;
+            right: 80%;
+            width: 35%;
+            height: 20%;
+            background-color: transparent;
+            border-top: 1vh solid #333;
+            border-left: 1vh solid transparent;
+            border-radius: 100%;
+            transform: rotate(20deg) rotateX(0deg) scale(1.3, .9);
+        }
+
+        #pan {
+            position: absolute;
+            bottom: 20%;
+            right: 30%;
+            width: 50%;
+            height: 8%;
+            background-color: #333;
+            border-radius: 0 0 1.4em 1.4em;
+            transform-origin: -15% 0;
+        }
+
+        #pancake {
+            position: absolute;
+            top: 24%;
+            width: 100%;
+            height: 100%;
+            transform: rotateX(85deg);
+            animation: jump 2.1s ease-in-out infinite;
+        }
+
+        #pastry {
+            position: absolute;
+            bottom: 26%;
+            right: 37%;
+            width: 40%;
+            height: 45%;
+            background-color: #333;
+            box-shadow: 0 0 3px 0 #333;
+            border-radius: 100%;
+            transform-origin: -20% 0;
+            animation: fly 2.1s ease-in-out infinite;
+        }
+
+        @keyframes jump {
             0% {
-                transform: translateY(0px);
-                background-color: #fcdc29;
+                top: 24%;
+                transform: rotateX(85deg);
+            }
+
+            25% {
+                top: 10%;
+                transform: rotateX(0deg);
             }
 
             50% {
-                transform: translateY(50px);
-                background-color: #ef584a;
+                top: 30%;
+                transform: rotateX(85deg);
+            }
+
+            75% {
+                transform: rotateX(0deg);
             }
 
             100% {
-                transform: translateY(0px);
-                background-color: #fcdc29;
+                transform: rotateX(85deg);
             }
         }
 
-        .circle-1 {
-            animation-delay: 0.1s;
+        @keyframes flip {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            5% {
+                transform: rotate(-27deg);
+            }
+
+            30%,
+            50% {
+                transform: rotate(0deg);
+            }
+
+            55% {
+                transform: rotate(27deg);
+            }
+
+            83.3% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
         }
 
-        .circle-2 {
-            animation-delay: 0.2s;
+        @keyframes switchSide {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            50% {
+                transform: rotateY(180deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
         }
 
-        .circle-3 {
-            animation-delay: 0.3s;
+        @keyframes fly {
+            0% {
+                bottom: 26%;
+                transform: rotate(0deg);
+            }
+
+            10% {
+                bottom: 40%;
+            }
+
+            50% {
+                bottom: 26%;
+                transform: rotate(-190deg);
+            }
+
+            80% {
+                bottom: 40%;
+            }
+
+            100% {
+                bottom: 26%;
+                transform: rotate(0deg);
+            }
         }
 
-        .circle-4 {
-            animation-delay: 0.4s;
+        @keyframes bubble {
+            0% {
+                transform: scale(.15, .15);
+                top: 80%;
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1, 1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(.33, .33);
+                top: 60%;
+                opacity: 0;
+            }
         }
 
-        .circle-5 {
-            animation-delay: 0.5s;
+        @keyframes pulse {
+            0% {
+                transform: scale(1, 1);
+                opacity: .25;
+            }
+
+            50% {
+                transform: scale(1.2, 1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1, 1);
+                opacity: .25;
+            }
         }
 
-        .circle-6 {
-            animation-delay: 0.6s;
-        }
+        /* .circle {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                background-color: #fcdc29;
+                border-radius: 50%;
+                animation: loading 1.5s cubic-bezier(.8, .5, .2, 1.4) infinite;
+                transform-origin: bottom center;
+                position: relative;
+            }
 
-        .circle-7 {
-            animation-delay: 0.7s;
-        }
+            @keyframes loading {
+                0% {
+                    transform: translateY(0px);
+                    background-color: #fcdc29;
+                }
 
-        .circle-8 {
-            animation-delay: 0.8s;
-        }
+                50% {
+                    transform: translateY(50px);
+                    background-color: #ef584a;
+                }
+
+                100% {
+                    transform: translateY(0px);
+                    background-color: #fcdc29;
+                }
+            }
+
+            .circle-1 {
+                animation-delay: 0.1s;
+            }
+
+            .circle-2 {
+                animation-delay: 0.2s;
+            }
+
+            .circle-3 {
+                animation-delay: 0.3s;
+            }
+
+            .circle-4 {
+                animation-delay: 0.4s;
+            }
+
+            .circle-5 {
+                animation-delay: 0.5s;
+            }
+
+            .circle-6 {
+                animation-delay: 0.6s;
+            }
+
+            .circle-7 {
+                animation-delay: 0.7s;
+            }
+
+            .circle-8 {
+                animation-delay: 0.8s;
+            } */
 
     </style>
 @endsection
