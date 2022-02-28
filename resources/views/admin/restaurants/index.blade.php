@@ -45,7 +45,7 @@
                                         <div class="card-back">
                                             <div class="video__container"
                                                 style="
-                                                                                                                                                                                                                                                                                                                        @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
+                                                                                                                                                                                                                                                                                                                            @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
                                             @else
                                                 background-image: url('/img/placeholder/placeholder_restaurant.jpg'); @endif">
 
@@ -105,8 +105,8 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to proceed?
-                                        This operation is irreversible!
+                                        Sei sicuro di voler procedere?
+                                        Questa operazione è irreversibile!
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
