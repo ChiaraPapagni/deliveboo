@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="position-relative">
         <div class="container mt-5 py-5">
 
@@ -37,6 +38,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+
                             </div>
 
                             <div class="row">
@@ -126,8 +128,10 @@
     <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.js"></script>
 
     <script type="module">
+        var container = document.querySelector('#container_checkout');
         var form = document.querySelector('#payment-form');
         var button = document.querySelector('#submit-button');
+
         var client_token = "{{ $token }}";
 
         var loading = document.getElementById('loading');
@@ -156,7 +160,7 @@
                     document.querySelector('input[name="payment_method_nonce"]').value =
                         payload
                         .nonce;
-                    form.submit();
+                    form.submit();                    
                 });
             });
         });
