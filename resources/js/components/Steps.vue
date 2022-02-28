@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <div class="steps-title pt-5">
       <div class="line"></div>
-      <h3>Come funziona?</h3>
+      <h3 class="step-title">Come funziona?</h3>
       <div class="line"></div>
     </div>
     <div class="steps py-5">
@@ -71,6 +71,26 @@ export default {};
     h5 {
       font-size: 1.2rem;
     }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .step-title {
+    font-size: 10px;
+    width: 470px;
+  }
+  .line {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .step-title {
+    font-size: 10px;
+    width: 470px;
+  }
+  .line {
+    margin-top: 15px;
   }
 }
 </style>

@@ -270,4 +270,48 @@ export default {
     }
   }
 }
+
+/********* Responsive **************/
+
+@media screen and (max-width: 1024px) {
+  .titolo-ristorante {
+    font-size: 25px;
+    width: 300px;
+  }
+  .line {
+    margin-top: 18px;
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .titolo-ristorante {
+    font-size: 25px;
+    width: 470px;
+  }
+  .line {
+    margin-top: 18px;
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .titolo-ristorante {
+    font-size: 20px;
+    width: 470px;
+  }
+  .line {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .titolo-ristorante {
+    font-size: 20px;
+    width: 470px;
+  }
+  .line {
+    margin-top: 15px;
+  }
+}
 </style>

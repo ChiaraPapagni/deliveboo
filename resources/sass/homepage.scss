@@ -164,6 +164,119 @@ First Section
 }
 }
 
+/********** Responsive **********/
+
+@media screen and (max-width: 1024px) {
+  .jumboContainer {
+    height: calc(100vh - 15vh);
+    
+    .jumboVideo {
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: calc(100vh - 15vh);
+    }
+
+    h1.text-capitalize.Title {
+    font-size: 2.5em;
+    width: 65%;
+    padding: 1rem 0.5rem;
+    background-color: $secondary_color;
+    box-shadow: -20px 22px 0px 7px $brand_color;
+-webkit-box-shadow: -20px 22px 0px 7px $brand_color;
+-moz-box-shadow: -20px 22px 0px 7px $brand_color;
+}
+}
+  
+}
+
+@media screen and (max-width: 768px) {
+  .jumboContainer {
+    height: calc(100vh - 15vh);
+    
+    .jumboVideo {
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: calc(100vh - 15vh);
+    }
+
+    h1.text-capitalize.Title {
+    font-size: 1.5em;
+    width: 55%;
+    padding: 1rem 0.5rem;
+    background-color: $secondary_color;
+    box-shadow: -20px 22px 0px 7px $brand_color;
+-webkit-box-shadow: -20px 22px 0px 7px $brand_color;
+-moz-box-shadow: -20px 22px 0px 7px $brand_color;
+}
+}
+  
+}
+
+@media screen and (max-width: 425px) {
+  .jumboContainer {
+    height: calc(100vh - 15vh);
+    
+    .jumboVideo {
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: calc(100vh - 15vh);
+    }
+
+    h1.text-capitalize.Title {
+    font-size: 1em;
+    width: 70%;
+    padding: 1rem 0.5rem;
+    background-color: $secondary_color;
+    box-shadow: -20px 22px 0px 7px $brand_color;
+    -webkit-box-shadow: -20px 22px 0px 7px $brand_color;
+    -moz-box-shadow: -20px 22px 0px 7px $brand_color;
+    }
+  }
+  
+}
+
+@media screen and (max-width: 375px) {
+  .jumboContainer {
+    height: calc(100vh - 15vh);
+    
+    .jumboVideo {
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: calc(100vh - 15vh);
+    }
+
+    h1.text-capitalize.Title {
+    font-size: 1.5em;
+    width: 70%;
+    padding: 1rem 0.5rem;
+    background-color: $secondary_color;
+    box-shadow: -20px 22px 0px 7px $brand_color;
+-webkit-box-shadow: -20px 22px 0px 7px $brand_color;
+-moz-box-shadow: -20px 22px 0px 7px $brand_color;
+}
+}
+  
+}
+
+
+
+
 
 
 
