@@ -236,6 +236,7 @@ export default {
         bottom: -2rem;
         transform: translateX(-50%);
         text-align: center;
+        text-shadow: 1px 1px 4px rgb(0 0 0 / 50%);
         line-height: 10.8rem;
       }
       .desc {
@@ -243,7 +244,7 @@ export default {
         transition: 0.4s ease;
         position: absolute;
         left: 0;
-        bottom: -12rem;
+        top: 17rem;
         color: #fff;
         display: -webkit-box;
         -webkit-line-clamp: 7;
@@ -261,11 +262,11 @@ export default {
     }
 
     &:hover h4 {
-      bottom: 9rem;
+      bottom: 8rem;
     }
 
     &:hover .desc {
-      bottom: 1rem;
+      top: 4.5rem;
     }
   }
 }
