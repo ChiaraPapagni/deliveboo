@@ -45,7 +45,7 @@
                                         <div class="card-back">
                                             <div class="video__container"
                                                 style="
-                                                                                                                                                                                                                                                                                                                            @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
+                                                                                                                                                                                                                                                                                                                                        @if ($restaurant->restaurant_image != null) background-image: url('{{ asset('storage/' . $restaurant->restaurant_image) }}')
                                             @else
                                                 background-image: url('/img/placeholder/placeholder_restaurant.jpg'); @endif">
 
@@ -109,14 +109,14 @@
                                         Questa operazione è irreversibile!
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase"
+                                            data-bs-dismiss="modal">chiudi</button>
                                         <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger text-white"
-                                                data-bs-dismiss="modal">Delete</button>
+                                            <button type="submit" class="btn btn-danger text-white text-uppercase"
+                                                data-bs-dismiss="modal">elimina</button>
                                         </form>
                                     </div>
                                 </div>

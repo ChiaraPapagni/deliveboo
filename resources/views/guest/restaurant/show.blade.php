@@ -13,7 +13,7 @@
             <cart-component @refresh-qty="refreshQty" :total="total" :cart="cart"></cart-component>
         </div> --}}
         <img src="{{ asset('storage/' . $restaurant->restaurant_image) }}" alt="{{ $restaurant->name }}"
-            class="pizza mt-5">
+            class="pizza mt-5 image-bg-r">
 
         <div class="contenitore-titolo text-white">
             <h1 class="restaurant-name">{{ $restaurant->name }}</h1>

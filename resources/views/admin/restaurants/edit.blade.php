@@ -149,6 +149,8 @@
                 </div>
 
                 <button type="submit" class="btn mb-3 btn-dark">Salva</button>
+                <a href="{{ url()->previous() }}" class="btn btn-dark text-light mb-3">Indietro</a>
+
             </form>
         </div>
     </div>

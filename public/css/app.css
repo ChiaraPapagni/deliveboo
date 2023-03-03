@@ -11400,3 +11400,16 @@ footer .social:hover {
 }
 
 /* Footer */
+/* Form */
+.card-header {
+  background-color: rgba(254, 206, 44, 0.4);
+}
+
+#loading_image {
+  background-image: url("../img/placeholder/loading_checkout.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 99.7vh;
+  display: none;
+}

@@ -11254,6 +11254,11 @@ textarea.form-control-lg {
   width: 30rem;
 }
 
+.bg-disabled {
+  background-color: #b4b4b4;
+  color: #383838;
+}
+
 @media screen and (max-width: 1305px) {
   * {
     transition: all 0.4s ease;

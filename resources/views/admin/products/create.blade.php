@@ -12,6 +12,7 @@
             @include('partials.error')
             @include('partials.message')
             <h1>Creazione nuovo piatto</h1>
+
             <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="restaurant_id" value={{ $restaurant_id }}>
@@ -78,7 +79,9 @@
                         * {{ __('Campi Obbligatori') }}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark">Salva</button>
+                <button type="submit" class="btn btn-dark mb-3">Salva</button>
+                <a href="{{ url()->previous() }}" class="btn btn-dark text-light mb-3">Indietro</a>
+
             </form>
         </div>
 

@@ -7,11 +7,16 @@
 // Variables
 @import "variables";
 
-.contenitore-jumbo {
-    height: 75vh;
-    width: 100%;
-    position: relative;
 
+
+.contenitore-jumbo {
+  height: 75vh;
+  width: 100%;
+  position: relative;
+  
+.image-bg-r {
+  object-fit: contain;
+}
 
     .right-sidebar {
         width: 20%;
@@ -20,8 +25,6 @@
         position: fixed;
         right: 0px;
         top: 0px;
-
-
     }
 }
 

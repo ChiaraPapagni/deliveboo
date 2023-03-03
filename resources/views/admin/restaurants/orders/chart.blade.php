@@ -8,6 +8,12 @@
 @section('content')
     <div class="scroll">
         <div class="container mt-5">
+            <div class="btsn">
+                <a href="{{ url()->previous() }}">
+                    <button class="btn btn-dark text-light">Indietro</button>
+                </a>
+            </div>
+
             <div>
                 <canvas id="canvas" width="240px" height="135px"></canvas>
             </div>

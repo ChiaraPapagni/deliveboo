@@ -40,7 +40,12 @@
                     </tbody>
                 </table>
 
+                <div class="btsn">
+                    <a href="{{ url()->previous() }}">
+                        <button class="btn btn-dark text-light">Indietro</button>
 
+                    </a>
+                </div>
             </div>
         @else
             <h1>non fatturi!</h1>

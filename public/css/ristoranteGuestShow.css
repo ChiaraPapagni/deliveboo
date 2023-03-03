@@ -11249,6 +11249,10 @@ textarea.form-control-lg {
   width: 100%;
   position: relative;
 }
+.contenitore-jumbo .image-bg-r {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .contenitore-jumbo .right-sidebar {
   width: 20%;
   height: 50vh;
@@ -11273,6 +11277,7 @@ textarea.form-control-lg {
   color: black;
   text-align: center;
   align-items: center;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .restaurant-name {

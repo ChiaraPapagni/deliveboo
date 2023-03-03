@@ -10,6 +10,7 @@
         <div class="container mt-2 pt-2">
             <h1 class="pb-3 ">Creazione del ristorante</h1>
 
+
             <form action="{{ route('admin.restaurants.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -114,7 +115,10 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-dark mb-4">Salva</button>
+
+                <button type="submit" class="btn btn-dark mb-3">Salva</button>
+                <a href="{{ url()->previous() }}" class="btn btn-dark text-light mb-3">Indietro</a>
+
             </form>
         </div>
     </div>

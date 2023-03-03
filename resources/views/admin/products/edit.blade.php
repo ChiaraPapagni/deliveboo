@@ -11,6 +11,12 @@
         <div class="container mt-5 pt-5 text-white">
             <h1>Aggiorna Prodotto</h1>
 
+            {{-- <div class="btsn">
+                <a href="{{ url()->previous() }}">
+                    <button class="btn btn-dark text-light">Indietro</button>
+                </a>
+            </div> --}}
+
             <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -102,6 +108,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-dark mb-3">Salva</button>
+                <a href="{{ url()->previous() }}" class="btn btn-dark text-light mb-3">Indietro</a>
             </form>
         </div>
 

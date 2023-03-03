@@ -61,10 +61,10 @@
                         </div>
                     </div>
 
-                    <div class="ordini-stats mt-3 d-flex align-items-center">
+                    <div class="ordini-stats mb-3 mt-3 d-flex align-items-center">
                         {{-- Mostra ordini --}}
                         <a class="btn btn-warning rounded-0 me-3"
-                            href="{{ route('admin.order.index', $restaurant->id) }}" role="button">Ordini Ristorante</a>
+                            href="{{ route('admin.order.index', $restaurant->id) }}" role="button">Ordini Ricevuti</a>
 
                         <a class="btn btn-warning rounded-0" href="{{ route('admin.order.chart', $restaurant->id) }}"
                             role="button">Statistiche</a>
@@ -83,10 +83,8 @@
                     </div>
                     {{-- NEW card products --}}
                     @foreach ($restaurant->products as $product)
-                        <div class=" card respCard mb-5">
-
-                            <div
-                                class="{{ $product->visible === 0 ? 'text-secondary' : '' }} row justify-content-center row-cols-1 row-cols-md-3">
+                        <div class="{{ $product->visible === 0 ? 'bg-disabled' : '' }}  card respCard mb-5">
+                            <div class="row justify-content-center row-cols-1 row-cols-md-3">
 
                                 <div class="col">
                                     <div class="image centered d-flex justify-content-center align-items-center h-100">
@@ -108,7 +106,7 @@
                                         <p class="card-text ">Pezzo: €{{ $product->price }}</p>
                                         <p class="card-text ">{{ $product->ingredients }}</p>
                                         <p class="card-text ">Visibilità:
-                                            {{ $product->visible === 1 ? 'Yes' : 'No' }}
+                                            {{ $product->visible === 1 ? 'Sì' : 'No' }}
                                         </p>
                                     </div>
                                 </div>
